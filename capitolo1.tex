@@ -113,7 +113,7 @@ c'è un teorema....
 
 \begin{defi}
 Siano $X$ e $Y$ due variabili casualidefinite sullo stesso spazio di probabilità, definiamo la loro \textbf{entropia congiunta} $H(X,Y)$ come:
-\begin{equation}
+\begin{equation}\label{eq:congiun}
 H(X,Y):=-\sum_{j=1}^n\sum_{k=1}^m p_{jk}log(p_{jk})
 \end{equation}
 dove con $p_{jk}$ intendiamo $P(X=j,Y=k)$
@@ -146,7 +146,9 @@ H_X(Y)=-\sum_{j=1}^n\sum_{k=1}^m p_{jk}log(p_j(k))
 \begin{proof}
 come sostituendo in \ref{eq:6.7}, \ref{eq:6.6} otteniamo
 
-$$H_X(Y)=-\sum_{j=1}^n\sum_{k=1}^m p_{j}p_j(k)log(p_j(k))$$
+\begin{equation} \label{eq:6.8.1}
+H_X(Y)=-\sum_{j=1}^n\sum_{k=1}^m p_{j}p_j(k)log(p_j(k))
+\end{equation}
 
 Ricordando che 
 
@@ -159,14 +161,27 @@ e possiamo concludere.
 
 
 \begin{lem}
-se $X$ e $Y$ sono indipendenti allora vale:askfnsdfjwrdfl
+se $X$ e $Y$ sono indipendenti allora vale:
 \begin{equation}
 H_X(Y)=H(Y)
 \end{equation}
 \end{lem}
-
-
-
+\begin{proof}
+supponiamo che la regge di probabilità di $Y$ sia $\{q_1...q_m\}$ allora cia basterà notare che nel caso in cui $X$ e $Y$ sono indipendenti $p_j(k)=\mathbb{P}(Y=k|X=j)=\mathbb{P}(Y=k)=q_k$
+e dunque \ref{eq:6.8.1} diventa
+$$H_X(Y)=-\sum_{k=1}^m q_klog(q_k)\sum_{j=1}^n p_{j}=-\sum_{k=1}^m q_klog(q_k)1=H(Y)$$
+\end{proof}
+\begin{teo}
+Date due variabili casuali $X,Y$ vale:
+\begin{equation}
+H(X,Y)=H(X)+H_X(y).
+\end{equation}
+\end{teo}
+\begin{proof}
+sapendo che \p$(A\cup B)=\mathbb{P}(A|B)$\p$(B)$ quindi $p_{jk}=p_jp_j(k)$ sostituendo direttamente nella def di entropia congiunta \ref{eq:congiun} otteniamo
+$$H(X,Y)=-\sum_{j=1}^n\sum_{k=1}^m p_{jk}log(p_{j}p_{j}(k))=-\sum_{j=1}^n\sum_{k=1}^m p_{jk}log(p_{j}(k))-\sum_{j=1}^n\sum_{k=1}^m p_{jk}log(p_{j})$$
+non finita
+\end{proof}
 
 
 
