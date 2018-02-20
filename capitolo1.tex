@@ -1,0 +1,184 @@
+\chapter{Informazione ed Entropia per variabili casuali discrete}
+\label{cha:intro}
+
+
+
+
+\section{Informazione}
+\label{sec:informazione}
+Fondamentali in questa tesi saranno i concetti di Informazione ed entropia.\\
+Bisogna anzitutto specificare che in Probabilità il significato di Informazione ha un connotato diverso da quello della lingua parlata. Condideriamo ad esempio le seguenti frasi: 
+\begin{enumerate}
+\item[i.] Quando vado in palestra mi alleno
+\item[ii.] Il vincitore delle prossime elezioni politiche sarà Claudio Baglioni
+\item[iii.] QUER W LKS E W
+\end{enumerate}
+
+istintivamente diremo che la frase contente maggior informazione è $(ii)$ in quanto contiene un'informazione totalmente nuova seguita poi da $(i)$ ed in fine $(iii)$ la quale non avendo significato non conterrà nessuna informazione.\\ Questa scala però tiene conto sia del significato della frase sia della quantità di \textit{sorpresa} che porta, in questo senso $(iii)$ non ha significato, ma porta \textit{sorpresa}, mentre $(ii)$ contiene sia significato che sorpresa.\\ Nel mondo della matematica si è visto che il concetto di significato è difficile da esprimere e si è dunque preferito puntare sul concetto di \textit{sorpresa} per esprimere il significato di \textit{informazione}.\\
+Per definire in maniera rigorosa il nostro concetto di \textbf{informazione} poniamoci in uno spazio di probabilità \spacep.\\
+Dati due eventi $E_1,E_2$ vogliamo che la nostra funzione d'informazione $I$ soddifi alcuni criteri:
+
+\begin{enumerate} 
+\item $I(E)\geq 0$ per ogni $E\in \mathcal{F}$
+\item se \p$(E_1)\leq $ \p$(E_2)$ allora $I(E_1)\geq I(E_2)$ 
+\item se $E_1,E_2$ sono indipendenti allora $I(E_1\cup E_2)=I(E_1)+ I(E_2)$
+\end{enumerate} 
+Con queste richieste ci viene naturalemte in mente una funzione che le soddisfa.
+
+\begin{defi}
+In uno spazio di probabilità \spacep definiamo la funzione $I: \mathcal{F}\to \mathbb{R}^+$ come:
+\begin{equation}
+(E)=-log_a(\mathbb{P} (E)).
+\end{equation}
+dove $a$ è una costante positiva (nel libro viene moltiplicato per $K$,  ma tale costante è inutile dato che già scegliere la base coincide col moltiplicare per una costante $log_a(x)=\frac{log_b(y)}{log_b(a)} \bigg)$.
+\end{defi}
+
+Si verifica facilmenta che la funzione $I$ così definita rispetta le proprietà che preposte, l'unico problema nasce per un evento $E$ tale che \p $(E)=0$ in questo caso $I(E)=\infty$, questa occorrenza può essere interpretata come l'incapacità di ottenere informazioni da un evento impossibile. La funzione \textit{Informazione} possiede inoltre la desiderabile proprietà di essere nulla qualora la probabilità di un evento sia $1$.\\
+Essendo questa funzione sarà spesso associata a codici risulterà comodo scegliere $2$ come base del logaritmo in questo modo supponendo di avere una variabile casuale $X$ con distribuzione di Bernoulli con parametro $p=\frac{1}{2}$ abbiamo che 
+\begin{equation}
+I(X=0)=I(X=1)=-log_2 \bigg(\frac{1}{2} \bigg ) =1
+\end{equation}
+Per questo d'ora in avanti con $log$ si intenderà $log_2$.
+ 
+
+
+
+
+\section{Entropia}
+\label{sec:Entropia}
+
+Il secondo concetto fondamentale è quello di \textit{entropia}.\\
+Data una variabile casuale discreta $X$ a valori $\{ x_1...x_n \}$ e con legge di probabilità $\{p_1...p_n$ non si può sapere a priori che valore assumerà $X$ e di conseguenza quanta informazione verrà inviata. Definiamo quandi l'\textit{entropia}.
+
+\begin{defi}
+si dice \textbf{entropia} di una variabile casuale discreta $X$ il valore
+\begin{equation}
+H(X):=\mathbb{E}(I(X))=-\sum_{j=1}^np_j\Phi(p_j)
+\end{equation}
+dove
+$$\Phi(p):=
+\systeme{
+log_2(p)\ se \ p \neq 0 ,
+0 \ se \  p=0}
+$$
+\end{defi}
+
+Per convincersi della sensatezza di questa definizione si immagini di voler scommettere con una moneta modificata come segue:
+\begin{enumerate}
+\item esce testa con probabilità $p_1=0.95$
+\item esce testa con probabilità $p_2=0.6$
+\item esce testa con probabilità $p_3=0.5$
+\end{enumerate} 
+ usando la definizione di Entropia otteniamo:
+ 
+ \begin{enumerate}
+\item$H_1(p_1)=0.286$
+\item$H_2(p_2)=0.971$
+\item$H_3(p_3)=1$
+\end{enumerate}
+ovviamente nel primo caso la probabilità di predirre il risultato corretto è molto alta dato che la moneta è pesantemente modificata e infatti il sistema avrà una bassa entropia, nel secondo caso l'entropia aumenta nel terzo l'indecisione è massima e l'entropia di coneguenza ha anch'essa massimo.\\
+Per convincersi di quanto detto in maniera più matematica si ha il seguente teorema:
+\begin{teo}
+Sia $X$ una variabile casuale discreta allora vale:
+\begin{enumerate}
+\item $H(X)\geq 0$ e $H(X)= 0$ se e solo se esiste un valore $X$, $x_1$ t.c. \p$(x_1)=1$
+\item $H(X)\leq log()$ e l'uguaglianza varrà solo quando $X$ ha distribuzione uniforme
+\end{enumerate}
+\end{teo} 
+
+
+
+D'ora in avanti con il simbolo $H_n$ si indicherà l'entropia di una variabile casuale uniforma discreta con immagine di dimensione $n$, quindi 
+\begin{equation}
+H_n=log(n)
+\end{equation}
+
+\section{unicità dell'Entropia}
+\label{sec:UniEntropia}
+Si può dimostrare che la scelta della funzione di entropia come \textit{misura di incertezza} è unica a meno di una costante moltiplicativa. Inanzitutto definiamo la \textit{misura di incertezza}:
+\begin{defi}
+sia \spacep un spazio di probabilità e $X$ vatrabile casuale di legge $\{ p_1....p_n \}$ 
+la funzione $U$ viene detta \textbf{misura di incertezza} se soddisfa le seguenti condizioni:
+\begin{enumerate}
+\item $U(X)$ è un massimo quando ha distribuzione uniforme
+\item se $Y$ è un'altra variabile casuale allora $U(X,Y)=U_x(Y)+U(X)$
+\item $U(p_1...p_n,0)=U(p_1...p_n)$
+\item $U(p_1....p_n)$ è continua per tutti i suoi argomenti.
+\end{enumerate}
+\end{defi}
+c'è un teorema....
+\section{Misc sull'entropia}
+\label{sec:miscEntropia}
+
+
+\begin{defi}
+Siano $X$ e $Y$ due variabili casualidefinite sullo stesso spazio di probabilità, definiamo la loro \textbf{entropia congiunta} $H(X,Y)$ come:
+\begin{equation}
+H(X,Y):=-\sum_{j=1}^n\sum_{k=1}^m p_{jk}log(p_{jk})
+\end{equation}
+dove con $p_{jk}$ intendiamo $P(X=j,Y=k)$
+\end{defi}
+
+Osserviamo subito che $H(X,Y)=H(Y,X)$.\\
+Può essere interessante capire come si comporta l'entropia nel caso le variabili in considerazione siano dipendenti, per fare ciò definiremo l'\textit{entropia condizionata}, prima però un pò di notazione: chiameremo con $p_{j}(k)$ la probabilità condizionata che $Y=k$ sapendo che $X=j$.
+\begin{defi}
+La funzione $H_j(Y)$ sarà detta \textbf{entropia condizionale di $Y$ data $X=j$} dove
+\begin{equation}\label{eq:6.6}
+H_j(Y):=-\sum_{k=1}^m p_j(k)logp_j(K))
+\end{equation}
+\end{defi}
+
+prendiamo una variabile casuale $X$ di legge di probabilità $\{ p _1...p_n\}$ ossiamo considerare ora la variabile casuale $H.(Y)$ che avrà immagine $\{H_1(Y)...H_n(Y) \}$ e legge di probabilità $\{ p _1...p_n\}$, $H.(Y)$ sarà quindi funzione di $X$.
+\begin{defi}
+definiamo l'\textbf{entropia condizionale di $Y$ data $X$}, $H_X(Y)$ come:
+\begin{equation}\label{eq:6.7}
+H_X(Y):= \mathbb{E}[H.(Y)]= \sum_{j=1}^n p_j H_j(Y)
+\end{equation}
+\end{defi}
+
+
+
+\begin{lem}
+\begin{equation}
+H_X(Y)=-\sum_{j=1}^n\sum_{k=1}^m p_{jk}log(p_j(k))
+\end{equation}
+\end{lem}
+\begin{proof}
+come sostituendo in \ref{eq:6.7}, \ref{eq:6.6} otteniamo
+
+$$H_X(Y)=-\sum_{j=1}^n\sum_{k=1}^m p_{j}p_j(k)log(p_j(k))$$
+
+Ricordando che 
+
+$$p_j(k)=\mathbb{P}(Y=k|X=j)\ e \ p_j=\mathbb{P}(X=j)$$
+
+otteniamo che 
+$$p_jp_j(k)=\mathbb{P}(X=j,Y=k)=p_{jk}$$
+e possiamo concludere.
+\end{proof}
+
+
+\begin{lem}
+se $X$ e $Y$ sono indipendenti allora vale:
+\begin{equation}
+H_X(Y)=H(Y)
+\end{equation}
+\end{lem}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
