@@ -93,22 +93,10 @@ D'ora in avanti con il simbolo $H_n$ si indicherà l'entropia di una variabile c
 H_n=log(n)
 \end{equation}
 
-\section{unicità dell'Entropia}
-\label{sec:UniEntropia}
-Si può dimostrare che la scelta della funzione di entropia come \textit{misura di incertezza} è unica a meno di una costante moltiplicativa. Inanzitutto definiamo la \textit{misura di incertezza}:
-\begin{defi}
-sia \spacep un spazio di probabilità e $X$ vatrabile casuale di legge $\{ p_1....p_n \}$ 
-la funzione $U$ viene detta \textbf{misura di incertezza} se soddisfa le seguenti condizioni:
-\begin{enumerate}
-\item $U(X)$ è un massimo quando ha distribuzione uniforme
-\item se $Y$ è un'altra variabile casuale allora $U(X,Y)=U_x(Y)+U(X)$
-\item $U(p_1...p_n,0)=U(p_1...p_n)$
-\item $U(p_1....p_n)$ è continua per tutti i suoi argomenti.
-\end{enumerate}
-\end{defi}
-c'è un teorema....
-\section{Misc sull'entropia}
-\label{sec:miscEntropia}
+
+
+\section{Proprietà dell'entropia}
+\label{sec:PropriEntropia}
 
 
 \begin{defi}
@@ -221,6 +209,58 @@ $$I(X,Y)=-\sumj \sumk p_{jk}log(q_k)-\sumj \sumk p_{jk}log{p_j(k)}$$
 \end{proof}
 
 
+\section{Principio dell'entropia massima }
+\label{sec:maxEntropia}
+
+Spesso ci si trova in condizioni in cui è data una variabile casuale $X$ a valori $\{ x_1...x_n \}$ di cui non si conosce la \lep in questi casi si può applicare il principio di massima entropia:\\
+\begin{defi}
+Data una una variabile casuale $X$ con legge di probabilità \lep incognita il \textbf{principio di massima entropia} ci impone di scegliere i $p_j$ in modo tale che $H(X)$ sia massima
+\end{defi}
+\textbf{Esempio.} 
+Sia $X$ una variabile casuale a valori $\{ x_1...x_n \}$ di cui non si conosce la \lep . sappiamo già che se non ci sono altre condizioni l'entropia sarà massima se $X$ sarà uniformemente distribuita. Prendiamo ora il caso in cui ci venga fornita la media di $\mathbb{E}[ X]=E$ troviamo il massimo dell'entropia $H(X)$ utilizzando i moltiplicatori di Laagrange:\\
+come costrizioni abbiamo:
+\begin{enumerate}
+\item $\sumj p_j=1$
+\item $\sumj x_j p_j=E$
+\end{enumerate}
+Dunque dobbiamo trovare il massimo valore di:
+\begin{equation}
+L(p_1...p_n;\lambda,\mu ):= -\sumj p_j log(p_j) + \lambda \bigg( \sumj p_j -1 \bigg) + \mu \bigg( \sumj x_j p_j - E \bigg)
+\end{equation}
+dove $\lambda \mu$ sono i moltiplicatori di Lagrange.\\
+Imponendo le derivate parziali ugiali a 0 otteniamo:
+$$\frac{\partial L}{\partial p_j}=-\frac{1}{ln(2)}(ln(p_j)+1)+\lambda + \mu x_j=0 \ \  (1\leq j \leq n) $$
+$$quindi$$
+$$p_j=e^{\lambda ' + \mu ' x_j} \ \ (1\leq j \leq n)$$
+dove $\lambda ' = ln(2) \lambda -1 $ e $\mu ' = ln(2) \mu$\\
+da 1. possimo ricaviamo 
+$$\lambda ' = - ln(Z( \mu ')) \ dove \ Z( \mu '):= \sumj e^{\mu ' x_j}$$
+riassumendo quindi abbiamo:
+\begin{equation}
+p_j=\frac{e^{\mu ' x_j}}{Z( \mu ')} \ \ (1\leq j \leq n)
+\end{equation}
+
+
+\section{unicità dell'Entropia}
+\label{sec:UniEntropia}
+Si può dimostrare che la scelta della funzione di entropia come \textit{misura di incertezza} è unica a meno di una costante moltiplicativa. Inanzitutto definiamo la \textit{misura di incertezza}:
+\begin{defi}
+sia \spacep un spazio di probabilità e $X$ vatrabile casuale di legge $\{ p_1....p_n \}$ 
+la funzione $U$ viene detta \textbf{misura di incertezza} se soddisfa le seguenti condizioni:
+\begin{enumerate}
+\item $U(X)$ è un massimo quando ha distribuzione uniforme
+\item se $Y$ è un'altra variabile casuale allora $U(X,Y)=U_x(Y)+U(X)$
+\item $U(p_1...p_n,0)=U(p_1...p_n)$
+\item $U(p_1....p_n)$ è continua per tutti i suoi argomenti.
+\end{enumerate}
+\end{defi}
+
+\begin{teo}
+In uno spazio di probabilità \spacep consideriamo una variabile casuale $X$ con \lep allora\\
+$U(X)$ è una misura di incertezza se e solo se 
+$$U(X)= KH(X)$$
+dove $K$ è una costante $K\geq 0$
+\end{teo}
 
 
 
