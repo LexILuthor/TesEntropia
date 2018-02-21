@@ -7,7 +7,7 @@
 \section{Informazione}
 \label{sec:informazione}
 Fondamentali in questa tesi saranno i concetti di Informazione ed entropia.\\
-Bisogna anzitutto specificare che in Probabilità il significato di Informazione ha un connotato diverso da quello della lingua parlata. Condideriamo ad esempio le seguenti frasi: 
+Bisogna anzitutto specificare che in Probabilità il significato di Informazione ha un connotato diverso da quello della lingua parlata. Consideriamo ad esempio le seguenti frasi: 
 \begin{enumerate}
 \item[i.] Quando vado in palestra mi alleno
 \item[ii.] Il vincitore delle prossime elezioni politiche sarà Claudio Baglioni
@@ -33,22 +33,18 @@ In uno spazio di probabilità \spacep definiamo la funzione $I: \mathcal{F}\to \
 dove $a$ è una costante positiva (nel libro viene moltiplicato per $K$,  ma tale costante è inutile dato che già scegliere la base coincide col moltiplicare per una costante $log_a(x)=\frac{log_b(y)}{log_b(a)} \bigg)$.
 \end{defi}
 
-Si verifica facilmenta che la funzione $I$ così definita rispetta le proprietà che preposte, l'unico problema nasce per un evento $E$ tale che \p $(E)=0$ in questo caso $I(E)=\infty$, questa occorrenza può essere interpretata come l'incapacità di ottenere informazioni da un evento impossibile. La funzione \textit{Informazione} possiede inoltre la desiderabile proprietà di essere nulla qualora la probabilità di un evento sia $1$.\\
+Si verifica facilmente che la funzione $I$ così definita rispetta le proprietà che preposte, l'unico problema nasce per un evento $E$ tale che \p $(E)=0$ in questo caso $I(E)=\infty$, questa occorrenza può essere interpretata come l'incapacità di ottenere informazioni da un evento impossibile. La funzione \textit{Informazione} possiede inoltre la desiderabile proprietà di essere nulla qualora la probabilità di un evento sia $1$.\\
 Essendo questa funzione sarà spesso associata a codici risulterà comodo scegliere $2$ come base del logaritmo in questo modo supponendo di avere una variabile casuale $X$ con distribuzione di Bernoulli con parametro $p=\frac{1}{2}$ abbiamo che 
 \begin{equation}
 I(X=0)=I(X=1)=-log_2 \bigg(\frac{1}{2} \bigg ) =1
 \end{equation}
 Per questo d'ora in avanti con $log$ si intenderà $log_2$.
- 
-
-
-
 
 \section{Entropia}
 \label{sec:Entropia}
 
 Il secondo concetto fondamentale è quello di \textit{entropia}.\\
-Data una variabile casuale discreta $X$ a valori $\{ x_1...x_n \}$ e con legge di probabilità $\{p_1...p_n$ non si può sapere a priori che valore assumerà $X$ e di conseguenza quanta informazione verrà inviata. Definiamo quandi l'\textit{entropia}.
+Data una variabile casuale discreta $X$ a valori $\{ x_1...x_n \}$ e con legge di probabilità $\{p_1...p_n$ non si può conoscere a priori il valore che assumerà $X$ e di conseguenza conoscere quanta informazione verrà inviata. Definiamo quindi l'\textit{entropia}.
 
 \begin{defi}
 si dice \textbf{entropia} di una variabile casuale discreta $X$ il valore
@@ -84,15 +80,7 @@ Sia $X$ una variabile casuale discreta allora vale:
 \item $H(X)\geq 0$ e $H(X)= 0$ se e solo se esiste un valore $X$, $x_1$ t.c. \p$(x_1)=1$
 \item $H(X)\leq log()$ e l'uguaglianza varrà solo quando $X$ ha distribuzione uniforme
 \end{enumerate}
-\end{teo} 
-
-
-
-D'ora in avanti con il simbolo $H_n$ si indicherà l'entropia di una variabile casuale uniforma discreta con immagine di dimensione $n$, quindi 
-\begin{equation}
-H_n=log(n)
-\end{equation}
-
+\end{teo}
 
 
 \section{Proprietà dell'entropia}
@@ -100,7 +88,7 @@ H_n=log(n)
 
 
 \begin{defi}
-Siano $X$ e $Y$ due variabili casualidefinite sullo stesso spazio di probabilità, definiamo la loro \textbf{entropia congiunta} $H(X,Y)$ come:
+Siano $X$ e $Y$ due variabili casuali definite sullo stesso spazio di probabilità, definiamo la loro \textbf{entropia congiunta} $H(X,Y)$ come:
 \begin{equation}\label{eq:congiun}
 H(X,Y):=-\sum_{j=1}^n\sum_{k=1}^m p_{jk}log(p_{jk})
 \end{equation}
@@ -116,7 +104,7 @@ H_j(Y):=-\sum_{k=1}^m p_j(k)logp_j(K))
 \end{equation}
 \end{defi}
 
-prendiamo una variabile casuale $X$ di legge di probabilità $\{ p _1...p_n\}$ ossiamo considerare ora la variabile casuale $H.(Y)$ che avrà immagine $\{H_1(Y)...H_n(Y) \}$ e legge di probabilità $\{ p _1...p_n\}$, $H.(Y)$ sarà quindi funzione di $X$.
+prendiamo una variabile casuale $X$ di legge di probabilità $\{ p _1...p_n\}$ possiamo considerare ora la variabile casuale $H.(Y)$ che avrà immagine $\{H_1(Y)...H_n(Y) \}$ e legge di probabilità $\{ p _1...p_n\}$, $H.(Y)$ sarà quindi funzione di $X$.
 \begin{defi}
 definiamo l'\textbf{entropia condizionale di $Y$ data $X$}, $H_X(Y)$ come:
 \begin{equation}\label{eq:6.7}
@@ -155,7 +143,7 @@ H_X(Y)=H(Y)
 \end{equation}
 \end{lem}
 \begin{proof}
-supponiamo che la regge di probabilità di $Y$ sia $\{q_1...q_m\}$ allora cia basterà notare che nel caso in cui $X$ e $Y$ sono indipendenti $p_j(k)=\mathbb{P}(Y=k|X=j)=\mathbb{P}(Y=k)=q_k$
+supponiamo che la legge di probabilità di $Y$ sia $\{q_1...q_m\}$ allora ci basterà notare che nel caso in cui $X$ e $Y$ sono indipendenti $p_j(k)=\mathbb{P}(Y=k|X=j)=\mathbb{P}(Y=k)=q_k$
 e dunque \ref{eq:6.8.1} diventa
 $$H_X(Y)=-\sum_{k=1}^m q_klog(q_k)\sum_{j=1}^n p_{j}=-\sum_{k=1}^m q_klog(q_k)1=H(Y)$$
 \end{proof}
@@ -166,7 +154,7 @@ H(X,Y)=H(X)+H_X(y).
 \end{equation}
 \end{teo}
 \begin{proof}
-sapendo che \p$(A\cup B)=\mathbb{P}(A|B)$\p$(B)$ quindi $p_{jk}=p_jp_j(k)$ sostituendo direttamente nella def di entropia congiunta \ref{eq:congiun} otteniamo
+sapendo che \p$(A\cup B)=\mathbb{P}(A|B)$\p$(B)$ quindi $p_{jk}=p_jp_j(k)$ sostituendo direttamente nella definizione di entropia congiunta \ref{eq:congiun} otteniamo
 $$H(X,Y)=-\sum_{j=1}^n\sum_{k=1}^m p_{jk}log(p_{j}p_{j}(k))=-\sum_{j=1}^n\sum_{k=1}^m p_{jk}log(p_{j}(k))-\sum_{j=1}^n\sum_{k=1}^m p_{jk}log(p_{j})$$
 possiamo concludere ricordando che $\sum_{k=1}^m p_{jk}=p_j$
 \end{proof}
@@ -177,7 +165,7 @@ H(X,Y)=H(Y), H(Y)
 \end{equation}
 \end{corol}
 \begin{proof}
-basta applicare \ref{lemma:6.4} al teorema precedenta
+basta applicare \ref{lemma:6.4} al teorema precedente
 \end{proof}
 
 \begin{defi}
