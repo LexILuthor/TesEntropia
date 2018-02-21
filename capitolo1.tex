@@ -139,7 +139,7 @@ H_X(Y):= \mathbb{E}[H.(Y)]= \sum_{j=1}^n p_j H_j(Y)
 
 
 \begin{lem}
-\begin{equation}
+\begin{equation} \label{eq:6.8}
 H_X(Y)=-\sum_{j=1}^n\sum_{k=1}^m p_{jk}log(p_j(k))
 \end{equation}
 \end{lem}
@@ -162,7 +162,7 @@ e possiamo concludere.
 
 \begin{lem}
 se $X$ e $Y$ sono indipendenti allora vale:
-\begin{equation}
+\begin{equation} \label{lemma:6.4}
 H_X(Y)=H(Y)
 \end{equation}
 \end{lem}
@@ -180,13 +180,45 @@ H(X,Y)=H(X)+H_X(y).
 \begin{proof}
 sapendo che \p$(A\cup B)=\mathbb{P}(A|B)$\p$(B)$ quindi $p_{jk}=p_jp_j(k)$ sostituendo direttamente nella def di entropia congiunta \ref{eq:congiun} otteniamo
 $$H(X,Y)=-\sum_{j=1}^n\sum_{k=1}^m p_{jk}log(p_{j}p_{j}(k))=-\sum_{j=1}^n\sum_{k=1}^m p_{jk}log(p_{j}(k))-\sum_{j=1}^n\sum_{k=1}^m p_{jk}log(p_{j})$$
-non finita
+possiamo concludere ricordando che $\sum_{k=1}^m p_{jk}=p_j$
+\end{proof}
+\begin{corol}
+se $X$ e $Y$ sono indipendenti alora vale:
+\begin{equation}
+H(X,Y)=H(Y), H(Y)
+\end{equation}
+\end{corol}
+\begin{proof}
+basta applicare \ref{lemma:6.4} al teorema precedenta
 \end{proof}
 
+\begin{defi}
+date \var definiamo \textbf{mutua informazione di $X$ e $Y$}
+\begin{equation}
+I(X,Y):=H(Y)-H_X(Y)
+\end{equation}
+\end{defi}
 
-
-
-
+Notiamo che $H_X(Y)$ è l'informazione contenuta in $Y$ che non è contenuta in $X$ e quindi l'informazione di $Y$ contenuta in $X$ sarà $H(Y)-H_X(Y)=I(X,Y)$
+\begin{teo}
+Per siano $X$ e $Y$ due variabili casuali con legge di probabilità rispettivamente \lep $\{q_1...q_n \}$
+\begin{enumerate}
+\item $I(X,Y)=\sumj \sumk p_{jk}log \bigg( \frac{p_{jk}}{p_j p_k} \bigg)$
+\item $I(X,Y)=I(Y,X)$
+\item se $X$ e $Y$ sono indipendenti allora $I(X,Y)=0$
+\end{enumerate}
+\end{teo}
+\begin{proof}
+si proceda come segue:
+\begin{enumerate}
+\item sempre ricordando che $\sum_{k=1}^m p_{jk}=p_j$ possiamo scrivere 
+$$H(Y)=-\sumk q_{k}log (q_k)=-\sumj \sumk p_{jk} log (q_k)$$
+e dunque per \ref{eq:6.8} otteniamo
+$$I(X,Y)=-\sumj \sumk p_{jk}log(q_k)-\sumj \sumk p_{jk}log{p_j(k)}$$
+\item imediato da 1.
+\item semplicemente ricordando che se $X$ e $Y$ sono indipendenti $H_X(Y)=H(Y)$
+\end{enumerate}
+\end{proof}
 
 
 
