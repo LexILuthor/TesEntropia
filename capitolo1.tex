@@ -170,13 +170,13 @@ basta applicare \ref{lemma:6.4} al teorema precedente
 
 \begin{defi}
 date \var definiamo \textbf{mutua informazione di $X$ e $Y$}
-\begin{equation}
+\begin{equation} \label{defi:mutua}
 I(X,Y):=H(Y)-H_X(Y)
 \end{equation}
 \end{defi}
 
 Notiamo che $H_X(Y)$ è l'informazione contenuta in $Y$ che non è contenuta in $X$ e quindi l'informazione di $Y$ contenuta in $X$ sarà $H(Y)-H_X(Y)=I(X,Y)$
-\begin{teo}
+\begin{teo} \label{teo:6.7}
 Per siano $X$ e $Y$ due variabili casuali con legge di probabilità rispettivamente \lep $\{q_1...q_n \}$
 \begin{enumerate}
 \item $I(X,Y)=\sumj \sumk p_{jk}log \bigg( \frac{p_{jk}}{p_j p_k} \bigg)$
@@ -249,11 +249,6 @@ $U(X)$ è una misura di incertezza se e solo se
 $$U(X)= KH(X)$$
 dove $K$ è una costante $K\geq 0$
 \end{teo}
-
-
-
-
-
 
 
 
