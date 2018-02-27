@@ -10,7 +10,7 @@ Fondamentali in questa tesi saranno i concetti di Informazione ed entropia.\\
 Bisogna anzitutto specificare che in Probabilità il significato di Informazione ha un connotato diverso da quello della lingua parlata. Consideriamo ad esempio le seguenti frasi: 
 \begin{enumerate}
 \item[i.] Quando vado in palestra mi alleno
-\item[ii.] Il vincitore delle prossime elezioni politiche sarà Claudio Baglioni
+\item[ii.] Il vincitore delle prossime elezioni sarà Claudio Baglioni
 \item[iii.] QUER W LKS E W
 \end{enumerate}
 
@@ -30,11 +30,11 @@ In uno spazio di probabilità \spacep definiamo la funzione $I: \mathcal{F}\to \
 \begin{equation}
 (E)=-log_a(\mathbb{P} (E)).
 \end{equation}
-dove $a$ è una costante positiva (nel libro viene moltiplicato per $K$,  ma tale costante è inutile dato che già scegliere la base coincide col moltiplicare per una costante $log_a(x)=\frac{log_b(y)}{log_b(a)} \bigg)$.
+dove $a$ è una costante positiva (in alcuni testi la funzione viene moltiplicata per $K$,  ma tale costante è inutile dato che già scegliere la base coincide col moltiplicare per una costante infatti $log_a(x)=\frac{log_b(y)}{log_b(a)} \bigg)$.
 \end{defi}
 
-Si verifica facilmente che la funzione $I$ così definita rispetta le proprietà che preposte, l'unico problema nasce per un evento $E$ tale che \p $(E)=0$ in questo caso $I(E)=\infty$, questa occorrenza può essere interpretata come l'incapacità di ottenere informazioni da un evento impossibile. La funzione \textit{Informazione} possiede inoltre la desiderabile proprietà di essere nulla qualora la probabilità di un evento sia $1$.\\
-Essendo questa funzione sarà spesso associata a codici risulterà comodo scegliere $2$ come base del logaritmo in questo modo supponendo di avere una variabile casuale $X$ con distribuzione di Bernoulli con parametro $p=\frac{1}{2}$ abbiamo che 
+Si verifica facilmente che la funzione $I$ così definita rispetta le proprietà preposte, l'unico problema nasce per un evento $E$ tale che \p $(E)=0$ in questo caso $I(E)=\infty$, questa occorrenza può essere interpretata come l'incapacità di ottenere informazioni da un evento impossibile. La funzione \textit{Informazione} possiede inoltre la desiderabile proprietà di essere nulla qualora la probabilità di un evento sia $1$.\\
+Essendo questa funzione spesso associata a codici si preferisce scegliere $2$ come base del logaritmo in questo modo supponendo di avere una variabile casuale $X$ con distribuzione di Bernoulli a parametro $p=\frac{1}{2}$ abbiamo che 
 \begin{equation}
 I(X=0)=I(X=1)=-log_2 \bigg(\frac{1}{2} \bigg ) =1
 \end{equation}
@@ -43,8 +43,8 @@ Per questo d'ora in avanti con $log$ si intenderà $log_2$.
 \section{Entropia}
 \label{sec:Entropia}
 
-Il secondo concetto fondamentale è quello di \textit{entropia}.\\
-Data una variabile casuale discreta $X$ a valori $\{ x_1...x_n \}$ e con legge di probabilità $\{p_1...p_n$ non si può conoscere a priori il valore che assumerà $X$ e di conseguenza conoscere quanta informazione verrà inviata. Definiamo quindi l'\textit{entropia}.
+Il secondo concetto fondamentale trattato in questa tesi è quello di \textit{entropia}.\\
+Data una variabile casuale discreta $X$ a valori $\{ x_1...x_n \}$ e con legge di probabilità $\{p_1...p_n \}$ ($p_i:=\mathbb{P}(X=x_i)$) non possiam conoscere a priori il valore che assumerà $X$ e di conseguenza conoscere quanta informazione verrà inviata. Definiamo per questo l'\textit{entropia}.
 
 \begin{defi}
 si dice \textbf{entropia} di una variabile casuale discreta $X$ il valore
@@ -74,12 +74,49 @@ Per convincersi della sensatezza di questa definizione si immagini di voler scom
 \end{enumerate}
 ovviamente nel primo caso la probabilità di predirre il risultato corretto è molto alta dato che la moneta è pesantemente modificata e infatti il sistema avrà una bassa entropia, nel secondo caso l'entropia aumenta nel terzo l'indecisione è massima e l'entropia di coneguenza ha anch'essa massimo.\\
 Per convincersi di quanto detto in maniera più matematica si ha il seguente teorema:
-\begin{teo}
+\begin{teo} \label{teo:6.2}
 Sia $X$ una variabile casuale discreta allora vale:
 \begin{enumerate}
 \item $H(X)\geq 0$ e $H(X)= 0$ se e solo se esiste un valore $X$, $x_1$ t.c. \p$(x_1)=1$
-\item $H(X)\leq log()$ e l'uguaglianza varrà solo quando $X$ ha distribuzione uniforme
+\item $H(X)\leq log(n)$ e l'uguaglianza varrà solo quando $X$ ha distribuzione uniforme
 \end{enumerate}
+\end{teo}
+\begin{proof}
+\begin{enumerate}
+\item ovviamente $H(X)\geq 0$ perchè somma di quantità positive (consideriamo gli addendi come $-log(x)$). Supponiamo ora che $H(X)=0$ allora $p_jlog(p_j)=0 \forall j$, quindi abbiamo che $p_j$ sarà uguale ad 1 o 0, ma non può essere che tutti i $p_j$ siano  uguali a 0 e dunque deve esistere almeno un $p_j=1$.
+\item  per prima cosa supponiamo che $p_j\ge 0$(nel caso non lo fossero basterebbe togliere i $c \  p_k=0$ e dimostrare che $H(X)\leq log(n-c)\leq log(n)$).\\
+Dalla definizione abbiamo:
+$$H(x)-log(n)=$$
+$$=-\frac{1}{ln(2)} \bigg( \sumj p_j ln (p_j) + ln(n) \bigg)$$
+$$=-\frac{1}{ln(2)} \bigg( \sumj p_j (ln (p_j) + ln(n)) \bigg)$$
+$$=-\frac{1}{ln(2)} \bigg( \sumj p_j ln(p_jn)\bigg)$$
+$$=\frac{1}{ln(2)} \bigg( \sumj p_j ln \bigg( \frac{1}{p_jn} \bigg) \bigg)$$
+$$\leq \frac{1}{ln(2)} \bigg( \sumj p_j \bigg( \frac{1}{p_jn} -1 \bigg) \bigg)$$
+$$= \frac{1}{ln(2)} \bigg( \sumj \bigg( \frac{1}{n} -p_j \bigg) \bigg)$$
+$$\leq 0$$
+dove nel terzultimo passaggio abbiamo usato il fatto che $ln(x)\leq x-1$ con l'uguaglianza solo se $X=1$. Quindi abbiamo che le disuguaglianza si trasformano in uguaglianze solo se $\frac{1}{p_jn}=1$ cioè se $p_j=\frac{1}{n}$ cioè la distribuzione uniforme.
+\end{enumerate}
+\end{proof}
+
+
+\section{Unicità dell'Entropia}
+\label{sec:UniEntropia}
+Si può dimostrare che la scelta della funzione di entropia come \textit{misura di incertezza} è unica a meno di una costante moltiplicativa. Inanzitutto definiamo la \textit{misura di incertezza}:
+\begin{defi}
+sia \spacep un spazio di probabilità e $X$ variabile casuale di legge $\{ p_1....p_n \}$ , una funzione $U$ viene detta \textbf{misura di incertezza} se soddisfa le seguenti condizioni:
+\begin{enumerate}
+\item $U(X)$ è un massimo quando ha distribuzione uniforme
+\item presa $Y$ variabile casuale allora $U(X,Y)=U_x(Y)+U(X)$
+\item $U(p_1...p_n,0)=U(p_1...p_n)$
+\item $U(p_1....p_n)$ è continua per tutti i suoi argomenti.
+\end{enumerate}
+\end{defi}
+
+\begin{teo}
+In uno spazio di probabilità \spacep consideriamo una variabile casuale $X$ con \lep allora\\
+$U(X)$ è una misura di incertezza se e solo se 
+$$U(X)= KH(X)$$
+dove $K$ è una costante $K\geq 0$
 \end{teo}
 
 
@@ -87,24 +124,24 @@ Sia $X$ una variabile casuale discreta allora vale:
 \label{sec:PropriEntropia}
 
 
-\begin{defi}
+\begin{defi} \label{defi:congiun}
 Siano $X$ e $Y$ due variabili casuali definite sullo stesso spazio di probabilità, definiamo la loro \textbf{entropia congiunta} $H(X,Y)$ come:
 \begin{equation}\label{eq:congiun}
 H(X,Y):=-\sum_{j=1}^n\sum_{k=1}^m p_{jk}log(p_{jk})
 \end{equation}
-dove con $p_{jk}$ intendiamo $P(X=j,Y=k)$
+dove con $p_{jk}$ intendiamo \p$(X=j,Y=k)$
 \end{defi}
 
 Osserviamo subito che $H(X,Y)=H(Y,X)$.\\
 Può essere interessante capire come si comporta l'entropia nel caso le variabili in considerazione siano dipendenti, per fare ciò definiremo l'\textit{entropia condizionata}, prima però un pò di notazione: chiameremo con $p_{j}(k)$ la probabilità condizionata che $Y=k$ sapendo che $X=j$.
-\begin{defi}
+\begin{defi} \label{defi:condiz}
 La funzione $H_j(Y)$ sarà detta \textbf{entropia condizionale di $Y$ data $X=j$} dove
 \begin{equation}\label{eq:6.6}
-H_j(Y):=-\sum_{k=1}^m p_j(k)logp_j(K))
+H_j(Y):=-\sum_{k=1}^m p_j(k)log(p_j(k))
 \end{equation}
 \end{defi}
 
-prendiamo una variabile casuale $X$ di legge di probabilità $\{ p _1...p_n\}$ possiamo considerare ora la variabile casuale $H.(Y)$ che avrà immagine $\{H_1(Y)...H_n(Y) \}$ e legge di probabilità $\{ p _1...p_n\}$, $H.(Y)$ sarà quindi funzione di $X$.
+Prendiamo una variabile casuale $X$ possiamo considerare ora la variabile casuale $H.(Y)$ che avrà immagine $\{H_1(Y)...H_n(Y) \}$ e legge di probabilità $\{ p _1...p_n\}$, $H.(Y)$ sarà quindi funzione di $X$.
 \begin{defi}
 definiamo l'\textbf{entropia condizionale di $Y$ data $X$}, $H_X(Y)$ come:
 \begin{equation}\label{eq:6.7}
@@ -112,15 +149,13 @@ H_X(Y):= \mathbb{E}[H.(Y)]= \sum_{j=1}^n p_j H_j(Y)
 \end{equation}
 \end{defi}
 
-
-
 \begin{lem}
 \begin{equation} \label{eq:6.8}
 H_X(Y)=-\sum_{j=1}^n\sum_{k=1}^m p_{jk}log(p_j(k))
 \end{equation}
 \end{lem}
 \begin{proof}
-come sostituendo in \ref{eq:6.7}, \ref{eq:6.6} otteniamo
+Sostituendo \ref{eq:6.6} in \ref{eq:6.7} otteniamo
 
 \begin{equation} \label{eq:6.8.1}
 H_X(Y)=-\sum_{j=1}^n\sum_{k=1}^m p_{j}p_j(k)log(p_j(k))
@@ -131,7 +166,7 @@ Ricordando che
 $$p_j(k)=\mathbb{P}(Y=k|X=j)\ e \ p_j=\mathbb{P}(X=j)$$
 
 otteniamo che 
-$$p_jp_j(k)=\mathbb{P}(X=j,Y=k)=p_{jk}$$
+$$p_j(k)p_j=\mathbb{P}(Y=k|X=j)\mathbb{P}(X=j)=\mathbb{P}(X=j,Y=k)=p_{jk}$$
 e possiamo concludere.
 \end{proof}
 
@@ -147,14 +182,14 @@ supponiamo che la legge di probabilità di $Y$ sia $\{q_1...q_m\}$ allora ci bas
 e dunque \ref{eq:6.8.1} diventa
 $$H_X(Y)=-\sum_{k=1}^m q_klog(q_k)\sum_{j=1}^n p_{j}=-\sum_{k=1}^m q_klog(q_k)1=H(Y)$$
 \end{proof}
-\begin{teo}
+\begin{teo} \label{teo:6.5}
 Date due variabili casuali $X,Y$ vale:
 \begin{equation}
 H(X,Y)=H(X)+H_X(y).
 \end{equation}
 \end{teo}
 \begin{proof}
-sapendo che \p$(A\cup B)=\mathbb{P}(A|B)$\p$(B)$ quindi $p_{jk}=p_jp_j(k)$ sostituendo direttamente nella definizione di entropia congiunta \ref{eq:congiun} otteniamo
+sapendo che \p$(A\cup B)=\mathbb{P}(A|B)$\p$(B)$ quindi $p_{jk}=p_jp_j(k)$ sostituendo direttamente nella definizione di entropia congiunta \ref{defi:congiun} otteniamo
 $$H(X,Y)=-\sum_{j=1}^n\sum_{k=1}^m p_{jk}log(p_{j}p_{j}(k))=-\sum_{j=1}^n\sum_{k=1}^m p_{jk}log(p_{j}(k))-\sum_{j=1}^n\sum_{k=1}^m p_{jk}log(p_{j})$$
 possiamo concludere ricordando che $\sum_{k=1}^m p_{jk}=p_j$
 \end{proof}
@@ -197,15 +232,15 @@ $$I(X,Y)=-\sumj \sumk p_{jk}log(q_k)-\sumj \sumk p_{jk}log{p_j(k)}$$
 \end{proof}
 
 
-\section{Principio dell'entropia massima }
+\section{Principio della Massima Entropia}
 \label{sec:maxEntropia}
 
-Spesso ci si trova in condizioni in cui è data una variabile casuale $X$ a valori $\{ x_1...x_n \}$ di cui non si conosce la \lep in questi casi si può applicare il principio di massima entropia:\\
+Spesso ci si trova in condizioni in cui è data una variabile casuale $X$ a valori $\{ x_1...x_n \}$ di cui non si conosce la \lep  in questi casi si può applicare il principio di massima entropia:\\
 \begin{defi}
-Data una una variabile casuale $X$ con legge di probabilità \lep incognita il \textbf{principio di massima entropia} ci impone di scegliere i $p_j$ in modo tale che $H(X)$ sia massima
+Data una una variabile casuale $X$ con legge di probabilità \lep  incognita il \textbf{principio di massima entropia} ci impone di scegliere i $p_j$ in modo tale che $H(X)$ sia massima
 \end{defi}
 \textbf{Esempio.} 
-Sia $X$ una variabile casuale a valori $\{ x_1...x_n \}$ di cui non si conosce la \lep . sappiamo già che se non ci sono altre condizioni l'entropia sarà massima se $X$ sarà uniformemente distribuita. Prendiamo ora il caso in cui ci venga fornita la media di $\mathbb{E}[ X]=E$ troviamo il massimo dell'entropia $H(X)$ utilizzando i moltiplicatori di Laagrange:\\
+Sia $X$ una variabile casuale a valori $\{ x_1...x_n \}$ di cui non si conosce la \lep . Sappiamo già che, se non ci sono altre condizioni, l'entropia sarà massima se $X$ sarà uniformemente distribuita. Prendiamo ora il caso in cui ci venga fornita la media di $\mathbb{E}[ X]=E$ troviamo il massimo dell'entropia $H(X)$ utilizzando i moltiplicatori di Lagrange:\\
 come costrizioni abbiamo:
 \begin{enumerate}
 \item $\sumj p_j=1$
@@ -229,26 +264,94 @@ p_j=\frac{e^{\mu ' x_j}}{Z( \mu ')} \ \ (1\leq j \leq n)
 \end{equation}
 
 
-\section{unicità dell'Entropia}
-\label{sec:UniEntropia}
-Si può dimostrare che la scelta della funzione di entropia come \textit{misura di incertezza} è unica a meno di una costante moltiplicativa. Inanzitutto definiamo la \textit{misura di incertezza}:
-\begin{defi}
-sia \spacep un spazio di probabilità e $X$ vatrabile casuale di legge $\{ p_1....p_n \}$ 
-la funzione $U$ viene detta \textbf{misura di incertezza} se soddisfa le seguenti condizioni:
-\begin{enumerate}
-\item $U(X)$ è un massimo quando ha distribuzione uniforme
-\item se $Y$ è un'altra variabile casuale allora $U(X,Y)=U_x(Y)+U(X)$
-\item $U(p_1...p_n,0)=U(p_1...p_n)$
-\item $U(p_1....p_n)$ è continua per tutti i suoi argomenti.
-\end{enumerate}
-\end{defi}
 
+\section{Entropia nelle catene di Markov}
+\label{sec:markEntropia}
+Vediamo ora se è sempre possibilie definire una catena di Markov $X=(X_n,n\in\mathbb{Z})$ per la quale ogni $X_n$ ammette entropia massima cioè per il teorema \ref{teo:6.2} $X_n$ ha distribuzione uniforme.
+
+\begin{defi}
+Una matrice A ad elementi positivi è detta \textbf{bistocastica} se per ogni riga e per ogni colonna la somma dei suoi elementi è pari ad 1.
+\end{defi}
 \begin{teo}
-In uno spazio di probabilità \spacep consideriamo una variabile casuale $X$ con \lep allora\\
-$U(X)$ è una misura di incertezza se e solo se 
-$$U(X)= KH(X)$$
-dove $K$ è una costante $K\geq 0$
+Una catena di Markov con matrice di transizione $P$ ammette la distribuzione uniforme come distribuzione invariante se e solo se $P$ è bistocastica
 \end{teo}
+\begin{proof}
+Se $P$ è bistocastica allora $ \sumi P_{ij}=1 \forall 1\leq j \leq N$ e quindi:
+$$\sumi \frac{1}{N}P_{ij}=\frac{1}{N}\sumi P_{ij}=\frac{1}{N}$$
+e quindi $\frac{1}{N}$ è una distribuzione invariante.\\
+Supponiamo ora che la distribuzione uniforme sia invariante e dimostriamo che $P$ è bistocastica. Procedendo al contrario di prima abbiamo:
+$$\frac{1}{N}=\frac{1}{N} \sumi P_{ij} \Rightarrow \sumi P_{ij}=1$$
+Abbiamo che per ogni colonna la somma dei suoi elementi è 1, quindi possiamo cncludere\\
+???????????????????????????????????????????????????????????.
+\end{proof}
+
+\begin{defi}
+Siano $X$ e $Y$ due variabili casuali della stessa dimensione.
+Definiamo \textbf{entropia relativa} il valore:
+\begin{equation}
+D(X,Y):=\sumj p_j log \bigg( \frac{p_j}{q_j} \bigg)
+\end{equation}
+\end{defi}
+\begin{teo}
+\begin{enumerate}
+Per l'entropia relativa vale:
+\item $D(X,Y)\geq 0, =$ se e solo se $X$ e $Y$ sono identicamente distribuite
+\item se $Y$ è uniformemente distribuita allora vale
+\begin{equation}
+D(X,Y)=log(N)-H(X)
+\end{equation}
+\end{enumerate}
+\end{teo}
+Consideriamo una catena di Markov stazionaria $(X_n,n \in \mathbb{Z}_+)$ con una matrice di transizione bistocastica $P$ e sia $X_{\infty}$ uniformemente distribuita, abbiamo quindi che $D(X_n,X_{\infty})=log(N)-H(X_n)$. Si dimostra che $D(X_n,X_{\infty})$ è una funzione decrescente e che se la distribuzione uniforma è l'unica distribuzione stazionaria, allora $lim_{n \to \infty}D(X_n,X_{\infty})=0$. Segue quindi che $H(X_n)$ è crescente. \cite{Thomas}
+
+
+
+\section{La Regola della Catena}
+\label{sec:chainRule}
+Vediamo ora come cambia l'informazione in un processo stocastico. Lapprocio più naturale può sembrare quelo di considerare l'entropia come funzione del tempo, in questo modo però ci si dimentica della relazione tra due passaggi dal tempo $t_n$ al tempo $t_{n+1}$. Estendiamo la definizione di entropia congiunta \ref{defi:congiun} in questo modo:
+\begin{equation}
+H(X_0...X_n):=- \suma p(i_0...i_n)log(p(i_o...i_n)).
+\end{equation}
+Mentre la definizione di entropia condizionata \ref{defi:condiz} multivatiata diventa:
+\begin{equation}
+H(Y|X_1...X_n)=-\sum_{j,i_1...i_n=1}^N \mathbb{P}(Y=j,X_1=i_1...X_n=i_n) log(\mathbb{P}(Y=j|X_1=i_1...X_n=i_n))
+\end{equation}
+Non ci rimane che generalizzare il teorema \ref{teo:6.5}.
+\begin{teo}\textbf{Regola della catena}
+\begin{equation}
+H(X_0...X_n)=H(X_0)+\sum_{i=1}^n  H(X_i|X_0,...X_{i-1})=H(X_0)+H(X1|X_0)+...+H(X_n|X_0...X_{n-1})
+\end{equation}
+Inoltre l'entropia cresce al crescere di n.
+\end{teo}
+\begin{proof}
+Procediamo per induzione:\\
+Il caso base con $n=1$ è esattamente il teorema \ref{teo:6.5}, procediamo con il passo induttivo. Uindi assumiamo che valga per $n$, dimostriamo che vale per $n+1$.
+$$H(X_0...X_n, X_{n+1})=- \sumaa p(i_0...i_n,i_{n+1})log(p(i_o...i_n,i_{n+1}))$$
+$$= - \sumaa p(i_0...i_n,i_{n+1})log(\mathbb{p}(_{n+1}=i_{n+1}|X_0=i_0,...X_n=i_n))-\sumaa p(i_0...i_n,i_{n+1})log(p(i_0...i_n))$$
+dato che 
+$$\sumaa p(i_0...i_{n+1})log(p(i_0...i_n))=\suma p(i_0...i_{n})log(p(i_0..i_n))$$
+abbiamo che
+\begin{equation}\label{eq:10.8}
+H(X_0...X_n+1)=H(X_0...X_n)+H(X_{n+1}|X_0...X_n)
+\end{equation}
+Applicando l'ipostesi induttiva otteniamo il risultato.
+Inoltre da \ref{eq:10.8} e dal fatto che l'entropia è sempre maggiore di zero otteniamo che l'entropia cogniunta cresce nel tempo.
+\end{proof}
+
+
+\section{Velocità dell'Entropia}
+\label{sec:EntropyRate}
+\begin{defi}
+Quando il limite esiste, $h(X)$ si dice \textbf{velocità dell'entropia} dove
+$$h(X):=\limi\frac{1}{n}H(X_0X_{n-1})$$
+\end{defi}
+\begin{teo}
+se $X=(X_n,n\in \mathbb{Z}_+)$ è un processo stazionario, allora $h(X)$ esiste e:
+\begin{equation}
+h(X)=\limi H(X_{n-1}|X_0...X_{n-2})
+\end{equation}
+\end{teo}
+
 
 
 
