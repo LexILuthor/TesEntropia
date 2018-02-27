@@ -202,7 +202,40 @@ H(X,Y)=H(Y), H(Y)
 \begin{proof}
 basta applicare \ref{lemma:6.4} al teorema precedente
 \end{proof}
-
+\begin{teo} \label{teo:disugShannon}
+\textbf{Disuguaglianza fondamentale di Shannon.}\\
+\begin{equation}
+H_X(Y)\leq H(Y)
+\end{equation}
+\end{teo}
+\begin{proof}
+per la dimostrazione usiamo la disuguaglianza di Jensen:\\
+data $f$ funzione convessa vale
+\begin{equation}
+\sumj \lambda_j f(x_j)\geq f\bigg( \sumj \lambda_j x_j \bigg)
+\end{equation}
+con $\lambda_j > 0$ e $\sumj \lambda_j =1$
+\end{proof}
+per la dimostrazione si veda \cite{Jensen}
+Ora applicando la disuguaglianza con:
+$$\lambda_j=p_j,\ f(x)=x \log x, \  x_j=p_j(k)$$
+per k fissato, otteniamo quindi:
+$$\sumj p_j p_j(k)\log (p_j(k))\geq \sumj \bigg( p_j p_j(k) \bigg) \log \bigg( \sumj p_j p_j(k) \bigg)=q_k \log (q_k)$$
+dove l'uguaglianza la ricaviamo da: $\sumj p_j p_j(k)=\sumj \bigg( \mathbb{P}(X=j) \mathbb{P}(Y=k|X=j) \bigg)= \mathbb{P}(Y=k)= q_k$.
+Sommando su $k$ abbiamo che la parte sinistra della disuguaglianza diventa:
+$$\sumj  p_j \sumk p_j(k) \log (p_j(k))=-\sumj p_j H_k(Y)=-H_X(Y)$$
+mentre a destra otteniamo
+$$\sumk q_k \log (q_k)= -H(Y)$$
+e quindi:
+\begin{equation}
+-H_X(Y) \geq -H(Y)
+\end{equation}
+Questo risultato si può interpretare come il fatto che aggiungendo un informazione (il valore di $X$) l'entropia del sistema diminuisce.
+Spesso è preferibile usare la notazione $H(Y|X)$ anzichè $H_X(Y)$ soprattutto nei casi in cui $X$ ha una definizione molto verbosa
+\begin{oss}\label{oss:disugShannon}
+Nel caso di processi stocastici (si veda \ref{sec:markEntropia}) è comodo osservare che considerando $Y=(X_n+1)$ e $X=X_0$ nel teorema precedente, si ottiene:
+$$H(X_{n+1}|X_0,X_1...X_n) \leq H(X_{n+1}|X_1...X_n)$$
+\end{oss}
 \begin{defi}
 date \var definiamo \textbf{mutua informazione di $X$ e $Y$}
 \begin{equation} \label{defi:mutua}
@@ -267,8 +300,20 @@ p_j=\frac{e^{\mu ' x_j}}{Z( \mu ')} \ \ (1\leq j \leq n)
 
 \section{Entropia nelle catene di Markov}
 \label{sec:markEntropia}
-Vediamo ora se è sempre possibilie definire una catena di Markov $X=(X_n,n\in\mathbb{Z})$ per la quale ogni $X_n$ ammette entropia massima cioè per il teorema \ref{teo:6.2} $X_n$ ha distribuzione uniforme.
+\begin{defi}
+Si pre una famiglia di variabili casuali tutta definite sullo stesso spazio di probabilità \spacep , $(X(t), t \geq 0 )$ è detta \textbf{processto stocastico}.
+\end{defi}
+Nella nostra trattazione ci limiteremo a considerare una piccola classe di processi stocastici chiamati catene di Markov.
+\begin{defi}
+Un processo stocastico è detto \textbf{catema di Markov} se 
+\begin{enumerate}
+\item l'insieme $S$ che comprende i valori ammissibili delle variabili $X_n$ è discreto (se $S$ è denso si dirà processo di Markov)
+\item possiede la 'proprietà di Markov' i.e. $$\mathbb{P}(X_{n+1}=k_{n+1}|X_n=x_k..X_0=k_0)=\mathbb{P}(X_{n+1}=X_n=k_n)$$
+\end{enumerate}
+\end{defi}
+Per i nostri scopi inoltre considereremo l'insieme del tempo come come un insieme discreto $\mathbb{N}$.\\
 
+Ci domandiamo ora se è sempre possibilie definire una catena di Markov $X=(X_n,n\in\mathbb{Z})$ per la quale ogni $X_n$ ammette entropia massima cioè per il teorema \ref{teo:6.2} $X_n$ ha distribuzione uniforme (se non vi sono altre restrizioni).
 \begin{defi}
 Una matrice A ad elementi positivi è detta \textbf{bistocastica} se per ogni riga e per ogni colonna la somma dei suoi elementi è pari ad 1.
 \end{defi}
@@ -281,7 +326,7 @@ $$\sumi \frac{1}{N}P_{ij}=\frac{1}{N}\sumi P_{ij}=\frac{1}{N}$$
 e quindi $\frac{1}{N}$ è una distribuzione invariante.\\
 Supponiamo ora che la distribuzione uniforme sia invariante e dimostriamo che $P$ è bistocastica. Procedendo al contrario di prima abbiamo:
 $$\frac{1}{N}=\frac{1}{N} \sumi P_{ij} \Rightarrow \sumi P_{ij}=1$$
-Abbiamo che per ogni colonna la somma dei suoi elementi è 1, quindi possiamo cncludere\\
+Abbiamo che per ogni colonna la somma dei suoi elementi è 1, quindi possiamo concludere\\
 ???????????????????????????????????????????????????????????.
 \end{proof}
 
@@ -345,13 +390,17 @@ Inoltre da \ref{eq:10.8} e dal fatto che l'entropia è sempre maggiore di zero o
 Quando il limite esiste, $h(X)$ si dice \textbf{velocità dell'entropia} dove
 $$h(X):=\limi\frac{1}{n}H(X_0X_{n-1})$$
 \end{defi}
+
 \begin{teo}
 se $X=(X_n,n\in \mathbb{Z}_+)$ è un processo stazionario, allora $h(X)$ esiste e:
 \begin{equation}
 h(X)=\limi H(X_{n-1}|X_0...X_{n-2})
 \end{equation}
 \end{teo}
-
+\begin{proof}
+Partiamo col dimostrare l'esistenza
+\ref{oss:disugShannon} ..............................................................
+\end{proof}
 
 
 
