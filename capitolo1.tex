@@ -149,7 +149,7 @@ H_X(Y):= \mathbb{E}[H.(Y)]= \sum_{j=1}^n p_j H_j(Y)
 \end{equation}
 \end{defi}
 
-\begin{lem}
+\begin{lem} \label{lemma:6.8}
 \begin{equation} \label{eq:6.8}
 H_X(Y)=-\sum_{j=1}^n\sum_{k=1}^m p_{jk}log(p_j(k))
 \end{equation}
@@ -304,11 +304,12 @@ p_j=\frac{e^{\mu ' x_j}}{Z( \mu ')} \ \ (1\leq j \leq n)
 Si pre una famiglia di variabili casuali tutta definite sullo stesso spazio di probabilità \spacep , $(X(t), t \geq 0 )$ è detta \textbf{processto stocastico}.
 \end{defi}
 Nella nostra trattazione ci limiteremo a considerare una piccola classe di processi stocastici chiamati catene di Markov.
-\begin{defi}
+\begin{defi} \label{defi:cateMarkov}
 Un processo stocastico è detto \textbf{catena di Markov} se 
 \begin{enumerate}
 \item l'insieme $S$ che comprende i valori ammissibili delle variabili $X_n$ è discreto (se $S$ è denso si dirà processo di Markov)
-\item possiede la 'proprietà di Markov' i.e. $$\mathbb{P}(X_{n+1}=k_{n+1}|X_n=x_k..X_0=k_0)=\mathbb{P}(X_{n+1}=X_n=k_n)$$
+\item possiede la 'proprietà di Markov' cioè
+ $$\mathbb{P}(X_{n+1}=k_{n+1}|X_n=x_k..X_0=k_0)=\mathbb{P}(X_{n+1}=k_{n+1} | X_n=k_n)$$
 \end{enumerate}
 \end{defi}
 Per i nostri scopi inoltre considereremo l'insieme del tempo come come un insieme discreto $\mathbb{N}$.\\
@@ -367,7 +368,8 @@ Mentre la definizione di entropia condizionata \ref{defi:condiz} multivatiata di
 H(Y|X_1...X_n)=-\sum_{j,i_1...i_n=1}^N \mathbb{P}(Y=j,X_1=i_1...X_n=i_n) log(\mathbb{P}(Y=j|X_1=i_1...X_n=i_n))
 \end{equation}
 Non ci rimane che generalizzare il teorema \ref{teo:6.5}.
-\begin{teo}\textbf{Regola della catena}
+\begin{teo} \label{teo:chainRule}
+\textbf{Regola della catena}
 \begin{equation}
 H(X_0...X_n)=H(X_0)+\sum_{i=1}^n  H(X_i|X_0,...X_{i-1})=H(X_0)+H(X1|X_0)+...+H(X_n|X_0...X_{n-1})
 \end{equation}
@@ -384,7 +386,7 @@ abbiamo che
 \begin{equation}\label{eq:10.8}
 H(X_0...X_n+1)=H(X_0...X_n)+H(X_{n+1}|X_0...X_n)
 \end{equation}
-Applicando l'ipostesi induttiva otteniamo il risultato.
+Applicando l'ipotesi induttiva otteniamo il risultato.
 Inoltre da \ref{eq:10.8} e dal fatto che l'entropia è sempre maggiore di zero otteniamo che l'entropia cogniunta cresce nel tempo.
 \end{proof}
 
@@ -396,14 +398,18 @@ Quando il limite esiste, $h(X)$ si dice \textbf{velocità dell'entropia} dove
 $$h(X):=\limi\frac{1}{n}H(X_0...X_{n-1})$$
 \end{defi}
 
-\begin{teo}
-se $X=(X_n,n\in \mathbb{N})$ è un processo stocastico stazionario, allora $h(X)$ esiste e:
-\begin{equation}
+\begin{teo}\label{teo:10.10}
+se $X=(X_i,i\in \mathbb{N})$ è un processo stocastico stazionario, allora $h(X)$ esiste e:
+\begin{equation} \label{eq3}
 h(X)=\limi H(X_{n-1}|X_0...X_{n-2})
 \end{equation}
 \end{teo}
 \begin{proof}
-Partiamo col dimostrare l'esistenza:\\
+Applicando la regola della catena \ref{teo:chainRule} otteniamo subito che
+\begin{equation}\label{eq4}
+h(X)=\limi \frac{1}{n} H(X_0...X_{n-1})= \limi \frac{1}{n} \sum_{i=0}^{n-1}H(X_i|X_0...X_{i-1})
+\end{equation}
+Passiamo ora a dimostrare l'esistenza del secondo membro di \ref{eq3}:\\
 dall'osservazione \ref{oss:disugShannon} otteniamo:
 \begin{equation} \label{eq1}
 H(X_{n+1}|X_0,X_1...X_n) \leq H(X_{n+1}|X_1...X_n)
@@ -422,9 +428,35 @@ Sostituendo \ref{eq2} in \ref{eq1} otteniamo:
 \begin{equation}
 H(X_{n+1}|X_0,X_1...X_n) \leq H(X_{n}|X_0...X_{n-1})
 \end{equation}
-Qundi definendo $a_n :=  H(X_{n}|X_0...X_{n-1})$ otteniamo una successione $\{ a_n \}_{n\in \mathbb{N}}$ monotona non crescente limitata dal basso visto che $a_k=H(X_{k}|X_0...X_{k-1})\geq 0$ e dunque $\limi a_n$ esiste.
-Proviamo adesso che esiste anche 
+Qundi definendo $a_n :=  H(X_{n}|X_0...X_{n-1})$ otteniamo una successione $\{ a_n \}_{n\in \mathbb{N}}$ monotona non crescente limitata dal basso visto che $a_k=H(X_{k}|X_0...X_{k-1})\geq 0$ e dunque $\limi a_n$ esiste ed è finito dato che $H(Y)<\infty$.
+Proviamo adesso che la serie $\frac{1}{n} \sumin a_i = a$ dove $a:=\limi a_n$:
+$$\limi \bigg| \frac{1}{n} \sumin a_i-a \bigg| \leq \limi \frac{1}{n} \sumin |a_i-a| = \limi \frac{1}{n} \sum_{i=1}^{N_0} |a_i-a| + \sum_{i=N_0+1}^{n} |a_i-a|= \limi \sum_{i=N_0+1}^{n} |a_i-a|$$
+E da qui possiamo concludere scegliendo $N_0$ tale che $\frac{1}{n}|a_i-a|$ sia piccolo a piacere cosa sempre possibilie dato che $\limi a_n=a$.\\
+Ricordando come abbiamo definito $a_n$ otteniamo quindi:
+\begin{equation}
+\limi H(X_{n-1}|X_0...X_{n-2})=\limi \frac{1}{n} \sum_{i=0}^{n-1}H(X_i|X_0...X_{i-1})
+\end{equation}
+ricordando inifine \ref{eq4} possiamo concludere:
+$$h(X)=\limi \frac{1}{n} H(X_0...X_{n-1}) = \limi H(X_{n-1}|X_0...X_{n-2}).$$
 \end{proof}
+\begin{teo}
+Se $(X_i\in \mathbb{N})$ è una catena di Markov stazionaria con distribuzione iniziale $\pi^{(0)}$ e matrice di transizione $P$ allora vale
+\begin{equation}
+h(X)=\sumij \pi^{(0)} P_{ij} \log (P_{ij})
+\end{equation}
+\end{teo}
+\begin{proof}
+dal teorema preedente \ref{teo:10.10} abbiamo:
+$$h(X)=\limi H(X_{n-1}|X_0...X_{n-2})$$
+$$=\limi H(X_{n-1}|X_{n-2})$$
+$$=H(X_1|X_2)$$
+$$=\sumij \mathbb{P}(X_0=i,X_1=j)\log (P_{ij})$$
+$$=\sumij \mathbb{P}(X_0=i)P_{ij}\log (P_{ij})$$
+$$=\sumij \pi^{(0)}P_{ij}\log (P_{ij})$$
+Dove per passare dalla prima alla seconda riga abbiamo usato la 'proprietà di Markov' \ref{defi:cateMarkov}, per passare dalla seconda alla terza abbiamo usato il fatto che il processo è stazionario, dalla terza alla quarta il lemma \ref{lemma:6.8}
+\end{proof}
+
+
 
 
 
