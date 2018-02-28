@@ -305,14 +305,15 @@ Si pre una famiglia di variabili casuali tutta definite sullo stesso spazio di p
 \end{defi}
 Nella nostra trattazione ci limiteremo a considerare una piccola classe di processi stocastici chiamati catene di Markov.
 \begin{defi}
-Un processo stocastico è detto \textbf{catema di Markov} se 
+Un processo stocastico è detto \textbf{catena di Markov} se 
 \begin{enumerate}
 \item l'insieme $S$ che comprende i valori ammissibili delle variabili $X_n$ è discreto (se $S$ è denso si dirà processo di Markov)
 \item possiede la 'proprietà di Markov' i.e. $$\mathbb{P}(X_{n+1}=k_{n+1}|X_n=x_k..X_0=k_0)=\mathbb{P}(X_{n+1}=X_n=k_n)$$
 \end{enumerate}
 \end{defi}
 Per i nostri scopi inoltre considereremo l'insieme del tempo come come un insieme discreto $\mathbb{N}$.\\
-
+Infine definita $p_{ij}^n:=\mathbb{P}(X_{n+1}=j|X_n=i)$ vogliamo che la nostra matrice di transizione $P$, formata dai vari $p_{ij}$ sia stazionaria cioè:\\
+$$p_{ij}^n=p_{ij}^0=: p_{ij} \  \forall n$$
 Ci domandiamo ora se è sempre possibilie definire una catena di Markov $X=(X_n,n\in\mathbb{Z})$ per la quale ogni $X_n$ ammette entropia massima cioè per il teorema \ref{teo:6.2} $X_n$ ha distribuzione uniforme (se non vi sono altre restrizioni).
 \begin{defi}
 Una matrice A ad elementi positivi è detta \textbf{bistocastica} se per ogni riga e per ogni colonna la somma dei suoi elementi è pari ad 1.
@@ -347,6 +348,10 @@ D(X,Y)=log(N)-H(X)
 \end{equation}
 \end{enumerate}
 \end{teo}
+\begin{defi}
+Un processo stocastico è detto \textbf{stazionario} se presi $m,k\in \mathbb{N}$ vale:
+$$\mathbb{P}(X_{n_1}=i_1...X_{n_k}=i_k)= \mathbb{P}(X_{n_1+m}=i_1...X_{n_k+m}=i_k) \ \forall i_s \in S$$
+\end{defi}
 Consideriamo una catena di Markov stazionaria $(X_n,n \in \mathbb{Z}_+)$ con una matrice di transizione bistocastica $P$ e sia $X_{\infty}$ uniformemente distribuita, abbiamo quindi che $D(X_n,X_{\infty})=log(N)-H(X_n)$. Si dimostra che $D(X_n,X_{\infty})$ è una funzione decrescente e che se la distribuzione uniforma è l'unica distribuzione stazionaria, allora $lim_{n \to \infty}D(X_n,X_{\infty})=0$. Segue quindi che $H(X_n)$ è crescente. \cite{Thomas}
 
 
@@ -388,18 +393,37 @@ Inoltre da \ref{eq:10.8} e dal fatto che l'entropia è sempre maggiore di zero o
 \label{sec:EntropyRate}
 \begin{defi}
 Quando il limite esiste, $h(X)$ si dice \textbf{velocità dell'entropia} dove
-$$h(X):=\limi\frac{1}{n}H(X_0X_{n-1})$$
+$$h(X):=\limi\frac{1}{n}H(X_0...X_{n-1})$$
 \end{defi}
 
 \begin{teo}
-se $X=(X_n,n\in \mathbb{Z}_+)$ è un processo stazionario, allora $h(X)$ esiste e:
+se $X=(X_n,n\in \mathbb{N})$ è un processo stocastico stazionario, allora $h(X)$ esiste e:
 \begin{equation}
 h(X)=\limi H(X_{n-1}|X_0...X_{n-2})
 \end{equation}
 \end{teo}
 \begin{proof}
-Partiamo col dimostrare l'esistenza
-\ref{oss:disugShannon} ..............................................................
+Partiamo col dimostrare l'esistenza:\\
+dall'osservazione \ref{oss:disugShannon} otteniamo:
+\begin{equation} \label{eq1}
+H(X_{n+1}|X_0,X_1...X_n) \leq H(X_{n+1}|X_1...X_n)
+\end{equation}
+Grazie al Teorema \ref{teo:6.5} possiamo scrivere:
+$$H(X_{n+1}|X_1...X_n)=H(X_{n+1},X_1...X_n) - H(X_1....X_n)$$
+e ricordandoci che il processo è stazionario abbiamo:
+$$H(X_{n+1},X_1...X_n) - H(X_1....X_n)= H(X_{n},X_0...X_{n-1}) - H(X_0....X_{n-1})$$
+infine applicando il Teorema \ref{teo:6.5} in modo inverso rispetto a prima
+$$H(X_{n},X_0...X_{n-1}) - H(X_0....X_{n-1})=H(X_{n}|X_0...X_{n-1})$$
+riassumendo quindi
+\begin{equation} \label{eq2}
+H(X_{n+1}|X_1...X_n)=H(X_{n}|X_0...X_{n-1})
+\end{equation}
+Sostituendo \ref{eq2} in \ref{eq1} otteniamo:
+\begin{equation}
+H(X_{n+1}|X_0,X_1...X_n) \leq H(X_{n}|X_0...X_{n-1})
+\end{equation}
+Qundi definendo $a_n :=  H(X_{n}|X_0...X_{n-1})$ otteniamo una successione $\{ a_n \}_{n\in \mathbb{N}}$ monotona non crescente limitata dal basso visto che $a_k=H(X_{k}|X_0...X_{k-1})\geq 0$ e dunque $\limi a_n$ esiste.
+Proviamo adesso che esiste anche 
 \end{proof}
 
 
