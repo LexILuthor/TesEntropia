@@ -122,20 +122,8 @@ dove $K$ è una costante $K\geq 0$
 
 \section{Proprietà dell'entropia}
 \label{sec:PropriEntropia}
-In questa sezione indagheremo le prime proprietà del'entropia e dimostreremo i primi risultati che getteranno le basi per le costruzioni successive
-
-\begin{defi} \label{defi:congiun}
-Siano $X$ e $Y$ due variabili casuali definite sullo stesso spazio di probabilità, definiamo la loro \textbf{entropia congiunta} $H(X,Y)$ come:
-\begin{equation}\label{eq:congiun}
-H(X,Y):=-\sum_{j=1}^n\sum_{k=1}^m p_{jk}log(p_{jk})
-\end{equation}
-dove con $p_{jk}$ intendiamo \p$(X=j,Y=k)$
-\end{defi}
-\begin{oss}
-Dalla definizione si ha immadiatamente che $H(X,Y)=H(Y,X)$.
-\end{oss}
-Può essere interessante capire come si comporta l'entropia nel caso le variabili in considerazione siano dipendenti, per fare ciò definiremo l'\textit{entropia condizionata}.\\
-Alla definizione di \textit{entropia condizionata} premettiamo una nota sulla notazione:\\
+In questa sezione indagheremo le prime proprietà dell'entropia e dimostreremo i primi risultati che getteranno le basi per le costruzioni successive.
+Può essere interessante capire come si comporta l'entropia nel caso in cui le variabili in considerazione siano dipendenti, per fare ciò definiremo l'\textit{entropia condizionata}. Alla definizione premettiamo una nota sulla notazione:\\
 indicheremo la probabilità condizionata che $Y=k$ sapendo che $X=j$ ($\mathbb{P}(Y=k|X=j)$) con la notazione $p_{j}(k)$ oppure, in modo totalmente equivalente, $p(k|j)$.
 \begin{defi} \label{defi:condiz}
 Si dirà \textbf{entropia condizionale di $Y$ data $X=j$} la funzione: 
@@ -186,6 +174,17 @@ Sia $\{q_1...q_m\}$  la legge di probabilità di $Y$ allora ci basterà notare c
 e dunque \ref{eq:6.8.1} diventerà
 $$H_X(Y)=-\sum_{k=1}^m q_klog(q_k)\sum_{j=1}^n p_{j}=-\sum_{k=1}^m q_klog(q_k)1=H(Y)$$
 \end{proof}
+
+\begin{defi} \label{defi:congiun}
+Siano $X$ e $Y$ due variabili casuali definite sullo stesso spazio di probabilità, definiamo la loro \textbf{entropia congiunta} $H(X,Y)$ come:
+\begin{equation}\label{eq:congiun}
+H(X,Y):=-\sum_{j=1}^n\sum_{k=1}^m p_{jk}log(p_{jk})
+\end{equation}
+dove con $p_{jk}$ intendiamo \p$(X=j,Y=k)$
+\end{defi}
+\begin{oss}
+Dalla definizione si ha immadiatamente che $H(X,Y)=H(Y,X)$.
+\end{oss}
 \begin{teo} \label{teo:6.5}
 Date due variabili casuali $X,Y$ vale:
 \begin{equation}
@@ -269,15 +268,15 @@ $$I(X,Y)=-\sumj \sumk p_{jk}log(q_k)-\sumj \sumk p_{jk}log{p_j(k)}$$
 \end{proof}
 
 
-\section{Principio della Massima Entropia}
+\section{Principio dell'Entropia Massima}
 \label{sec:maxEntropia}
 
-Spesso ci si trova in condizioni in cui è data una variabile casuale $X$ a valori $\{ x_1...x_n \}$ di cui non si conosce la \lep  in questi casi si può applicare il principio di massima entropia:\\
+Spesso ci si trova in condizioni in cui è data una variabile casuale $X$ a valori $\{ x_1...x_n \}$ di cui non si conosce la \lep  in questi casi si può applicare il principio di entropia massima:\\
 \begin{defi}
-Data una una variabile casuale $X$ con legge di probabilità \lep  incognita il \textbf{principio di massima entropia} ci impone di scegliere i $p_j$ in modo tale che $H(X)$ sia massima
+Data una una variabile casuale $X$ con legge di probabilità \lep  incognita il \textbf{principio dell'entropia massima} ci impone di scegliere i $p_j$ in modo tale che $H(X)$ sia massima
 \end{defi}
 \textbf{Esempio.} 
-Sia $X$ una variabile casuale a valori $\{ x_1...x_n \}$ di cui non si conosce la \lep . Sappiamo già che, se non ci sono altre condizioni, l'entropia sarà massima se $X$ sarà uniformemente distribuita. Prendiamo ora il caso in cui ci venga fornita la media di $\mathbb{E}[ X]=E$ troviamo il massimo dell'entropia $H(X)$ utilizzando i moltiplicatori di Lagrange:\\
+Sia $X$ una variabile casuale a valori $\{ x_1...x_n \}$ di cui non si conosce la \lep . Sappiamo già che, se non ci sono altre condizioni, l'entropia sarà massima se $X$ sarà uniformemente distribuita. Prendiamo ora il caso in cui ci venga fornita la media di $\mathbb{E}[ X]=E$. Per trovare il massimo dell'entropia $H(X)$ utilizziamo il metodo dei  moltiplicatori di Lagrange:\\
 come costrizioni abbiamo:
 \begin{enumerate}
 \item $\sumj p_j=1$
@@ -288,7 +287,7 @@ Dunque dobbiamo trovare il massimo valore di:
 L(p_1...p_n;\lambda,\mu ):= -\sumj p_j log(p_j) + \lambda \bigg( \sumj p_j -1 \bigg) + \mu \bigg( \sumj x_j p_j - E \bigg)
 \end{equation}
 dove $\lambda \mu$ sono i moltiplicatori di Lagrange.\\
-Imponendo le derivate parziali ugiali a 0 otteniamo:
+Imponendo le derivate parziali uguali a 0 otteniamo:
 $$\frac{\partial L}{\partial p_j}=-\frac{1}{ln(2)}(ln(p_j)+1)+\lambda + \mu x_j=0 \ \  (1\leq j \leq n) $$
 $$quindi$$
 $$p_j=e^{\lambda ' + \mu ' x_j} \ \ (1\leq j \leq n)$$
@@ -305,7 +304,7 @@ p_j=\frac{e^{\mu ' x_j}}{Z( \mu ')} \ \ (1\leq j \leq n)
 \section{Entropia nelle catene di Markov}
 \label{sec:markEntropia}
 \begin{defi}
-Si pre una famiglia di variabili casuali tutta definite sullo stesso spazio di probabilità \spacep , $(X(t), t \geq 0 )$ è detta \textbf{processto stocastico}.
+Si consideri una famiglia di variabili casuali tutte definite sullo stesso spazio di probabilità \spacep , $(X(t), t \geq 0 )$, tale famiglia è detta \textbf{processto stocastico}.
 \end{defi}
 Nella nostra trattazione ci limiteremo a considerare una piccola classe di processi stocastici chiamati catene di Markov.
 \begin{defi} \label{defi:cateMarkov}
@@ -316,8 +315,8 @@ Un processo stocastico è detto \textbf{catena di Markov} se
  $$\mathbb{P}(X_{n+1}=k_{n+1}|X_n=x_k..X_0=k_0)=\mathbb{P}(X_{n+1}=k_{n+1} | X_n=k_n)$$
 \end{enumerate}
 \end{defi}
-Per i nostri scopi inoltre considereremo l'insieme del tempo come come un insieme discreto $\mathbb{N}$.\\
-Infine definita $p_{ij}^n:=\mathbb{P}(X_{n+1}=j|X_n=i)$ vogliamo che la nostra matrice di transizione $P$, formata dai vari $p_{ij}$ sia stazionaria cioè:\\
+Per i nostri scopi inoltre considereremo l'insieme del tempo come come un insieme discreto contenuto in $\mathbb{N}$.\\
+Infine, definita $p_{ij}^n:=\mathbb{P}(X_{n+1}=j|X_n=i)$ vogliamo che la nostra matrice di transizione $P$, formata dai vari $p_{ij}$, sia stazionaria cioè:\\
 $$p_{ij}^n=p_{ij}^0=: p_{ij} \  \forall n$$
 Ci domandiamo ora se è sempre possibilie definire una catena di Markov $X=(X_n,n\in\mathbb{Z})$ per la quale ogni $X_n$ ammette entropia massima cioè per il teorema \ref{teo:6.2} $X_n$ ha distribuzione uniforme (se non vi sono altre restrizioni).
 \begin{defi}
@@ -332,8 +331,7 @@ $$\sumi \frac{1}{N}P_{ij}=\frac{1}{N}\sumi P_{ij}=\frac{1}{N}$$
 e quindi $\frac{1}{N}$ è una distribuzione invariante.\\
 Supponiamo ora che la distribuzione uniforme sia invariante e dimostriamo che $P$ è bistocastica. Procedendo al contrario di prima abbiamo:
 $$\frac{1}{N}=\frac{1}{N} \sumi P_{ij} \Rightarrow \sumi P_{ij}=1$$
-Abbiamo che per ogni colonna la somma dei suoi elementi è 1, quindi possiamo concludere\\
-???????????????????????????????????????????????????????????.
+Abbiamo che per ogni colonna la somma dei suoi elementi è 1, quindi possiamo concludere
 \end{proof}
 
 \begin{defi}
@@ -363,7 +361,8 @@ Consideriamo una catena di Markov stazionaria $(X_n,n \in \mathbb{Z}_+)$ con una
 
 \section{La Regola della Catena}
 \label{sec:chainRule}
-Vediamo ora come cambia l'informazione in un processo stocastico. Lapprocio più naturale può sembrare quelo di considerare l'entropia come funzione del tempo, in questo modo però ci si dimentica della relazione tra due passaggi dal tempo $t_n$ al tempo $t_{n+1}$. Estendiamo la definizione di entropia congiunta \ref{defi:congiun} in questo modo:
+Vediamo ora come cambia l'informazione in un processo stocastico. L'approcio più naturale può sembrare quelo di considerare l'entropia come funzione del tempo, in questo modo però ci si dimentica della relazione tra due passaggi successivi dal tempo $t_n$ al tempo $t_{n+1}$. Procederemo quindi in modo differente generalizzando i risultati visti nel caso di due sole variabili.\\
+ Estendiamo la definizione di entropia congiunta \ref{defi:congiun} in questo modo:
 \begin{equation}
 H(X_0...X_n):=- \suma p(i_0...i_n)log(p(i_o...i_n)).
 \end{equation}
