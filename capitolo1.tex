@@ -14,77 +14,76 @@ Bisogna anzitutto specificare che in Probabilità il significato di Informazione
 \item[iii.] QUER W LKS E W
 \end{enumerate}
 
-istintivamente diremo che la frase contente maggior informazione è $(ii)$ in quanto contiene un'informazione totalmente nuova seguita poi da $(i)$ ed in fine $(iii)$ la quale non avendo significato non conterrà nessuna informazione.\\ Questa scala però tiene conto sia del significato della frase sia della quantità di \textit{sorpresa} che porta, in questo senso $(iii)$ non ha significato, ma porta \textit{sorpresa}, mentre $(ii)$ contiene sia significato che sorpresa.\\ Nel mondo della matematica si è visto che il concetto di significato è difficile da esprimere e si è dunque preferito puntare sul concetto di \textit{sorpresa} per esprimere il significato di \textit{informazione}.\\
-Per definire in maniera rigorosa il nostro concetto di \textbf{informazione} poniamoci in uno spazio di probabilità \spacep.\\
-Dati due eventi $E_1,E_2$ vogliamo che la nostra funzione d'informazione $I$ soddifi alcuni criteri:
+istintivamente diremo che la frase contente maggior informazione è $(ii)$ in quanto contiene un'informazione totalmente inaspettata e nuova, seguita poi da $(i)$ ed in fine $(iii)$ la quale non avendo significato non conterrà nessuna informazione.\\ Questa scala però tiene conto sia del significato della frase sia della quantità di \textit{sorpresa} che porta. In questo senso $(iii)$ non ha significato, ma porta \textit{sorpresa}, mentre $(ii)$ contiene sia significato che sorpresa.\\ Nel mondo della matematica si è visto che il concetto di \textit{significato} è difficile da esprimere e si è dunque preferito puntare sul concetto di \textit{sorpresa} per esprimere il significato d'\textit{informazione}.\\
+Per definire in maniera rigorosa il concetto di \textbf{informazione} poniamoci in uno spazio di probabilità \spacep.\\
+Dati due eventi $E_1,E_2 \in \mathcal{F}$ vogliamo che la nostra funzione d'informazione $I$ soddifi alcuni criteri:
 
 \begin{enumerate} 
 \item $I(E)\geq 0$ per ogni $E\in \mathcal{F}$
 \item se \p$(E_1)\leq $ \p$(E_2)$ allora $I(E_1)\geq I(E_2)$ 
 \item se $E_1,E_2$ sono indipendenti allora $I(E_1\cup E_2)=I(E_1)+ I(E_2)$
 \end{enumerate} 
-Con queste richieste ci viene naturalemte in mente una funzione che le soddisfa.
-
+Per soddisfare queste richieste viene naturalemte in mente la funzione $\log$, infatti:
 \begin{defi}
-In uno spazio di probabilità \spacep definiamo la funzione $I: \mathcal{F}\to \mathbb{R}^+$ come:
+In uno spazio di probabilità \spacep definiamo la funzione \textbf{informazione} $I: \mathcal{F}\to \mathbb{R}^+$ come:
 \begin{equation}
-(E)=-log_a(\mathbb{P} (E)).
+I(E)=-log_a(\mathbb{P} (E)).
 \end{equation}
-dove $a$ è una costante positiva (in alcuni testi la funzione viene moltiplicata per $K$,  ma tale costante è inutile dato che già scegliere la base coincide col moltiplicare per una costante infatti $log_a(x)=\frac{log_b(y)}{log_b(a)} \bigg)$.
+dove $a$ è una costante positiva (in alcuni testi la funzione viene moltiplicata per $K$,  ma tale costante è inutile dato che già scegliere la base coincide col moltiplicare per una costante, infatti: $log_a(x)=\frac{log_b(y)}{log_b(a)} \bigg)$.
 \end{defi}
 
-Si verifica facilmente che la funzione $I$ così definita rispetta le proprietà preposte, l'unico problema nasce per un evento $E$ tale che \p $(E)=0$ in questo caso $I(E)=\infty$, questa occorrenza può essere interpretata come l'incapacità di ottenere informazioni da un evento impossibile. La funzione \textit{Informazione} possiede inoltre la desiderabile proprietà di essere nulla qualora la probabilità di un evento sia $1$.\\
-Essendo questa funzione spesso associata a codici si preferisce scegliere $2$ come base del logaritmo in questo modo supponendo di avere una variabile casuale $X$ con distribuzione di Bernoulli a parametro $p=\frac{1}{2}$ abbiamo che 
+Si verifica facilmente che la funzione $I$ così definita rispetta le proprietà preposte, l'unico intoppo nasce per un evento $E$ tale che \p $(E)=0$ in questo caso $I(E)=\infty$, questa occorrenza può essere interpretata come l'incapacità di ottenere informazioni da un evento impossibile. La funzione \textit{Informazione} possiede inoltre la proprietà di essere nulla qualora la probabilità di un evento sia $1$ cioè se un evento è certo, la sua realizzazione non ci fornirà alcuna informazione aggiuntiva.\\
+Essendo questa funzione spesso associata a codici è comodo scegliere $2$ come base del logaritmo, in questo modo supponendo di avere una variabile casuale $X$ con distribuzione di Bernoulli a parametro $p=\frac{1}{2}$ (il nostro messaggio sarà definito da un codice binario ($\{ 0, 1 \}$) abbiamo che 
 \begin{equation}
-I(X=0)=I(X=1)=-log_2 \bigg(\frac{1}{2} \bigg ) =1
+I(X=0)=I(X=1)=-\log_2 \bigg(\frac{1}{2} \bigg ) =1
 \end{equation}
-Per questo d'ora in avanti con $log$ si intenderà $log_2$.
+Per questo d'ora in avanti, salvo diversa indicazione, con $\log$ si intenderà $\log_2$.
 
 \section{Entropia}
 \label{sec:Entropia}
 
 Il secondo concetto fondamentale trattato in questa tesi è quello di \textit{entropia}.\\
-Data una variabile casuale discreta $X$ a valori $\{ x_1...x_n \}$ e con legge di probabilità $\{p_1...p_n \}$ ($p_i:=\mathbb{P}(X=x_i)$) non possiam conoscere a priori il valore che assumerà $X$ e di conseguenza conoscere quanta informazione verrà inviata. Definiamo per questo l'\textit{entropia}.
-
+Data una variabile casuale discreta $X$ a valori $\{ x_1...x_n \}$ e con legge di probabilità $\{p_1...p_n \}$ ($p_i:=\mathbb{P}(X=x_i)$) non possiamo conoscere a priori il valore che assumerà $X$ e di conseguenza non possiamo sapere quanta informazione verrà inviata. Definiamo per questo l'\textit{entropia}.
 \begin{defi}
-si dice \textbf{entropia} di una variabile casuale discreta $X$ il valore
+Si dice \textbf{entropia} di una variabile casuale discreta $X$ il valore
 \begin{equation}
 H(X):=\mathbb{E}(I(X))=-\sum_{j=1}^np_j\Phi(p_j)
 \end{equation}
 dove
-$$\Phi(p):=
-\systeme{
-log_2(p)\ se \ p \neq 0 ,
-0 \ se \  p=0}
+$$
+\Phi(p):=
+\begin{cases}
+\log_2(p) \ se \ p \neq 0 \\
+0 \ se \  p=0
+\end{cases}
 $$
 \end{defi}
-
-Per convincersi della sensatezza di questa definizione si immagini di voler scommettere con una moneta modificata come segue:
+Per capire il senso di questa definizione si immagini di voler scommettere con una moneta modificata come segue:
 \begin{enumerate}
 \item esce testa con probabilità $p_1=0.95$
 \item esce testa con probabilità $p_2=0.6$
 \item esce testa con probabilità $p_3=0.5$
 \end{enumerate} 
- usando la definizione di Entropia otteniamo:
+ usando la definizione di entropia otteniamo:
  
- \begin{enumerate}
+\begin{enumerate}
 \item$H_1(p_1)=0.286$
 \item$H_2(p_2)=0.971$
 \item$H_3(p_3)=1$
 \end{enumerate}
-ovviamente nel primo caso la probabilità di predirre il risultato corretto è molto alta dato che la moneta è pesantemente modificata e infatti il sistema avrà una bassa entropia, nel secondo caso l'entropia aumenta nel terzo l'indecisione è massima e l'entropia di coneguenza ha anch'essa massimo.\\
-Per convincersi di quanto detto in maniera più matematica si ha il seguente teorema:
+Ovviamente nel primo caso la probabilità di predirre il risultato corretto è molto alta dato che la moneta è pesantemente modificata e infatti il sistema avrà una bassa entropia, nel secondo caso l'entropia aumenta, infine nel terzo l'indecisione sarà massima e l'entropia di coneguenza.\\
+Per convincersi di quanto detto in maniera più matematica, si ha il seguente teorema:
 \begin{teo} \label{teo:6.2}
-Sia $X$ una variabile casuale discreta allora vale:
+Sia $X$ una variabile casuale discreta, allora vale:
 \begin{enumerate}
 \item $H(X)\geq 0$ e $H(X)= 0$ se e solo se esiste un valore $X$, $x_1$ t.c. \p$(x_1)=1$
 \item $H(X)\leq log(n)$ e l'uguaglianza varrà solo quando $X$ ha distribuzione uniforme
 \end{enumerate}
 \end{teo}
-\begin{proof}
+\begin{proof} \leavevmode 
 \begin{enumerate}
-\item ovviamente $H(X)\geq 0$ perchè somma di quantità positive (consideriamo gli addendi come $-log(x)$). Supponiamo ora che $H(X)=0$ allora $p_jlog(p_j)=0 \forall j$, quindi abbiamo che $p_j$ sarà uguale ad 1 o 0, ma non può essere che tutti i $p_j$ siano  uguali a 0 e dunque deve esistere almeno un $p_j=1$.
-\item  per prima cosa supponiamo che $p_j\ge 0$(nel caso non lo fossero basterebbe togliere i $c \  p_k=0$ e dimostrare che $H(X)\leq log(n-c)\leq log(n)$).\\
+\item ovviamente $H(X)\geq 0$ perchè somma di quantità positive (consideriamo gli addendi come $-log(x)$ e ricordando che $x\in (0,1]$). Per quanto riguarda la seconda parte, dato che tutti gli addendi della sommatoria sono positivi, abbiamo che $H(X)=0$ se e solo se $p_jlog(p_j)=0 \  \forall j$, quindi abbiamo che $p_j$ sarà uguale ad 1 o 0, ma non può essere che tutti i $p_j$ siano  uguali a 0 e dunque deve esistere almeno un $p_j=1$.
+\item  per prima cosa supponiamo che $p_j\ge 0$ (nel caso non lo fossero basterebbe togliere i $\  p_k=0$ e dimostrare che $H(X)\leq log(n-c)\leq log(n)$ dove $c$ è il numero di $p_k=0$).\\
 Dalla definizione abbiamo:
 $$H(x)-log(n)=$$
 $$=-\frac{1}{ln(2)} \bigg( \sumj p_j ln (p_j) + ln(n) \bigg)$$
@@ -94,14 +93,15 @@ $$=\frac{1}{ln(2)} \bigg( \sumj p_j ln \bigg( \frac{1}{p_jn} \bigg) \bigg)$$
 $$\leq \frac{1}{ln(2)} \bigg( \sumj p_j \bigg( \frac{1}{p_jn} -1 \bigg) \bigg)$$
 $$= \frac{1}{ln(2)} \bigg( \sumj \bigg( \frac{1}{n} -p_j \bigg) \bigg)$$
 $$\leq 0$$
-dove nel terzultimo passaggio abbiamo usato il fatto che $ln(x)\leq x-1$ con l'uguaglianza solo se $X=1$. Quindi abbiamo che le disuguaglianza si trasformano in uguaglianze solo se $\frac{1}{p_jn}=1$ cioè se $p_j=\frac{1}{n}$ cioè la distribuzione uniforme.
+dove nel terzultimo passaggio abbiamo usato il fatto che $ln(x)\leq x-1$ con l'uguaglianza solo se $x=1$. Quindi abbiamo che le disuguaglianze si trasformano in uguaglianze solo se $\frac{1}{p_jn}=1$ cioè se $p_j=\frac{1}{n}$ cioè se si ha distribuzione uniforme.
 \end{enumerate}
 \end{proof}
 
 
 \section{Unicità dell'Entropia}
 \label{sec:UniEntropia}
-Si può dimostrare che la scelta della funzione di entropia come \textit{misura di incertezza} è unica a meno di una costante moltiplicativa. Inanzitutto definiamo la \textit{misura di incertezza}:
+Si può dimostrare che la scelta della funzione di entropia come \textit{misura di incertezza} è unica a meno di una costante moltiplicativa.\\
+Anzitutto definiamo la \textit{misura di incertezza}:
 \begin{defi}
 sia \spacep un spazio di probabilità e $X$ variabile casuale di legge $\{ p_1....p_n \}$ , una funzione $U$ viene detta \textbf{misura di incertezza} se soddisfa le seguenti condizioni:
 \begin{enumerate}
@@ -122,7 +122,7 @@ dove $K$ è una costante $K\geq 0$
 
 \section{Proprietà dell'entropia}
 \label{sec:PropriEntropia}
-
+In questa sezione indagheremo le prime proprietà del'entropia e dimostreremo i primi risultati che getteranno le basi per le costruzioni successive
 
 \begin{defi} \label{defi:congiun}
 Siano $X$ e $Y$ due variabili casuali definite sullo stesso spazio di probabilità, definiamo la loro \textbf{entropia congiunta} $H(X,Y)$ come:
@@ -131,24 +131,29 @@ H(X,Y):=-\sum_{j=1}^n\sum_{k=1}^m p_{jk}log(p_{jk})
 \end{equation}
 dove con $p_{jk}$ intendiamo \p$(X=j,Y=k)$
 \end{defi}
-
-Osserviamo subito che $H(X,Y)=H(Y,X)$.\\
-Può essere interessante capire come si comporta l'entropia nel caso le variabili in considerazione siano dipendenti, per fare ciò definiremo l'\textit{entropia condizionata}, prima però un pò di notazione: chiameremo con $p_{j}(k)$ la probabilità condizionata che $Y=k$ sapendo che $X=j$.
+\begin{oss}
+Dalla definizione si ha immadiatamente che $H(X,Y)=H(Y,X)$.
+\end{oss}
+Può essere interessante capire come si comporta l'entropia nel caso le variabili in considerazione siano dipendenti, per fare ciò definiremo l'\textit{entropia condizionata}.\\
+Alla definizione di \textit{entropia condizionata} premettiamo una nota sulla notazione:\\
+indicheremo la probabilità condizionata che $Y=k$ sapendo che $X=j$ ($\mathbb{P}(Y=k|X=j)$) con la notazione $p_{j}(k)$ oppure, in modo totalmente equivalente, $p(k|j)$.
 \begin{defi} \label{defi:condiz}
-La funzione $H_j(Y)$ sarà detta \textbf{entropia condizionale di $Y$ data $X=j$} dove
+Si dirà \textbf{entropia condizionale di $Y$ data $X=j$} la funzione: 
 \begin{equation}\label{eq:6.6}
 H_j(Y):=-\sum_{k=1}^m p_j(k)log(p_j(k))
 \end{equation}
 \end{defi}
 
-Prendiamo una variabile casuale $X$ possiamo considerare ora la variabile casuale $H.(Y)$ che avrà immagine $\{H_1(Y)...H_n(Y) \}$ e legge di probabilità $\{ p _1...p_n\}$, $H.(Y)$ sarà quindi funzione di $X$.
+Prendiamo una variabile casuale $X$, possiamo considerare la variabile casuale $H.(Y)$ che avrà immagine $\{H_1(Y)...H_n(Y) \}$ e legge di probabilità $\{ p _1...p_n\}$. Avremo quindi che $H.(Y)$ sarà funzione di $X$.
 \begin{defi}
 definiamo l'\textbf{entropia condizionale di $Y$ data $X$}, $H_X(Y)$ come:
 \begin{equation}\label{eq:6.7}
 H_X(Y):= \mathbb{E}[H.(Y)]= \sum_{j=1}^n p_j H_j(Y)
 \end{equation}
 \end{defi}
-
+\begin{oss}
+Più avanti come analogamente alla probabilità condizionata ci sarà più comodo scrivere $H_X(Y)$ come $H(Y|X)$.
+\end{oss}
 \begin{lem} \label{lemma:6.8}
 \begin{equation} \label{eq:6.8}
 H_X(Y)=-\sum_{j=1}^n\sum_{k=1}^m p_{jk}log(p_j(k))
@@ -166,10 +171,9 @@ Ricordando che
 $$p_j(k)=\mathbb{P}(Y=k|X=j)\ e \ p_j=\mathbb{P}(X=j)$$
 
 otteniamo che 
-$$p_j(k)p_j=\mathbb{P}(Y=k|X=j)\mathbb{P}(X=j)=\mathbb{P}(X=j,Y=k)=p_{jk}$$
+$$p_jp_j(k)=\mathbb{P}(X=j)\mathbb{P}(Y=k|X=j)=\mathbb{P}(X=j,Y=k)=p_{jk}$$
 e possiamo concludere.
 \end{proof}
-
 
 \begin{lem}
 se $X$ e $Y$ sono indipendenti allora vale:
@@ -178,8 +182,8 @@ H_X(Y)=H(Y)
 \end{equation}
 \end{lem}
 \begin{proof}
-supponiamo che la legge di probabilità di $Y$ sia $\{q_1...q_m\}$ allora ci basterà notare che nel caso in cui $X$ e $Y$ sono indipendenti $p_j(k)=\mathbb{P}(Y=k|X=j)=\mathbb{P}(Y=k)=q_k$
-e dunque \ref{eq:6.8.1} diventa
+Sia $\{q_1...q_m\}$  la legge di probabilità di $Y$ allora ci basterà notare che nel caso in cui $X$ e $Y$ siano indipendenti $p_j(k)=\mathbb{P}(Y=k|X=j)=\mathbb{P}(Y=k)=q_k$
+e dunque \ref{eq:6.8.1} diventerà
 $$H_X(Y)=-\sum_{k=1}^m q_klog(q_k)\sum_{j=1}^n p_{j}=-\sum_{k=1}^m q_klog(q_k)1=H(Y)$$
 \end{proof}
 \begin{teo} \label{teo:6.5}
@@ -189,14 +193,14 @@ H(X,Y)=H(X)+H_X(y).
 \end{equation}
 \end{teo}
 \begin{proof}
-sapendo che \p$(A\cup B)=\mathbb{P}(A|B)$\p$(B)$ quindi $p_{jk}=p_jp_j(k)$ sostituendo direttamente nella definizione di entropia congiunta \ref{defi:congiun} otteniamo
+sapendo che \p$(A \cap B)=\mathbb{P}(A|B)$\p$(B)$ e quindi che $p_{jk}=p_jp_j(k)$ possiamo sotituire direttamente nella definizione di entropia congiunta \ref{defi:congiun} ottenendo:
 $$H(X,Y)=-\sum_{j=1}^n\sum_{k=1}^m p_{jk}log(p_{j}p_{j}(k))=-\sum_{j=1}^n\sum_{k=1}^m p_{jk}log(p_{j}(k))-\sum_{j=1}^n\sum_{k=1}^m p_{jk}log(p_{j})$$
 possiamo concludere ricordando che $\sum_{k=1}^m p_{jk}=p_j$
 \end{proof}
 \begin{corol}
 se $X$ e $Y$ sono indipendenti alora vale:
 \begin{equation}
-H(X,Y)=H(Y), H(Y)
+H(X,Y)=H(X)+H(Y)
 \end{equation}
 \end{corol}
 \begin{proof}
@@ -209,14 +213,13 @@ H_X(Y)\leq H(Y)
 \end{equation}
 \end{teo}
 \begin{proof}
-per la dimostrazione usiamo la disuguaglianza di Jensen:\\
+per la dimostrazione uutilizziamo la disuguaglianza di Jensen:\\
 data $f$ funzione convessa vale
 \begin{equation}
 \sumj \lambda_j f(x_j)\geq f\bigg( \sumj \lambda_j x_j \bigg)
 \end{equation}
 con $\lambda_j > 0$ e $\sumj \lambda_j =1$
-\end{proof}
-per la dimostrazione si veda \cite{Jensen}
+per la dimostrazione si veda \cite{Jensen}.\\
 Ora applicando la disuguaglianza con:
 $$\lambda_j=p_j,\ f(x)=x \log x, \  x_j=p_j(k)$$
 per k fissato, otteniamo quindi:
@@ -230,8 +233,9 @@ e quindi:
 \begin{equation}
 -H_X(Y) \geq -H(Y)
 \end{equation}
-Questo risultato si può interpretare come il fatto che aggiungendo un informazione (il valore di $X$) l'entropia del sistema diminuisce.
-Spesso è preferibile usare la notazione $H(Y|X)$ anzichè $H_X(Y)$ soprattutto nei casi in cui $X$ ha una definizione molto verbosa
+Da cui possiamo concludere direttamente.
+\end{proof}
+Questo risultato può essere pensato come: aggiungendo informazione (il valore di $X$) l'entropia del sistema diminuisce.
 \begin{oss}\label{oss:disugShannon}
 Nel caso di processi stocastici (si veda \ref{sec:markEntropia}) è comodo osservare che considerando $Y=(X_n+1)$ e $X=X_0$ nel teorema precedente, si ottiene:
 $$H(X_{n+1}|X_0,X_1...X_n) \leq H(X_{n+1}|X_1...X_n)$$
