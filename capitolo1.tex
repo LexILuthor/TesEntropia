@@ -140,7 +140,7 @@ H_X(Y):= \mathbb{E}[H.(Y)]= \sum_{j=1}^n p_j H_j(Y)
 \end{equation}
 \end{defi}
 \begin{oss}
-Più avanti come analogamente alla probabilità condizionata ci sarà più comodo scrivere $H_X(Y)$ come $H(Y|X)$.
+Più avanti, analogamente a quanto detto per la probabilità condizionata, ci sarà più comodo scrivere $H_X(Y)$ come $H(Y|X)$.
 \end{oss}
 \begin{lem} \label{lemma:6.8}
 \begin{equation} \label{eq:6.8}
@@ -183,7 +183,7 @@ H(X,Y):=-\sum_{j=1}^n\sum_{k=1}^m p_{jk}log(p_{jk})
 dove con $p_{jk}$ intendiamo \p$(X=j,Y=k)$
 \end{defi}
 \begin{oss}
-Dalla definizione si ha immadiatamente che $H(X,Y)=H(Y,X)$.
+Dalla definizione si ha immediatamente che $H(X,Y)=H(Y,X)$.
 \end{oss}
 \begin{teo} \label{teo:6.5}
 Date due variabili casuali $X,Y$ vale:
@@ -206,13 +206,13 @@ H(X,Y)=H(X)+H(Y)
 basta applicare \ref{lemma:6.4} al teorema precedente
 \end{proof}
 \begin{teo} \label{teo:disugShannon}
-\textbf{Disuguaglianza fondamentale di Shannon.}\\
+(\textit{Disuguaglianza fondamentale di Shannon})\\
 \begin{equation}
 H_X(Y)\leq H(Y)
 \end{equation}
 \end{teo}
 \begin{proof}
-per la dimostrazione uutilizziamo la disuguaglianza di Jensen:\\
+Per la dimostrazione utilizziamo la disuguaglianza di Jensen:\\
 data $f$ funzione convessa vale
 \begin{equation}
 \sumj \lambda_j f(x_j)\geq f\bigg( \sumj \lambda_j x_j \bigg)
@@ -236,7 +236,7 @@ Da cui possiamo concludere direttamente.
 \end{proof}
 Questo risultato può essere pensato come: aggiungendo informazione (il valore di $X$) l'entropia del sistema diminuisce.
 \begin{oss}\label{oss:disugShannon}
-Nel caso di processi stocastici (si veda \ref{sec:markEntropia}) è comodo osservare che considerando $Y=(X_n+1)$ e $X=X_0$ nel teorema precedente, si ottiene:
+Nel caso di \textit{processi stocastici} (si veda \ref{sec:markEntropia} per la definizione) è comodo osservare che considerando $Y=(X_{n+1})$ e $X=X_0$ nel teorema precedente si ottiene:
 $$H(X_{n+1}|X_0,X_1...X_n) \leq H(X_{n+1}|X_1...X_n)$$
 \end{oss}
 \begin{defi}
