@@ -1,3 +1,82 @@
-\chapter{Conclusioni}
-\label{cha:conclusioni}
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sed nunc orci. Aliquam nec nisl vitae sapien pulvinar dictum quis non urna. Suspendisse at dui a erat aliquam vestibulum. Quisque ultrices pellentesque pellentesque. Pellentesque egestas quam sed blandit tempus. Sed congue nec risus posuere euismod. Maecenas ut lacus id mauris sagittis egestas a eu dui. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Pellentesque at ultrices tellus. Ut eu purus eget sem iaculis ultricies sed non lorem. Curabitur gravida dui eget ex vestibulum venenatis. Phasellus gravida tellus velit, non eleifend justo lobortis eget. 
+\chapter{Comunicazione}
+
+In questo capitolo sarà proposto una modellizzazione della trasmissione di informazione attraverso canali comunicanti. 
+
+\section{Trasmissione di informazione}
+\label{sec:Trasmissione}
+
+Il modello più semplice sarà costituito da una sorgente, un canale di comunicazione, ed un ricevente.\\
+La sorgente sarà modellata da una variabile aleatoria $S$ con valori \va detti alfabeto sorgente e \lep. Il fatto che la sorgente $S$ sia una variabile casuale va interpretata come l'incertezza su quale sarà il messaggio inviato. in questo contesto un messaggio sarà una serie di simboli da \va uno di seguito all'altro.
+il ricevente sarà un'altra variabile casuale $R$ con valori \vb  detti alfabeto ricevente e \leggeq. Solitamente avremo che $m \geq n$. Infine l'effetto di distorsione del canale sarà modellato dalla famiglia di probabilità condizionate \lepc  dove $p(j|i):= \mathbb{P}(R=b_j|S=a_i)$ (corrisponde a $p_i(j)$ definito in \ref{sec:PropriEntropia}). Un sistema di trasmissione ottimale avrà i due alfabeti di trasmissione e ricezione identici e nella distorsione avremo $p(i|i)$ il più vicino possibile ad 1.\\
+\begin{defi}
+viene detta \textbf{mutua informazione}  tra due eventi $E(S=a_j)$ ed $F(R=b_k)$ il valore:
+\begin{equation}
+I(a_j,b_k)=-log(q_k)+ log(p(k|j))
+\end{equation}
+se $p_j=0$ allora diremo $I(a_j,b_k)=0$.
+\end{defi}
+È importante notare che questa definizione di mutua informazione è diversa da \ref{defi:mutua}  data che si riferisce a due variabili casuali.\\
+Dato che $-log(q_k)$ è l'informazione dell'evento $R=b_k$, mentre $-log(p(k|j))$ è l'informazione aggiuntiva che ci darebbe la ricezione di $b_k$ sapendo già per certo che è stato spedito $a_j$, possiamo interpretare $I(a_j,b_k)$ come la quantità di informazione su $R=b_k$ che ci è data dall'evento $S=a_j$. In altre parole è la quantità di informazione che è spedita attraverso il canale. Notiamo che se non ci fosse rumore ($p(i|i)=1$) avremmo che:
+$$I(a_j,b_k)=-log(q_k)=I(q_k)$$
+\begin{teo}
+Per ogni $1\leq j \leq n , 1 \leq k, \leq m$ si ha:
+\begin{enumerate}
+\item $I(a_j,b_k)=-log(\frac{p_jk}{p_j q_k})$
+\item $I(a_j,b_k)=-log(p_j)+log(q(j|k))$
+\item $I(a_j,b_k)=I(b_k,a_j)$
+\item se gli eventi $S=a_j$ e $R=b_k$ sono indipendenti allora $I(a_j,b_k)=0$
+\item $I(S,R)=\sumj \sumk p_{jk}I(a_j,b_k)$.
+\end{enumerate}
+\end{teo}
+\begin{proof}
+\begin{enumerate}
+\item deriva banalmente da $p(k|j)=\frac{p_{jk}}{q_k}$
+\item si ricava sostituendo in 1. $q(j|k)=\frac{p_{ik}}{q_k}$
+\item deriva da 2.
+\item ricordando che nel caso siano indipendenti $p_{jk}=p_jq_k$ si ricava immediatamente da da 1.
+\item si ricava da 1. e dal primo punto del teorema \ref{teo:6.7}
+\end{enumerate}
+\end{proof}
+
+Il punto 3. del sistema ci mostra la curiosa caratteristica per cui se in un sistema si invertono sorgente e ricevente abbiamo che l'informazione su $a_j$ contenuta in $b_k$ è la stessa di quella contenuta in $a_j$ su $b_k$ quando il canale funziona normalmente. Il punto 5. invece esprime la mutua informazione tra due variabili casuali definita in \ref{defi:mutua} come la media di tutte le possibili trasmissioni dei singoli simboli. Si può dimostrare che $I(S,R)\geq 0$ sempre.\\
+
+Supponiamo ora preso un canale, di fissare \lepc . Vogliamo ora fare in modo che il canale trasmetta più informazione possibile, per fare ciò le uniche variabili del sistema rimaste ancora libere sono $\{p_1...p_n \}$ .
+\begin{defi}
+viene definita \textbf{capacità del canale C} la quantità:
+\begin{equation}
+C:=max I(S,R)
+\end{equation}
+dove il massimo è scelto tra tutte le possibili leggi di probabilità della variabile $S$
+\end{defi}
+Operativamente spesso è preferibile vedere la capacità del canale C come:
+\begin{equation}
+C=max(H(R)-H_s(R))
+\end{equation}
+ottenuta utilizzando la definizione \ref{defi:mutua}.
+
+\section{Codici}
+\label{sec:Codici}
+In questo paragrafo daremo un idea di cioò che si intende con \textit{codice} in matematica per poi applicarci la nostra conoscenza sulla trasmissione di informazione.\\
+\begin{defi}
+L'\textbf{alfabeto di un codice, C} è un insieme \acode i cui elementi $c_i$ sono chiamati \textbf{simboli}.\\
+Una \textbf{parola-codice} è una serie di simboli $c_{i_1}...c_{i_n}$. Il numero $n$ sarà la \textbf{lunghezza} della parola-codice.\\
+Un \textbf{messaggio} sarà una successione di parole-codice.
+\end{defi}
+Il processo di codifica di un messaggio è quello di mappare ogni singolo  simbolo dell'alfabeto di quel linguaggio con una parola-codice.\\
+Un esempio pratico di codice che poi utilizzeremo lungo tutto il capitolo è dato dal codice binario. Si ha:
+$$C=\{0, 1 \}.$$
+Se ad esempio domandassimo che le nostre parole siano tutte di lunghezza 6 o meno allora è facile verificare che ci sono 126 possibili parole-codice.\\
+Il nostro obiettivo sarà ora capire cosa succede all'informazione trasmessa ora che il percorso sarà:
+$$ SORGENTE \to codificatore \to CANALE \to decodificatore \to RICEVENTE$$
+
+
+
+
+
+
+
+
+
+
+
+
