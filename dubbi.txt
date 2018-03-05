@@ -1,0 +1,1 @@
+Disuguaglianza di Gibbs nel caso continuo (teorema 2.1.1) nella dimostrazione dovrei richiedere f(x) diversa da zero per ogni x altrimenti dovrei spezzare l'integrale?

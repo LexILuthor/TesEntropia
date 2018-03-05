@@ -85,15 +85,20 @@ Sia $X$ una variabile casuale discreta, allora vale:
 \item ovviamente $H(X)\geq 0$ perché somma di quantità positive (consideriamo gli addendi come $-log(x)$ e ricordando che $x\in (0,1]$). Per quanto riguarda la seconda parte, dato che tutti gli addendi della sommatoria sono positivi, abbiamo che $H(X)=0$ se e solo se $p_jlog(p_j)=0 \  \forall j$, quindi abbiamo che $p_j$ sarà uguale ad 1 o 0, ma non può essere che tutti i $p_j$ siano  uguali a 0 e dunque deve esistere almeno un $p_j=1$.
 \item  per prima cosa supponiamo che $p_j\ge 0$ (nel caso non lo fossero basterebbe togliere i $\  p_k=0$ e dimostrare che $H(X)\leq log(n-c)\leq log(n)$ dove $c$ è il numero di $p_k=0$).\\
 Dalla definizione abbiamo:
-$$H(x)-log(n)=$$
-$$=-\frac{1}{ln(2)} \bigg( \sumj p_j ln (p_j) + ln(n) \bigg)$$
-$$=-\frac{1}{ln(2)} \bigg( \sumj p_j (ln (p_j) + ln(n)) \bigg)$$
-$$=-\frac{1}{ln(2)} \bigg( \sumj p_j ln(p_jn)\bigg)$$
-$$=\frac{1}{ln(2)} \bigg( \sumj p_j ln \bigg( \frac{1}{p_jn} \bigg) \bigg)$$
-$$\leq \frac{1}{ln(2)} \bigg( \sumj p_j \bigg( \frac{1}{p_jn} -1 \bigg) \bigg)$$
-$$= \frac{1}{ln(2)} \bigg( \sumj \bigg( \frac{1}{n} -p_j \bigg) \bigg)$$
-$$\leq 0$$
-dove nel terzultimo passaggio abbiamo usato il fatto che $ln(x)\leq x-1$ con l'uguaglianza solo se $x=1$. Quindi abbiamo che le disuguaglianze si trasformano in uguaglianze solo se $\frac{1}{p_jn}=1$ cioè se $p_j=\frac{1}{n}$ cioè se si ha distribuzione uniforme.
+\[
+\begin{split}
+H(x)-log(n)
+&=-\frac{1}{ln(2)} \bigg( \sumj p_j ln (p_j) + ln(n) \bigg)\\
+&=-\frac{1}{ln(2)} \bigg( \sumj p_j (ln (p_j) + ln(n)) \bigg)\\
+&=-\frac{1}{ln(2)} \bigg( \sumj p_j ln(p_jn)\bigg)\\
+&=\frac{1}{ln(2)} \bigg( \sumj p_j ln \bigg( \frac{1}{p_jn} \bigg) \bigg)\\
+&\leq \frac{1}{ln(2)} \bigg( \sumj p_j \bigg( \frac{1}{p_jn} -1 \bigg) \bigg)\\
+&= \frac{1}{ln(2)} \bigg( \sumj \bigg( \frac{1}{n} -p_j \bigg) \bigg) \leq 0
+\end{split}
+\]
+
+
+dove nel per passare dalla quarta alla quinta riga abbiamo usato il fatto che $ln(x)\leq x-1$ con l'uguaglianza solo se $x=1$. Quindi abbiamo che le disuguaglianze si trasformano in uguaglianze solo se $\frac{1}{p_jn}=1$ cioè se $p_j=\frac{1}{n}$ cioè se si ha distribuzione uniforme.
 \end{enumerate}
 \end{proof}
 
@@ -450,12 +455,19 @@ h(X)=\sumij \pi^{(0)} P_{ij} \log (P_{ij})
 \end{teo}
 \begin{proof}
 dal teorema precedente \ref{teo:10.10} abbiamo:
-$$h(X)=\limi H(X_{n-1}|X_0...X_{n-2})$$
-$$=\limi H(X_{n-1}|X_{n-2})$$
-$$=H(X_1|X_2)$$
-$$=\sumij \mathbb{P}(X_0=i,X_1=j)\log (P_{ij})$$
-$$=\sumij \mathbb{P}(X_0=i)P_{ij}\log (P_{ij})$$
-$$=\sumij \pi^{(0)}P_{ij}\log (P_{ij})$$
+\[
+\begin{split}
+h(X) &=\limi H(X_{n-1}|X_0...X_{n-2})\\
+&=\limi H(X_{n-1}|X_{n-2})\\
+&=H(X_1|X_2)\\
+&=\sumij \mathbb{P}(X_0=i,X_1=j)\log (P_{ij})\\
+&=\sumij \mathbb{P}(X_0=i)P_{ij}\log (P_{ij})\\
+&=\sumij \pi^{(0)}P_{ij}\log (P_{ij})
+\end{split}
+\]
+
+
+
 Dove per passare dalla prima alla seconda riga abbiamo usato la 'proprietà di Markov' \ref{defi:cateMarkov}, per passare dalla seconda alla terza abbiamo usato il fatto che il processo è stazionario, dalla terza alla quarta il lemma \ref{lemma:6.8}
 \end{proof}
 

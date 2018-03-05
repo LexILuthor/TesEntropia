@@ -62,15 +62,110 @@ L'\textbf{alfabeto di un codice, C} è un insieme \acode i cui elementi $c_i$ so
 Una \textbf{parola-codice} è una serie di simboli $c_{i_1}...c_{i_n}$. Il numero $n$ sarà la \textbf{lunghezza} della parola-codice.\\
 Un \textbf{messaggio} sarà una successione di parole-codice.
 \end{defi}
-Il processo di codifica di un messaggio è quello di mappare ogni singolo  simbolo dell'alfabeto di quel linguaggio con una parola-codice.\\
+Il processo di codifica di un messaggio è quello di mappare ogni singolo  simbolo dell'alfabeto di un linguaggio con una parola-codice.\\
 Un esempio pratico di codice che poi utilizzeremo lungo tutto il capitolo è dato dal codice binario. Si ha:
 $$C=\{0, 1 \}.$$
 Se ad esempio domandassimo che le nostre parole siano tutte di lunghezza 6 o meno allora è facile verificare che ci sono 126 possibili parole-codice.\\
 Il nostro obiettivo sarà ora capire cosa succede all'informazione trasmessa ora che il percorso sarà:
 $$ SORGENTE \to codificatore \to CANALE \to decodificatore \to RICEVENTE$$
+\\
+Un'importantissima classe di codici è quella dei \textit{codici istantanei o codici prefisso}.
+\begin{defi}
+Sia $c_{i_1}...c_{i_n}$ una parola del codice. Preso $k<n$ se  $c_{i_1}...c_{i_k}$
+è anch'essa una parola tale parola si dirà \textbf{prefisso}.\\
+Un codice in cui non esistono parole che sono prefisso di altre è detto \textbf{codice istantaneo} o \textbf{codice prefisso}.
+\end{defi}.
+\begin{lem}
+Ogni codice istantaneo è decodificabile in modo univoco, inoltre per avere una codifica univoca non è necessario aspettare di ricevere tutto il messaggio.
+\end{lem}
+
+Viste le sorprendenti proprietà dei codici istantanei è naturale chiederci quando è possibile creare codici con queste caratteristiche.
+
+\begin{teo} \label{teo:disugKM} (\textit{Disugiaglianza di Kraft-McMillan})\\
+Dato un alfabeto sorgente composto da $n$ simboli che deve essere codificato allora esiste un codice istantaneo con alfabeto di $r$ simboli e parole di lunghezza $l_i \ (1 \leq i \leq n)$ se e solo se 
+\begin{equation}
+\sumin r^{-l_i}\leq 1.
+\end{equation} 
+\end{teo}
+
+Ora che, dato un alfabeto sorgente, abbiamo la possibilità di trovare dei codici che soddisfano le nostre richieste ci viene naturale domandarci come si può scegliere il migliore tra tutti i codici istantanei.
+
+\begin{defi}
+Dato un alfabeto sorgente $S$ \va con \lep a cui viene associato un codice istantaneo che traduce \va in $\{ l_1....\l_n \}$ posiamo considerare una variabile casuale $L$ con immagine $\{ l_1....\l_n \}$ e \lep , la stessa di $S$. Preso $\mathbb{E}(L)=\sumin p_j l_j$ il valore di aspettazione di $L$ diremo che \textbf{il codice è ottimale} se minimizza $\mathbb{E}(L)$.
+\end{defi}
+È chiaro che in generale un codice ottimale non è unico infatti dato un qualsiasi codice ottimale che utilizzi un alfabeto di almeno due lettere ci basterà considerare un codice in cui le lettere vengono permutate per ottenere un nuovo codice ottimale.
+Enunciamo ora un sorprendente teorema che ci permette di mettere in relazione il codice ottimale con l'entropia dell'alfabeto sorgente.
+ 
+\begin{teo}(\textit{Teorema della codifica di sorgente per simboli di codice})\\
+Dato un alfabeto sorgente $S$ con \lep vale:
+\begin{enumerate}
+\item Per ogni codice istantaneo abbiamo che
+\begin{equation}
+\mathbb{E}(L)\geq \frac{H(S)}{\log (r)}
+\end{equation}
+con l'uguaglianza se e solo se $p_j=r^{l_j}$ $(1 \leq j \leq n)$
+\item esiste un codice istantaneo per cui
+\begin{equation}
+\frac{H(S)}{\log (r)} \leq \mathbb{E}(L) < \frac{H(S)}{\log (r)} +1
+\end{equation}
+\end{enumerate}
+\end{teo}
+
+\begin{proof}
+\item Definiamo $\{q_1...q_n \}$ con
+\begin{equation}
+q_j=\frac{r^{-l_j}}{\sumi r^{-l_i}}
+\end{equation}
+abbiamo scelto i $q_i$ in modo tale che 
+$$\sumj q_j=1$$
+e ovviamente $q_j\geq 0$.
+Dunque $\{q_1...q_n \}$ è una distribuzione di probabilità e possiamo quindi utilizzare la Disuguaglianza di Gibbs nel caso discreto: $- \sumin p_i \log(p_i) \leq -sumin p_i \log(q_i)$ con $\{p_1...p_n \}$ e $\{q_1...q_n \}$ distribuzioni di probabilità (deriva quasi immediatamente da \ref{teo:GibbsContinuo}).\\
+\[
+\begin{split}
+H(S)& = - \sumj p_j \log(p_j) \\
+& \leq  - \sumj p_j \log(q_j)\\
+& =  - \sumj p_j \log \bigg(\frac{r^{-l_j}}{\sumi r^{-l_i}} \bigg)\\
+& =  - \sumj p_j \log ( r^{-l_j}) +\sumj p_j \log \bigg( \sumi r^{-l_i} \bigg)\\
+& \leq - \sumj p_j \log ( r^{-l_j}) +\sumj p_j \log (1)\\
+& =\sumj p_j l_j \log ( r)\\
+&= \mathbb{E}(L)\log (r)
+\end{split}
+\]
+dove per ottenere la quinta riga abbiamo utilizzato la disugiaglianza di Kraft-McMillan \ref{teo:disugKM}.\\
+Dalle condizioni delle disuguaglianze di Gibbs e Kraft abbiamo che si ha l'uguaglianza se e solo se $p_j=r^{-l_j}$
+\item  Il primo punto dimostra anche il primo membro della disuguaglianza, mostriamo ora la validità della seconda parte.\\
+Imponiamo $l_j =  -\lceil \log_r(p_j) \rceil$ cioè  $- \log_r(p_j) \leq l_j < - \log_r(p_j) +1$ e quindi 
+$$r^{-l_j} \leq p_j \implies $$ 
+$$  \sumj r^{-l_j} \leq \sumj p_j=1.$$
+Quindi per la disuguaglianza di Kraft esiste un codice di tale lunghezza con variabile casuale associata $L$. Abbiamo:
+ \[
+\begin{split}
+H(L)& =  \sumj p_j l_j \\
+& <   - \sumj p_j  \log_r(p_j) +1\\
+& = - \sumj p_j  \frac{\log(p_j)}{\log(r)} +1 \\
+& =  \frac{H(S)}{ \log (r)} +1
+\end{split}
+\]
+\end{proof}
+Il teorema appena dimostrato è detto primo teorema di Shannon e fu dimostrato proprio dal matematico Americano nel 1948.\\
 
 
-
+\section{Regole di decisione}
+Mettiamoci nella situazione
+$$ SORGENTE \to codificatore \to CANALE \to decodificatore \to RICEVENTE$$
+e concentriamoci sul segmento $codificatore \to CANALE \to decodificatore$.\\
+Supponiamo che $C:=\{ x_1 ..x_n \}$ sia l'insieme di tutte le possibili parole del codice che possono essere trasmesse dal e che $y$ sia la parola ricevuta. Per decidere quale parola $x_i$ è stata trasmessa possiamo utilizzare il \textit{principio di massima verosimiglianza}:\\
+Date le probabilità condizionate $p(y|x_i):=(R=y|X=x_i)$ decideremo che la parola inviata è $x_k$ se
+\begin{equation} \label{eq6}
+p(y|x_k )\geq p(y=x_i) \ \forall i
+\end{equation}
+Nel caso in cui più $x_s$ soddisfino \ref{eq6} $x_k$ verrà scelta in modo casuale tra le varie $x_s$.\\
+Ovviamente la nostra scelta di $x_k$ non ci garantisce che sia stata effettivamente inviata $x_k$.\\
+Esistono altri principi sui quali basarsi per la scelta di $x_k$ nel caso di codici binari ad esempio si può definire \textit{distanza di Hammning} per aiutarsi nella decisione:
+\begin{defi}
+date due parole di un codice binario $a,b$ si definisce \textbf{distanza di Hamming} il numero di simboli per cui $a$ è differente da $b$
+\end{defi}
+Utilizzando questa distanza è naturale scegliere come parola $x_k$ inviata quella che dista meno dalla parola ricevuta $y$.
 
 
 

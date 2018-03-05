@@ -23,8 +23,81 @@ $$H(X)=-\int_a^b \log(f(x))f(x)dx= \mathbb{E}\bigg[ \log \bigg( \frac{1}{f(X)} \
 \end{defi}
 Anche qui per convenzione $\log$ sarà il logaritmo in base 2.\\
 Purtroppo la proprietà di essere misura di incertezza, valida nel caso discreto \ref{teo:misuraIncertezza}, non è più valida con questa definizione.\\
-Questo deriva dal fatto che, mentre nel caso discreto l'argomento del logaritmo è sempre compreso tra 0 e 1, nel caso continuo la funzione di densità può assumere valori su tutto $\mathbb{R}$. finisco dmani
- sfmldsalkàgbdhviahvbs
+Questo deriva dal fatto che, mentre nel caso discreto l'argomento del logaritmo è sempre compreso tra 0 e 1, nel caso continuo la funzione di densità, argomento del logaritmo, può assumere valori su tutto $\mathbb{R}$.\\
+Per un esempio si calcoli l'entropia associata alla variabile casuale uniforme, ricordando che la su  funzione di densità è $f(x)=\frac{1}{b-a}$ si ottiene:
+\[
+\begin{split}
+H(X)& = \int_a^b \log \bigg( \frac{1}{b-a} \bigg) \frac{1}{b-a} dx \\
+& =\log(b-a)
+\end{split}
+\]
+che sarà negativa se $0 < b-a < 1$.\\
+L'entropia per le variabili casuali non potrà quindi giocare un ruolo così importante come quello giocato per variabili casuali discrete. Esistono tuttavia alcuni teoremi degni di nota.\\
+Prima di introdurli però calcoliamo l'entropia di $X \backsim N(\mu, \sigma^2)$.
+\[
+\begin{split}
+H(X)& = - \frac{1}{\sigma (2\pi)^{\frac{1}{2}}} \int_{-\infty}^{\infty} \exp \bigg(- \frac{1}{2} \bigg( \frac{x-\mu}{\sigma} \bigg)^2 \bigg) \log \bigg( \frac{1}{\sigma (2\pi)^{\frac{1}{2}}} \exp \bigg( - \frac{1}{2} \bigg( \frac{x-\mu}{ \sigma} \bigg)^2 \bigg)  \bigg) dx \\
+& = \log (\sigma (2 \pi)^{\frac{1}{2}})+ \frac{\log(e)}{\pi^{\frac{1}{2}}}\int_{-\infty}^{\infty} e^{-y^2}-y^2 dy
+\end{split}
+\]
+dove abbiamo usato la sostituzione $y=\frac{x-\mu}{2^{\frac{1}{2}\sigma}}$.\\
+Il calcolo diretto dell'integrale al secondo membro risulta:
+$$\int_{-\infty}^{\infty} e^{-y^2}-y^2 dy= \frac{\pi^{\frac{1}{2}}}{2}$$
+e quindi sostituendo nell'equazione sopra:
+\begin{equation}
+H(X)=\log (\sigma (2\pi e)^{\frac{1}{2}})+\frac{\log(e)}{\pi^{\frac{1}{2}}}\frac{\pi^{\frac{1}{2}}}{2}=\log(\sigma(2\pi e)^{\frac{1}{2}})
+\end{equation}
+D'ora in avanti indicheremo $\log(\sigma(2\pi e)^{\frac{1}{2}})$ con $H_N(\sigma)$. Questo evidenzia il fatto che varianza ed entropia sono due concetti molto legati.
+
+\begin{teo}\label{teo:GibbsContinuo}(\textit{Disuguaglianza di Gibbs nel caso continuo})
+Siano $f,g$ due funzioni di densità allora vale
+\begin{equation}
+-\int_{-\infty}^{\infty} \log(f(x))f(x)dx \leq - \int_{-\infty}^{\infty} \log(g(x))f(x)dx
+\end{equation}
+dove l'uguaglianza è valida solo se $g(x)=f(x)$.
+\end{teo}
+\begin{proof}
+Dato che $\log_b(a)=\frac{\ln (a)}{\ln (b)}$ possiamo limitarci al caso in cui abbiamo $\ln(x)$, il quale ha la proprietà di essere sempre maggiore di $x-1$ e uguale solo nel caso $x=1$. Quindi
+\[
+\begin{split}
+- \int_{-\infty}^{\infty} \log(g(x))f(x) +  \int_{-\infty}^{\infty} \log(f(x))f(x)dx & = - \int_{-\infty}^{\infty} \bigg[\log(g(x))-\log(f(x))\bigg] f(x)dx \\
+& =-\int_{-\infty}^{\infty} \log \bigg(\frac{g(x)}{f(x)}\bigg)f(x)dx\\
+& \geq  -\int_{-\infty}^{\infty} \bigg(\frac{g(x)}{f(x)} -1\bigg)f(x)dx\\
+&= -\int_{-\infty}^{\infty} g(x)dx +\int_{-\infty}^{\infty} f(x)dx=0
+\end{split}
+\]
+Dove l'ultima uguaglianza si ottiene ricordando che $f,g$ sono funzioni di densità e quindi $\int_{-\infty}^{\infty} f(x)dx=1, \ \int_{-\infty}^{\infty} g(x)dx=1$.\\
+La disuguaglianza nel caso precedente diventa un uguaglianza solo se $\frac{g(x)}{f(x)}=1$ cioè solo se $g(x)=f(x)$.
+\end{proof}
+
+
+\begin{teo}
+Sia $X$ una variabile casuale assolutamente continua con immagine $\mathbb{R}$ di media $\mu$, varianza $\sigma^2$ e funzione di densità $f$ allora
+$$H(X) \leq H_N(\sigma)$$
+con l'uguaglianza se e solo se $X\backsim N(\mu,\sigma^2)$
+\end{teo}
+\begin{proof}
+Dalla disuguaglianza di Gibbs \ref{teo:GibbsContinuo} appena dimostrata otteniamo che, per ogni funzione di densità $g$:
+$$H(X)\leq - \int_{-\infty}^\infty \log (g(x))f(x)dx$$
+con l'uguaglianza solo se $f(x)=g(x)$.
+Come $g$ prendiamo $\g$ cioè la funzione di densità di una Normale $N\backsim N(\mu, \sigma^2)$
+\[
+\begin{split}
+- \int_{-\infty}^\infty \log (g(x))f(x)dx = - \int_{-\infty}^\infty \log \bigg( \g\bigg)f(x)dx\\
+&= \log(\sigma(2\pi)^{1/2})- \frac{\log(e)}{2\sigma^2}\int_{-infty}^{infty} (y-\mu)^2f(x)dx \\
+&= \frac{1}{2}log(2\pi \sigma^2)+ \frac{log(e)}{2\sigma^2} Var(X)\\
+&=\frac{1}{2}log(2\pi \sigma^2)+ \frac{log(e)}{2}\\
+&=\frac{1}{2} \log(2\pi e \sigma^2)=H_N(\sigma)
+\end{split}
+\]
+Dove c'è la disuguaglianza avere l'uguaglianza dobbiamo avere $f=g$ e quindi $X\backsim N(\mu,\sigma^2)$
+\end{proof}
+
+
+
+
+
+
 
 
 
