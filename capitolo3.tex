@@ -52,8 +52,19 @@ Operativamente spesso è preferibile vedere la capacità del canale C come:
 \begin{equation}
 C=max(H(R)-H_s(R))
 \end{equation}
-ottenuta utilizzando la definizione \ref{defi:mutua}.
+ottenuta utilizzando la definizione \ref{defi:mutua}.\\
+\begin{oss} \label{oss:bsc}
+Il più semplice esempio di canale di comunicazione che possiamo trovare è un canale binario simmetrico, esso avrà grande rilevanza in seguito.\\
+È formato da una sorgente  con alfabeto $\{ 0 , 1 \}$ e come specificato nella figura il \textit{rumore} del canale è definito attraverso un parametro $p$
 
+
+\includegraphics[scale=0.25]{Binary_symmetric_channel.png}
+
+%\begin{tikzpicture}
+%\draw[thick,->] (0,0) -- (6,-3) node[anchor=south east] {$\epsilon$}; 
+%\draw[thick,->] (0,-3) -- (6,0) node[anchor=south east] {$\epsilon$}; 
+%\end{tikzpicture}
+\end{oss}
 \section{Codici}
 \label{sec:Codici}
 In questo paragrafo daremo un idea di cioò che si intende con \textit{codice} in matematica per poi applicarci la nostra conoscenza sulla trasmissione di informazione.\\
@@ -63,9 +74,8 @@ Una \textbf{parola-codice} è una serie di simboli $c_{i_1}...c_{i_n}$. Il numer
 Un \textbf{messaggio} sarà una successione di parole-codice.
 \end{defi}
 Il processo di codifica di un messaggio è quello di mappare ogni singolo  simbolo dell'alfabeto di un linguaggio con una parola-codice.\\
-Un esempio pratico di codice che poi utilizzeremo lungo tutto il capitolo è dato dal codice binario. Si ha:
-$$C=\{0, 1 \}.$$
-Se ad esempio domandassimo che le nostre parole siano tutte di lunghezza 6 o meno allora è facile verificare che ci sono 126 possibili parole-codice.\\
+Un esempio di codice che poi utilizzeremo lungo tutto il capitolo è dato dal codice binario:
+$$C=\{0, 1 \}$$
 Il nostro obiettivo sarà ora capire cosa succede all'informazione trasmessa ora che il percorso sarà:
 $$ SORGENTE \to codificatore \to CANALE \to decodificatore \to RICEVENTE$$
 \\
@@ -167,7 +177,14 @@ date due parole di un codice binario $a,b$ si definisce \textbf{distanza di Hamm
 \end{defi}
 Utilizzando questa distanza è naturale scegliere come parola $x_k$ inviata quella che dista meno dalla parola ricevuta $y$.
 
-
+\begin{teo}
+Per un canale binario simmetrico come quello visto in \textbf{Osservazione} \ref{oss:bsc} dove $0 \leq p < \frac{1}{2}$, fissata una parola $y$ l'insieme $\{ x_s \}$ delle parole con distanza di Hamming minima da $y$ coincide con quello delle parole a verosimiglianza massima rispetto a $y$
+\end{teo}
+\begin{proof}
+Sia $m$ la lunghezza di $y$, la probabilità che sia stata inviata una parola $x$ tale che $d(x,y)=\epsilon \leq m$ è:
+$$\mathbb{P}(Y=y|X=x)= p^{\epsilon}(1-p)^{m-\epsilon}=(1-p)^m \bigg( \frac{p}{1-p} \bigg)^{\epsilon}$$
+Dato che $0 \leq p < \frac{1}{2} \implies \frac{p}{1-p}<1 $ e quindi $\mathbb{P}(Y=y|X=x)$ ha massimo quando $\epsilon$ è minimo.
+\end{proof}
 
 
 
