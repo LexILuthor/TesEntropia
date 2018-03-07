@@ -6,8 +6,10 @@ In questo capitolo sarà proposta una modellizzazione della trasmissione di info
 \label{sec:Trasmissione}
 
 Il modello più semplice è costituito da una sorgente, un canale di comunicazione, ed un ricevente.\\
-La sorgente sarà modellata da una variabile aleatoria $S$ con valori \va detti alfabeto sorgente e \lep. Il fatto che la sorgente $S$ sia una variabile casuale va interpretata come l'incertezza su quale sarà il messaggio inviato. in questo contesto un messaggio sarà una serie di simboli da \va  uno di seguito all'altro.
-Il ricevente sarà un'altra variabile casuale $R$ con valori \vb  detti alfabeto ricevente e \leggeq, solitamente si avrà $m \geq n$. Infine l'effetto di distorsione del canale sarà modellato dalla famiglia di probabilità condizionate \lepc  dove $p(j|i):= \mathbb{P}(R=b_j|S=a_i)$ (corrisponde a $p_i(j)$ definito in \ref{sec:PropriEntropia}). Un sistema di trasmissione ottimale avrà i due alfabeti di trasmissione e ricezione identici e nella distorsione avremo $p(i|i)$ il più vicino possibile ad 1, in questo modo quindi i valori ricevuti saranno quasi sicuramente gli stessi che sono stati inviati.\\
+La sorgente sarà modellata da una variabile aleatoria $S$ con valori \va detti alfabeto sorgente e \lep. Il fatto che la sorgente $S$ sia una variabile casuale va interpretata come l'incertezza su quale sarà il messaggio inviato. in questo contesto un messaggio sarà una serie di simboli da \va  uno di seguito all'altro.\\
+Il ricevente sarà un'altra variabile casuale $R$ con valori \vb  detti alfabeto ricevente e \leggeq, solitamente si avrà $m \geq n$.\\
+Infine l'effetto di distorsione del canale sarà modellato dalla famiglia di probabilità condizionate \lepc  dove $p(j|i):= \mathbb{P}(R=b_j|S=a_i)$ (corrisponde a $p_i(j)$ definito in \ref{sec:PropriEntropia}).\\
+Un sistema di trasmissione ottimale avrà i due alfabeti di trasmissione e ricezione identici e nella distorsione avremo $p(i|i)$ il più vicino possibile ad 1, in questo modo quindi i valori ricevuti saranno quasi sicuramente gli stessi che sono stati inviati.\\
 \begin{defi}
 viene detta \textbf{mutua informazione}  tra $E$ ed $F$ il valore:
 \begin{equation}
@@ -21,7 +23,7 @@ Dato che $-log(q_k)$ è l'informazione dell'evento $R=b_k$, mentre $-log(p(k|j))
 \begin{teo}
 Per ogni $1\leq j \leq n , 1 \leq k, \leq m$ si ha:
 \begin{enumerate}
-\item $I(a_j,b_k)=-log(\frac{p_jk}{p_j q_k})$
+\item $I(a_j,b_k)=-log(\frac{p_{jk}}{p_j q_k})$
 \item $I(a_j,b_k)=-log(p_j)+log(q(j|k))$
 \item $I(a_j,b_k)=I(b_k,a_j)$
 \item se gli eventi $S=a_j$ e $R=b_k$ sono indipendenti allora $I(a_j,b_k)=0$
@@ -37,10 +39,10 @@ Per ogni $1\leq j \leq n , 1 \leq k, \leq m$ si ha:
 \item si ricava da 1. e dal primo punto del teorema \ref{teo:6.7}
 \end{enumerate}
 \end{proof}
+Il punto 3. del sistema ci mostra la curiosa caratteristica per cui se in un sistema si invertono sorgente e ricevente abbiamo che l'informazione su $a_j$ contenuta in $b_k$ è la stessa di quella contenuta in $a_j$ su $b_k$ quando il canale funziona normalmente. Si può dimostrare che $I(S,R)\geq 0$ sempre.
 
-Il punto 3. del sistema ci mostra la curiosa caratteristica per cui se in un sistema si invertono sorgente e ricevente abbiamo che l'informazione su $a_j$ contenuta in $b_k$ è la stessa di quella contenuta in $a_j$ su $b_k$ quando il canale funziona normalmente. Il punto 5. invece esprime la mutua informazione tra due variabili casuali definita in \ref{defi:mutua} come la media di tutte le possibili trasmissioni dei singoli simboli. Si può dimostrare che $I(S,R)\geq 0$ sempre.\\
 
-Supponiamo ora preso un canale, di fissare \lepc . Vogliamo ora fare in modo che il canale trasmetta più informazione possibile, per fare ciò le uniche variabili del sistema rimaste ancora libere sono $\{p_1...p_n \}$ .
+Supponiamo ora di scegliere un canale e di fissare \lepc . Vogliamo ora fare in modo che il canale trasmetta più informazione possibile, per fare ciò le uniche variabili del sistema rimaste ancora libere con cuoi possiamo lavorare sono $\{p_1...p_n \}$ .
 \begin{defi}
 viene definita \textbf{capacità del canale C} la quantità:
 \begin{equation}
@@ -50,16 +52,15 @@ dove il massimo è scelto tra tutte le possibili leggi di probabilità della var
 \end{defi}
 Operativamente spesso è preferibile vedere la capacità del canale C come:
 \begin{equation}
-C=max(H(R)-H_s(R))
+C=max(H(R)-H_S(R))
 \end{equation}
-ottenuta utilizzando la definizione \ref{defi:mutua}.\\
+ottenuta utilizzando la definizione di mutua informazione tra variabili casuali \ref{defi:mutua}.\\
 \begin{oss} \label{oss:bsc}
-Il più semplice esempio di canale di comunicazione che possiamo trovare è un canale binario simmetrico, esso avrà grande rilevanza in seguito.\\
-È formato da una sorgente  con alfabeto $\{ 0 , 1 \}$ e come specificato nella figura il \textit{rumore} del canale è definito attraverso un parametro $p$
+Il più semplice esempio di canale di comunicazione che possiamo trovare è un canale binario simmetrico, esso avrà grande rilevanza in seguito. È formato da una sorgente  con alfabeto $\{ 0 , 1 \}$ e come specificato nella figura il \textit{rumore} del canale è definito attraverso un parametro $p$
+\\
 
 
-\includegraphics[scale=0.25]{Binary_symmetric_channel.png}
-
+\includegraphics[scale=0.25]{Binary_symmetric_channel.png} \label{fig:bsc}
 %\begin{tikzpicture}
 %\draw[thick,->] (0,0) -- (6,-3) node[anchor=south east] {$\epsilon$}; 
 %\draw[thick,->] (0,-3) -- (6,0) node[anchor=south east] {$\epsilon$}; 
@@ -67,19 +68,20 @@ Il più semplice esempio di canale di comunicazione che possiamo trovare è un c
 \end{oss}
 \section{Codici}
 \label{sec:Codici}
-In questo paragrafo daremo un idea di cioò che si intende con \textit{codice} in matematica per poi applicarci la nostra conoscenza sulla trasmissione di informazione.\\
+In questo paragrafo daremo un idea di ciò che si intende con \textit{codice} nella matematica per poi applicarci la nostra conoscenza sulla trasmissione di informazione.\\
 \begin{defi}
 L'\textbf{alfabeto di un codice, C} è un insieme \acode i cui elementi $c_i$ sono chiamati \textbf{simboli}.\\
-Una \textbf{parola-codice} è una serie di simboli $c_{i_1}...c_{i_n}$. Il numero $n$ sarà la \textbf{lunghezza} della parola-codice.\\
+Una \textbf{parola-codice} o \textbf{parola del codice} è una serie di simboli $c_{i_1}...c_{i_n}$.\\
+Il numero $n$ sarà la \textbf{lunghezza} della parola-codice.\\
 Un \textbf{messaggio} sarà una successione di parole-codice.
 \end{defi}
 Il processo di codifica di un messaggio è quello di mappare ogni singolo  simbolo dell'alfabeto di un linguaggio con una parola-codice.\\
 Un esempio di codice che poi utilizzeremo lungo tutto il capitolo è dato dal codice binario:
 $$C=\{0, 1 \}$$
-Il nostro obiettivo sarà ora capire cosa succede all'informazione trasmessa ora che il percorso sarà:
+Il nostro obiettivo sarà capire cosa succede all'informazione trasmessa modificando il percorso del messaggio nel modo seguente:
 $$ SORGENTE \to codificatore \to CANALE \to decodificatore \to RICEVENTE$$
 \\
-Un'importantissima classe di codici è quella dei \textit{codici istantanei o codici prefisso}.
+Per fare cioè ci serviremo di un'importantissima classe di codici: quella dei \textit{codici istantanei o codici prefisso}.
 \begin{defi}
 Sia $c_{i_1}...c_{i_n}$ una parola del codice. Preso $k<n$ se  $c_{i_1}...c_{i_k}$
 è anch'essa una parola tale parola si dirà \textbf{prefisso}.\\
@@ -89,32 +91,34 @@ Un codice in cui non esistono parole che sono prefisso di altre è detto \textbf
 Ogni codice istantaneo è decodificabile in modo univoco, inoltre per avere una codifica univoca non è necessario aspettare di ricevere tutto il messaggio.
 \end{lem}
 
-Viste le sorprendenti proprietà dei codici istantanei è naturale chiederci quando è possibile creare codici con queste caratteristiche.
+Viste le sorprendenti proprietà dei codici istantanei è naturale chiedersi quando sia possibile creare codici con queste caratteristiche.
 
 \begin{teo} \label{teo:disugKM} (\textit{Disugiaglianza di Kraft-McMillan})\\
 Dato un alfabeto sorgente composto da $n$ simboli che deve essere codificato allora esiste un codice istantaneo con alfabeto di $r$ simboli e parole di lunghezza $l_i \ (1 \leq i \leq n)$ se e solo se 
-\begin{equation}
+\begin{equation} \label{eq:disugKM}
 \sumin r^{-l_i}\leq 1.
 \end{equation} 
 \end{teo}
 
-Ora che, dato un alfabeto sorgente, abbiamo la possibilità di trovare dei codici che soddisfano le nostre richieste ci viene naturale domandarci come si può scegliere il migliore tra tutti i codici istantanei.
+La disuguaglianza di \textit{Disugiaglianza di Kraft-McMillan} ci garantisce l'esistenza di codici che soddisfano le nostre richieste e, attraverso \ref{eq:disugKM} , ci aiuta a trovare tali codici. Il passo successivo sarà chiederci come si può scegliere il migliore tra tutti i codici istantanei. Cominciamo con una definizione
 
 \begin{defi}
-Dato un alfabeto sorgente $S$ \va con \lep a cui viene associato un codice istantaneo che traduce \va in $\{ l_1....\l_n \}$ posiamo considerare una variabile casuale $L$ con immagine $\{ l_1....\l_n \}$ e \lep , la stessa di $S$. Preso $\mathbb{E}(L)=\sumin p_j l_j$ il valore di aspettazione di $L$ diremo che \textbf{il codice è ottimale} se minimizza $\mathbb{E}(L)$.
+Dato un alfabeto sorgente $S$ \va  con \lep  a cui viene associato un codice istantaneo che traduce \va   in $\{ l_1....\l_n \}$ posiamo considerare una variabile casuale $L$ con immagine $\{ l_1....l_n \}$ e \lep  la stessa di $S$. Preso il valore di aspettazione di $L$:
+$$\mathbb{E}(L)=\sumin p_j l_j$$ 
+diremo che \textbf{il codice è ottimale} se minimizza $\mathbb{E}(L)$.
 \end{defi}
-È chiaro che in generale un codice ottimale non è unico infatti dato un qualsiasi codice ottimale che utilizzi un alfabeto di almeno due lettere ci basterà considerare un codice in cui le lettere vengono permutate per ottenere un nuovo codice ottimale.
-Enunciamo ora un sorprendente teorema che ci permette di mettere in relazione il codice ottimale con l'entropia dell'alfabeto sorgente.
+È chiaro che in generale un codice ottimale non è unico infatti dato un qualsiasi codice ottimale che utilizzi un alfabeto di almeno due lettere ci basterà considerare un codice in cui le lettere vengono permutate per ottenere un nuovo codice ottimale.\\
+Enunciamo ora un sorprendente teorema che ci permette di mettere in relazione il valore di aspettazione di $L$ con l'entropia dell'alfabeto sorgente, dandoci quindi utili informazioni sul valore di aspettazione di un codice ottimale.
  
 \begin{teo}(\textit{Teorema della codifica di sorgente per simboli di codice})\\
 Dato un alfabeto sorgente $S$ con \lep vale:
 \begin{enumerate}
-\item Per ogni codice istantaneo abbiamo che
+\item Per ogni codice istantaneo con una alfabeto di $r$ simboli abbiamo che
 \begin{equation}
-\mathbb{E}(L)\geq \frac{H(S)}{\log (r)}
+\frac{H(S)}{\log (r)} \leq \mathbb{E}(L)
 \end{equation}
 con l'uguaglianza se e solo se $p_j=r^{l_j}$ $(1 \leq j \leq n)$
-\item esiste un codice istantaneo per cui
+\item esiste un codice istantaneo formato da $r$ simboli per cui
 \begin{equation}
 \frac{H(S)}{\log (r)} \leq \mathbb{E}(L) < \frac{H(S)}{\log (r)} +1
 \end{equation}
@@ -126,10 +130,16 @@ con l'uguaglianza se e solo se $p_j=r^{l_j}$ $(1 \leq j \leq n)$
 \begin{equation}
 q_j=\frac{r^{-l_j}}{\sumi r^{-l_i}}
 \end{equation}
-abbiamo scelto i $q_i$ in modo tale che 
-$$\sumj q_j=1$$
-e ovviamente $q_j\geq 0$.
-Dunque $\{q_1...q_n \}$ è una distribuzione di probabilità e possiamo quindi utilizzare la Disuguaglianza di Gibbs nel caso discreto: $- \sumin p_i \log(p_i) \leq -sumin p_i \log(q_i)$ con $\{p_1...p_n \}$ e $\{q_1...q_n \}$ distribuzioni di probabilità (deriva quasi immediatamente da \ref{teo:GibbsContinuo}).\\
+abbiamo che l'insieme dei $q_i$ forma una distribuzione di probabilità infatti:
+\[
+\begin{split}
+\sumj q_j& = \sumj \frac{r^{-l_j}}{\sumi r^{-l_i}}\\
+&= \frac{\sumj  r^{-l_j}}{\sumi r^{-l_i}} =1
+\end{split}
+\]
+
+e ovviamente $q_j\geq 0$.\\
+Possiamo quindi utilizzare la disuguaglianza di Gibbs nel caso discreto: $- \sumin p_i \log(p_i) \leq - \sumin p_i \log(q_i)$ per $\{p_1...p_n \}$ e $\{q_1...q_n \}$ distribuzioni di probabilità (deriva immediatamente dal caso continuo \ref{teo:GibbsContinuo}) ottenendo:
 \[
 \begin{split}
 H(S)& = - \sumj p_j \log(p_j) \\

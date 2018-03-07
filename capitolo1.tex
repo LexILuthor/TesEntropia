@@ -6,8 +6,7 @@
 
 \section{Informazione}
 \label{sec:informazione}
-Fondamentali in questa tesi saranno i concetti di Informazione ed entropia.\\
-Bisogna anzitutto specificare che in Probabilità il significato di Informazione ha un connotato diverso da quello della lingua parlata. Consideriamo ad esempio le seguenti frasi: 
+Fondamentali in questa tesi saranno i concetti di Informazione ed entropia. Bisogna anzitutto specificare che in Probabilità il significato di Informazione ha un connotato diverso da quello della lingua parlata. Consideriamo ad esempio le seguenti frasi: 
 \begin{enumerate}
 \item[i.] Quando vado in palestra mi alleno
 \item[ii.] Il vincitore delle prossime elezioni sarà Claudio Baglioni
@@ -108,7 +107,7 @@ dove nel per passare dalla quarta alla quinta riga abbiamo usato il fatto che $l
 Si può dimostrare che la scelta della funzione di entropia come \textit{misura di incertezza} è unica a meno di una costante moltiplicativa.\\
 Anzitutto definiamo la \textit{misura di incertezza}:
 \begin{defi} \label{defi:misuraincertezza}
-sia \spacep un spazio di probabilità e $X$ variabile casuale di legge $\{ p_1....p_n \}$ , una funzione $U$ viene detta \textbf{misura di incertezza} se soddisfa le seguenti condizioni:
+sia \spacep un spazio di probabilità e $X$ variabile casuale discreta di legge $\{ p_1....p_n \}$ , una funzione $U$ viene detta \textbf{misura di incertezza} se soddisfa le seguenti condizioni:
 \begin{enumerate}
 \item $U(X)$ è un massimo quando ha distribuzione uniforme
 \item presa $Y$ variabile casuale allora $U(X,Y)=U_x(Y)+U(X)$
@@ -128,8 +127,8 @@ dove $K$ è una costante $K\geq 0$
 \section{Proprietà dell'entropia}
 \label{sec:PropriEntropia}
 In questa sezione indagheremo le prime proprietà dell'entropia e dimostreremo i primi risultati che getteranno le basi per le costruzioni successive.
-Può essere interessante capire come si comporta l'entropia nel caso in cui le variabili in considerazione siano dipendenti, per fare ciò definiremo l'\textit{entropia condizionata}. Alla definizione premettiamo una nota sulla notazione:\\
-indicheremo la probabilità condizionata che $Y=k$ sapendo che $X=j$ ($\mathbb{P}(Y=k|X=j)$) con la notazione $p_{j}(k)$ oppure, in modo totalmente equivalente, $p(k|j)$.
+Può essere interessante capire come si comporta l'entropia nel caso in cui le variabili in considerazione siano dipendenti, per fare ciò definiremo l'\textit{entropia condizionata}. Alla definizione premettiamo una precisazione sulla notazione.\\
+Indicheremo la probabilità condizionata ($\mathbb{P}(Y=k|X=j)$) con la notazione $p_{j}(k)$ oppure, in modo totalmente equivalente, $p(k|j)$.
 \begin{defi} \label{defi:condiz}
 Si dirà \textbf{entropia condizionale di $Y$ data $X=j$} la funzione: 
 \begin{equation}\label{eq:6.6}
@@ -253,9 +252,9 @@ I(X,Y):=H(Y)-H_X(Y)
 
 Notiamo che $H_X(Y)$ è l'informazione contenuta in $Y$ che non è contenuta in $X$ e quindi l'informazione di $Y$ contenuta in $X$ sarà $H(Y)-H_X(Y)=I(X,Y)$
 \begin{teo} \label{teo:6.7}
-Per siano $X$ e $Y$ due variabili casuali con legge di probabilità rispettivamente \lep $\{q_1...q_n \}$
+Per siano $X$ e $Y$ due variabili casuali rispettivamente  \lep e  $\{q_1...q_n \}$
 \begin{enumerate}
-\item $I(X,Y)=\sumj \sumk p_{jk}log \bigg( \frac{p_{jk}}{p_j p_k} \bigg)$
+\item $I(X,Y)=\sumj \sumk p_{jk}log \bigg( \frac{p_{jk}}{p_j q_k} \bigg)$
 \item $I(X,Y)=I(Y,X)$
 \item se $X$ e $Y$ sono indipendenti allora $I(X,Y)=0$
 \end{enumerate}
@@ -278,7 +277,7 @@ $$I(X,Y)=-\sumj \sumk p_{jk}log(q_k)-\sumj \sumk p_{jk}log{p_j(k)}$$
 
 Spesso ci si trova in condizioni in cui è data una variabile casuale $X$ a valori $\{ x_1...x_n \}$ di cui non si conosce la \lep  in questi casi si può applicare il principio di entropia massima:\\
 \begin{defi}
-Data una una variabile casuale $X$ con legge di probabilità \lep  incognita il \textbf{principio dell'entropia massima} ci impone di scegliere i $p_j$ in modo tale che $H(X)$ sia massima
+Data una una variabile casuale $X$ con \lep  incognita il \textbf{principio dell'entropia massima} ci impone di scegliere i $p_j$ in modo tale che $H(X)$ sia massima
 \end{defi}
 \textbf{Esempio.} 
 Sia $X$ una variabile casuale a valori $\{ x_1...x_n \}$ di cui non si conosce la \lep . Sappiamo già che, se non ci sono altre condizioni, l'entropia sarà massima se $X$ sarà uniformemente distribuita. Prendiamo ora il caso in cui ci venga fornita la media di $\mathbb{E}[ X]=E$. Per trovare il massimo dell'entropia $H(X)$ utilizziamo il metodo dei  moltiplicatori di Lagrange:\\
@@ -438,7 +437,7 @@ H(X_{n+1}|X_0,X_1...X_n) \leq H(X_{n}|X_0...X_{n-1})
 \end{equation}
 Quindi definendo $a_n :=  H(X_{n}|X_0...X_{n-1})$ otteniamo una successione $\{ a_n \}_{n\in \mathbb{N}}$ monotona non crescente limitata dal basso visto che $a_k=H(X_{k}|X_0...X_{k-1})\geq 0$ e dunque $\limi a_n$ esiste ed è finito dato che $H(Y)<\infty$.
 Proviamo adesso che la serie $\frac{1}{n} \sumin a_i = a$ dove $a:=\limi a_n$:
-$$\limi \bigg| \frac{1}{n} \sumin a_i-a \bigg| \leq \limi \frac{1}{n} \sumin |a_i-a| = \limi \frac{1}{n} \sum_{i=1}^{N_0} |a_i-a| + \sum_{i=N_0+1}^{n} |a_i-a|= \limi \sum_{i=N_0+1}^{n} |a_i-a|$$
+$$\limi \bigg| \frac{1}{n} \sumin a_i-a \bigg| \leq \limi \frac{1}{n} \sumin |a_i-a| = \limi \frac{1}{n} \bigg( \sum_{i=1}^{N_0} |a_i-a| + \sum_{i=N_0+1}^{n} |a_i-a| \bigg) = \limi \sum_{i=N_0+1}^{n} \frac{|a_i-a|}{n}$$
 E da qui possiamo concludere scegliendo $N_0$ tale che $\frac{1}{n}|a_i-a|$ sia piccolo a piacere cosa sempre possibile dato che $\limi a_n=a$.\\
 Ricordando come abbiamo definito $a_n$ otteniamo quindi:
 \begin{equation}
