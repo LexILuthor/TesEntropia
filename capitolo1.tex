@@ -13,7 +13,7 @@ Fondamentali in questa tesi saranno i concetti di Informazione ed entropia. Biso
 \item[iii.] QUER W LKS E W
 \end{enumerate}
 
-istintivamente diremo che la frase contente maggior informazione è $(ii)$ in quanto contiene un'informazione totalmente inaspettata e nuova, seguita poi da $(i)$ ed in fine $(iii)$ la quale non avendo significato non conterrà nessuna informazione.\\ Questa scala però tiene conto sia del significato della frase sia della quantità di \textit{sorpresa} che porta. In questo senso $(iii)$ non ha significato, ma porta \textit{sorpresa}, mentre $(ii)$ contiene sia significato che sorpresa.\\ Nel mondo della matematica si è visto che il concetto di \textit{significato} è difficile da esprimere e si è dunque preferito puntare sul concetto di \textit{sorpresa} per esprimere il significato d'\textit{informazione}.\\
+Istintivamente diremo che la frase contente maggior informazione è $(ii)$ in quanto contiene un'informazione totalmente inaspettata e nuova, seguita poi da $(i)$ ed in fine $(iii)$ la quale non avendo significato non conterrà nessuna informazione.\\ Questa scala però tiene conto sia del significato della frase sia della quantità di \textit{sorpresa} che porta. In questo senso $(iii)$ non ha significato, ma porta \textit{sorpresa}, mentre $(ii)$ contiene sia significato che sorpresa.\\ Nel mondo della matematica si è visto che il concetto di \textit{significato} è difficile da esprimere e si è dunque preferito puntare sul concetto di \textit{sorpresa} per esprimere il significato d'\textit{informazione}.\\
 Per definire in maniera rigorosa il concetto di \textbf{informazione} poniamoci in uno spazio di probabilità \spacep.\\
 Dati due eventi $E_1,E_2 \in \mathcal{F}$ vogliamo che la nostra funzione d'informazione $I$ soddisfi alcuni criteri:
 
@@ -105,14 +105,15 @@ dove nel per passare dalla quarta alla quinta riga abbiamo usato il fatto che $l
 \section{Unicità dell'Entropia}
 \label{sec:UniEntropia}
 Si può dimostrare che la scelta della funzione di entropia come \textit{misura di incertezza} è unica a meno di una costante moltiplicativa.\\
-Anzitutto definiamo la \textit{misura di incertezza}:
+Ptrima di definire la \textit{misura di incertezza} premettiamo una precisazione sulla notazione.\\
+Indicheremo la probabilità condizionata ($\mathbb{P}(Y=k|X=j)$) con la notazione $p_{j}(k)$ oppure, in modo totalmente equivalente, $p(k|j)$.
 \begin{defi} \label{defi:misuraincertezza}
 sia \spacep un spazio di probabilità e $X$ variabile casuale discreta di legge $\{ p_1....p_n \}$ , una funzione $U$ viene detta \textbf{misura di incertezza} se soddisfa le seguenti condizioni:
 \begin{enumerate}
 \item $U(X)$ è un massimo quando ha distribuzione uniforme
-\item presa $Y$ variabile casuale allora $U(X,Y)=U_x(Y)+U(X)$
 \item $U(p_1...p_n,0)=U(p_1...p_n)$
 \item $U(p_1....p_n)$ è continua per tutti i suoi argomenti.
+\item presa $Y$ variabile casuale allora $U(X,Y)=U_X(Y)+U(X)$ dove $U_X(Y)= \sumj p_j U(Y|X=j)$ dove $(Y|X=j)$ può essere vista come una variabile casuale di legge di probabilità  $\{ p_j(1)...p_j(m) \}$ 
 \end{enumerate}
 \end{defi}
 
@@ -122,13 +123,13 @@ $U(X)$ è una misura di incertezza se e solo se
 $$U(X)= KH(X)$$
 dove $K$ è una costante $K\geq 0$
 \end{teo}
+Per la dimostrazione si veda \cite{Khinchin} pag.10.
 
 
 \section{Proprietà dell'entropia}
 \label{sec:PropriEntropia}
 In questa sezione indagheremo le prime proprietà dell'entropia e dimostreremo i primi risultati che getteranno le basi per le costruzioni successive.
-Può essere interessante capire come si comporta l'entropia nel caso in cui le variabili in considerazione siano dipendenti, per fare ciò definiremo l'\textit{entropia condizionata}. Alla definizione premettiamo una precisazione sulla notazione.\\
-Indicheremo la probabilità condizionata ($\mathbb{P}(Y=k|X=j)$) con la notazione $p_{j}(k)$ oppure, in modo totalmente equivalente, $p(k|j)$.
+Può essere interessante capire come si comporta l'entropia nel caso in cui le variabili in considerazione siano dipendenti, per fare ciò definiamo l'\textit{entropia condizionata}. 
 \begin{defi} \label{defi:condiz}
 Si dirà \textbf{entropia condizionale di $Y$ data $X=j$} la funzione: 
 \begin{equation}\label{eq:6.6}
