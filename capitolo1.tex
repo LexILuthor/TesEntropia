@@ -26,15 +26,15 @@ Per soddisfare queste richieste viene naturalmente in mente la funzione $\log$, 
 \begin{defi}
 In uno spazio di probabilità \spacep definiamo la funzione \textbf{informazione} $I: \mathcal{F}\to \mathbb{R}^+$ come:
 \begin{equation}
-I(E)=-log_a(\mathbb{P} (E)).
+I(E)=-\log_a(\mathbb{P} (E)).
 \end{equation}
-dove $a$ è una costante positiva (in alcuni testi la funzione viene moltiplicata per $K$,  ma tale costante è inutile dato che già scegliere la base coincide col moltiplicare per una costante, infatti: $log_a(x)=\frac{log_b(y)}{log_b(a)} \bigg)$.
+dove $a$ è una costante positiva (in alcuni testi la funzione viene moltiplicata per $K$,  ma tale costante è inutile dato che già scegliere la base coincide col moltiplicare per una costante, infatti: $\log_a(x)=\frac{\log_b(y)}{\log_b(a)} \bigg)$.
 \end{defi}
 
-Si verifica facilmente che la funzione $I$ così definita rispetta le proprietà preposte, l'unico intoppo nasce per un evento $E$ tale che \p $(E)=0$ in questo caso $I(E)=\infty$, questa occorrenza può essere interpretata come l'incapacità di ottenere informazioni da un evento impossibile. La funzione \textit{Informazione} possiede inoltre la proprietà di essere nulla qualora la probabilità di un evento sia $1$ cioè se un evento è certo, la sua realizzazione non ci fornirà alcuna informazione aggiuntiva.\\
+Si verifica facilmente che la funzione $I$ così definita rispetta le proprietà preposte. L'unico intoppo nasce per un evento $E$ tale che \p $(E)=0$ in questo caso $I(E)=\infty$, questa occorrenza può essere interpretata come l'incapacità di ottenere informazioni da un evento impossibile. La funzione \textit{Informazione} possiede inoltre la proprietà di essere nulla qualora la probabilità di un evento sia $1$ cioè se un evento è certo, la sua realizzazione non ci fornirà alcuna informazione.\\
 Essendo questa funzione spesso associata a codici è comodo scegliere $2$ come base del logaritmo, in questo modo supponendo di avere una variabile casuale $X$ con distribuzione di Bernoulli a parametro $p=\frac{1}{2}$ (il nostro messaggio sarà definito da un codice binario ($\{ 0, 1 \}$) abbiamo che 
 \begin{equation}
-I(X=0)=I(X=1)=-\log_2 \bigg(\frac{1}{2} \bigg ) =1
+I(X=0)=I(X=1)=-\log_2 { \bigg(\frac{1}{2} \bigg )} =1
 \end{equation}
 Per questo d'ora in avanti, salvo diversa indicazione, con $\log$ si intenderà $\log_2$.
 
@@ -52,7 +52,7 @@ dove
 $$
 \Phi(p):=
 \begin{cases}
-\log_2(p) \ se \ p \neq 0 \\
+\log_2 {(p)} \ se \ p \neq 0 \\
 0 \ se \  p=0
 \end{cases}
 $$
@@ -75,18 +75,18 @@ Per convincersi di quanto detto in maniera più matematica, si ha il seguente te
 \begin{teo} \label{teo:6.2}
 Sia $X$ una variabile casuale discreta, allora vale:
 \begin{enumerate}
-\item $H(X)\geq 0$ e $H(X)= 0$ se e solo se esiste un valore $X$, $x_1$ t.c. \p$(x_1)=1$
-\item $H(X)\leq log(n)$ e l'uguaglianza varrà solo quando $X$ ha distribuzione uniforme
+\item $H(X)\geq 0$ e $H(X)= 0$ se e solo se esiste un valore di $X$, $x_1$ t.c. \p$(x_1)=1$
+\item $H(X)\leq \log{(n)}$ e l'uguaglianza varrà solo quando $X$ ha distribuzione uniforme
 \end{enumerate}
 \end{teo}
 \begin{proof} \leavevmode 
 \begin{enumerate}
-\item ovviamente $H(X)\geq 0$ perché somma di quantità positive (consideriamo gli addendi come $-log(x)$ e ricordando che $x\in (0,1]$). Per quanto riguarda la seconda parte, dato che tutti gli addendi della sommatoria sono positivi, abbiamo che $H(X)=0$ se e solo se $p_jlog(p_j)=0 \  \forall j$, quindi abbiamo che $p_j$ sarà uguale ad 1 o 0, ma non può essere che tutti i $p_j$ siano  uguali a 0 e dunque deve esistere almeno un $p_j=1$.
-\item  per prima cosa supponiamo che $p_j\ge 0$ (nel caso non lo fossero basterebbe togliere i $\  p_k=0$ e dimostrare che $H(X)\leq log(n-c)\leq log(n)$ dove $c$ è il numero di $p_k=0$).\\
+\item ovviamente $H(X)\geq 0$ perché somma di quantità positive (consideriamo gli addendi come $-\log(x)$ e ricordando che $x\in (0,1]$). Per quanto riguarda l'uguaglianza, dato che tutti gli addendi della sommatoria sono positivi, abbiamo che $H(X)=0$ se e solo se $p_j\log(p_j)=0 \  \forall j$, quindi abbiamo che $p_j$ sarà uguale ad 1 o 0, ma non può essere che tutti i $p_j$ siano  uguali a 0 e dunque deve esistere almeno un $p_j=1$.
+\item  per prima cosa supponiamo che $p_j > 0$ (nel caso non lo fossero basterebbe togliere i $\  p_k=0$ e dimostrare che $H(X)\leq \log(n-c)\leq \log(n)$ dove $c$ è il numero di $p_k=0$).\\
 Dalla definizione abbiamo:
 \[
 \begin{split}
-H(x)-log(n)
+H(x)-\log{(n)}
 &=-\frac{1}{ln(2)} \bigg( \sumj p_j ln (p_j) + ln(n) \bigg)\\
 &=-\frac{1}{ln(2)} \bigg( \sumj p_j (ln (p_j) + ln(n)) \bigg)\\
 &=-\frac{1}{ln(2)} \bigg( \sumj p_j ln(p_jn)\bigg)\\
@@ -132,13 +132,13 @@ Indicheremo la probabilità condizionata ($\mathbb{P}(Y=k|X=j)$) con la notazion
 \begin{defi} \label{defi:condiz}
 Si dirà \textbf{entropia condizionale di $Y$ data $X=j$} la funzione: 
 \begin{equation}\label{eq:6.6}
-H_j(Y):=-\sum_{k=1}^m p_j(k)log(p_j(k))
+H_j(Y):=-\sum_{k=1}^m p_j(k)\log(p_j(k))
 \end{equation}
 \end{defi}
 
-Prendiamo una variabile casuale $X$, possiamo considerare la variabile casuale $H.(Y)$ che avrà immagine $\{H_1(Y)...H_n(Y) \}$ e legge di probabilità $\{ p _1...p_n\}$. Avremo quindi che $H.(Y)$ sarà funzione di $X$.
+Prendiamo ora una variabile casuale $X$, possiamo considerare la variabile casuale $H.(Y)$ che avrà immagine $\{H_1(Y)...H_n(Y) \}$ e legge di probabilità $\{ p _1...p_n\}$. Avremo quindi che $H.(Y)$ sarà funzione di $X$.
 \begin{defi}
-definiamo l'\textbf{entropia condizionale di $Y$ data $X$}, $H_X(Y)$ come:
+Si dirà \textbf{entropia condizionale di $Y$ data $X$},la funzione:
 \begin{equation}\label{eq:6.7}
 H_X(Y):= \mathbb{E}[H.(Y)]= \sum_{j=1}^n p_j H_j(Y)
 \end{equation}
@@ -148,14 +148,14 @@ Più avanti, analogamente a quanto detto per la probabilità condizionata, ci sa
 \end{oss}
 \begin{lem} \label{lemma:6.8}
 \begin{equation} \label{eq:6.8}
-H_X(Y)=-\sum_{j=1}^n\sum_{k=1}^m p_{jk}log(p_j(k))
+H_X(Y)=-\sum_{j=1}^n\sum_{k=1}^m p_{jk}\log(p_j(k))
 \end{equation}
 \end{lem}
 \begin{proof}
 Sostituendo \ref{eq:6.6} in \ref{eq:6.7} otteniamo
 
 \begin{equation} \label{eq:6.8.1}
-H_X(Y)=-\sum_{j=1}^n\sum_{k=1}^m p_{j}p_j(k)log(p_j(k))
+H_X(Y)=-\sum_{j=1}^n\sum_{k=1}^m p_{j}p_j(k)\log(p_j(k))
 \end{equation}
 
 Ricordando che 
@@ -176,13 +176,13 @@ H_X(Y)=H(Y)
 \begin{proof}
 Sia $\{q_1...q_m\}$  la legge di probabilità di $Y$ allora ci basterà notare che nel caso in cui $X$ e $Y$ siano indipendenti $p_j(k)=\mathbb{P}(Y=k|X=j)=\mathbb{P}(Y=k)=q_k$
 e dunque \ref{eq:6.8.1} diventerà
-$$H_X(Y)=-\sum_{k=1}^m q_klog(q_k)\sum_{j=1}^n p_{j}=-\sum_{k=1}^m q_klog(q_k)1=H(Y)$$
+$$H_X(Y)=-\sum_{k=1}^m q_k \log(q_k)\sum_{j=1}^n p_{j}=-\sum_{k=1}^m q_k \log(q_k)1=H(Y)$$
 \end{proof}
 
 \begin{defi} \label{defi:congiun}
 Siano $X$ e $Y$ due variabili casuali definite sullo stesso spazio di probabilità, definiamo la loro \textbf{entropia congiunta} $H(X,Y)$ come:
 \begin{equation}\label{eq:congiun}
-H(X,Y):=-\sum_{j=1}^n\sum_{k=1}^m p_{jk}log(p_{jk})
+H(X,Y):=-\sum_{j=1}^n\sum_{k=1}^m p_{jk} \log(p_{jk})
 \end{equation}
 dove con $p_{jk}$ intendiamo \p$(X=j,Y=k)$
 \end{defi}
@@ -197,7 +197,7 @@ H(X,Y)=H(X)+H_X(y).
 \end{teo}
 \begin{proof}
 sapendo che \p$(A \cap B)=\mathbb{P}(A|B)$\p$(B)$ e quindi che $p_{jk}=p_jp_j(k)$ possiamo sostituire direttamente nella definizione di entropia congiunta \ref{defi:congiun} ottenendo:
-$$H(X,Y)=-\sum_{j=1}^n\sum_{k=1}^m p_{jk}log(p_{j}p_{j}(k))=-\sum_{j=1}^n\sum_{k=1}^m p_{jk}log(p_{j}(k))-\sum_{j=1}^n\sum_{k=1}^m p_{jk}log(p_{j})$$
+$$H(X,Y)=-\sum_{j=1}^n\sum_{k=1}^m p_{jk} \log(p_{j}p_{j}(k))=-\sum_{j=1}^n\sum_{k=1}^m p_{jk} \log(p_{j}(k))-\sum_{j=1}^n\sum_{k=1}^m p_{jk} \log(p_{j})$$
 possiamo concludere ricordando che $\sum_{k=1}^m p_{jk}=p_j$
 \end{proof}
 \begin{corol}
@@ -224,14 +224,14 @@ data $f$ funzione convessa vale
 con $\lambda_j > 0$ e $\sumj \lambda_j =1$
 per la dimostrazione si veda \cite{Jensen}.\\
 Ora applicando la disuguaglianza con:
-$$\lambda_j=p_j,\ f(x)=x \log x, \  x_j=p_j(k)$$
+$$\lambda_j=p_j,\ f(x)=x \log { (x)}, \  x_j=p_j(k)$$
 per k fissato, otteniamo quindi:
-$$\sumj p_j p_j(k)\log (p_j(k))\geq \sumj \bigg( p_j p_j(k) \bigg) \log \bigg( \sumj p_j p_j(k) \bigg)=q_k \log (q_k)$$
+$$\sumj p_j p_j(k)\log {(p_j(k))}\geq \sumj \bigg( p_j p_j(k) \bigg) \log { \bigg( \sumj p_j p_j(k) \bigg) }=q_k \log {(q_k)}$$
 dove l'uguaglianza la ricaviamo da: $\sumj p_j p_j(k)=\sumj \bigg( \mathbb{P}(X=j) \mathbb{P}(Y=k|X=j) \bigg)= \mathbb{P}(Y=k)= q_k$.
 Sommando su $k$ abbiamo che la parte sinistra della disuguaglianza diventa:
-$$\sumj  p_j \sumk p_j(k) \log (p_j(k))=-\sumj p_j H_k(Y)=-H_X(Y)$$
+$$\sumj  p_j \sumk p_j(k) \log {(p_j(k))}=-\sumj p_j H_k(Y)=-H_X(Y)$$
 mentre a destra otteniamo
-$$\sumk q_k \log (q_k)= -H(Y)$$
+$$\sumk q_k \log { (q_k) }= -H(Y)$$
 e quindi:
 \begin{equation}
 -H_X(Y) \geq -H(Y)
@@ -252,9 +252,9 @@ I(X,Y):=H(Y)-H_X(Y)
 
 Notiamo che $H_X(Y)$ è l'informazione contenuta in $Y$ che non è contenuta in $X$ e quindi l'informazione di $Y$ contenuta in $X$ sarà $H(Y)-H_X(Y)=I(X,Y)$
 \begin{teo} \label{teo:6.7}
-Per siano $X$ e $Y$ due variabili casuali rispettivamente  \lep e  $\{q_1...q_n \}$
+Siano $X$ e $Y$ due variabili casuali rispettivamente  \lep e  $\{q_1...q_n \}$
 \begin{enumerate}
-\item $I(X,Y)=\sumj \sumk p_{jk}log \bigg( \frac{p_{jk}}{p_j q_k} \bigg)$
+\item $I(X,Y)=\sumj \sumk p_{jk} \log \bigg( \frac{p_{jk}}{p_j q_k} \bigg)$
 \item $I(X,Y)=I(Y,X)$
 \item se $X$ e $Y$ sono indipendenti allora $I(X,Y)=0$
 \end{enumerate}
@@ -263,9 +263,9 @@ Per siano $X$ e $Y$ due variabili casuali rispettivamente  \lep e  $\{q_1...q_n 
 si proceda come segue:
 \begin{enumerate}
 \item sempre ricordando che $\sum_{k=1}^m p_{jk}=p_j$ possiamo scrivere 
-$$H(Y)=-\sumk q_{k}log (q_k)=-\sumj \sumk p_{jk} log (q_k)$$
+$$H(Y)=-\sumk q_{k} \log (q_k)=-\sumj \sumk p_{jk} \log (q_k)$$
 e dunque per \ref{eq:6.8} otteniamo
-$$I(X,Y)=-\sumj \sumk p_{jk}log(q_k)-\sumj \sumk p_{jk}log{p_j(k)}$$
+$$I(X,Y)=-\sumj \sumk p_{jk} \log(q_k)+\sumj \sumk p_{jk}\log{(p_j(k))}$$
 \item immediato da 1.
 \item semplicemente ricordando che se $X$ e $Y$ sono indipendenti $H_X(Y)=H(Y)$
 \end{enumerate}
@@ -288,16 +288,32 @@ come costrizioni abbiamo:
 \end{enumerate}
 Dunque dobbiamo trovare il massimo valore di:
 \begin{equation}
-L(p_1...p_n;\lambda,\mu ):= -\sumj p_j log(p_j) + \lambda \bigg( \sumj p_j -1 \bigg) + \mu \bigg( \sumj x_j p_j - E \bigg)
+L(p_1...p_n;\lambda,\mu ):= -\sumj p_j \log(p_j) + \lambda \bigg( \sumj p_j -1 \bigg) + \mu \bigg( \sumj x_j p_j - E \bigg)
 \end{equation}
-dove $\lambda \mu$ sono i moltiplicatori di Lagrange.\\
+dove $\lambda$, $\mu$ sono i moltiplicatori di Lagrange.\\
 Imponendo le derivate parziali uguali a 0 otteniamo:
 $$\frac{\partial L}{\partial p_j}=-\frac{1}{ln(2)}(ln(p_j)+1)+\lambda + \mu x_j=0 \ \  (1\leq j \leq n) $$
 $$quindi$$
 $$p_j=e^{\lambda ' + \mu ' x_j} \ \ (1\leq j \leq n)$$
 dove $\lambda ' = ln(2) \lambda -1 $ e $\mu ' = ln(2) \mu$\\
-da 1. possiamo ricavare 
-$$\lambda ' = - ln(Z( \mu ')) \ dove \ Z( \mu '):= \sumj e^{\mu ' x_j}$$
+da 1. possiamo ricavare l'equazione $0=\sumj p_j -1= \sumj e^{\lambda ' + \mu ' x_j} -1$ che risolta ci restituisce:
+$$\lambda ' = - ln(Z( \mu '))$$
+dove $Z( \mu '):= \sumj e^{\mu ' x_j}$.\\
+questo ci permette di riscrivere $p_j$ come:
+\[
+\begin{split}
+p_j &= e^{\lambda ' + \mu ' x_j} \\
+& = e^{- ln(Z( \mu ')) + \mu ' x_j}  \\
+& = \frac{e^{\mu ' x_j}}{Z( \mu ')}
+\end{split}
+\]
+Per $\mu'$ invece possiamo usare 2. ottenendo 
+\[
+\begin{split}
+0 &=\sumj x_j p_j \\
+& = \sumj x_j \frac{e^{\mu ' x_j}}{Z( \mu ')}
+\end{split}
+\]
 riassumendo quindi abbiamo:
 \begin{equation}
 p_j=\frac{e^{\mu ' x_j}}{Z( \mu ')} \ \ (1\leq j \leq n)
@@ -316,13 +332,19 @@ Un processo stocastico è detto \textbf{catena di Markov} se
 \begin{enumerate}
 \item l'insieme $S$ che comprende i valori ammissibili delle variabili $X_n$ è discreto (se $S$ è denso si dirà processo di Markov)
 \item possiede la 'proprietà di Markov' cioè
- $$\mathbb{P}(X_{n+1}=k_{n+1}|X_n=x_k..X_0=k_0)=\mathbb{P}(X_{n+1}=k_{n+1} | X_n=k_n)$$
+ $$\mathbb{P}(X_{n+1}=k_{n+1}|X_n=k_n,.,X_0=k_0)=\mathbb{P}(X_{n+1}=k_{n+1} | X_n=k_n)$$
 \end{enumerate}
 \end{defi}
 Per i nostri scopi inoltre considereremo l'insieme del tempo come come un insieme discreto contenuto in $\mathbb{N}$.\\
 Infine, definita $p_{ij}^n:=\mathbb{P}(X_{n+1}=j|X_n=i)$ vogliamo che la nostra matrice di transizione $P$, formata dai vari $p_{ij}$, sia stazionaria cioè:\\
 $$p_{ij}^n=p_{ij}^0=: p_{ij} \  \forall n$$
 Ci domandiamo ora se è sempre possibile definire una catena di Markov $X=(X_n,n\in\mathbb{Z})$ per la quale ogni $X_n$ ammette entropia massima cioè per il teorema \ref{teo:6.2} $X_n$ ha distribuzione uniforme (se non vi sono altre restrizioni).
+Premettiamo alcune definizioni
+\begin{defi}
+Sia $X=(X_n, n \in \mathbb{N})$ una catena di Merkov con matrice di transizione $P$. Un vettore di probabilità $\rho$ è detto \textbf{distribuzione invariante o stazionaria per X} se:
+$$\rho= \rho P$$
+\end{defi}
+
 \begin{defi}
 Una matrice A ad elementi positivi è detta \textbf{bistocastica} se per ogni riga e per ogni colonna la somma dei suoi elementi è pari ad 1.
 \end{defi}
@@ -333,16 +355,16 @@ Una catena di Markov con matrice di transizione $P$ ammette la distribuzione uni
 Se $P$ è bistocastica allora $ \sumi P_{ij}=1 \forall 1\leq j \leq N$ e quindi:
 $$\sumi \frac{1}{N}P_{ij}=\frac{1}{N}\sumi P_{ij}=\frac{1}{N}$$
 e quindi $\frac{1}{N}$ è una distribuzione invariante.\\
-Supponiamo ora che la distribuzione uniforme sia invariante e dimostriamo che $P$ è bistocastica. Procedendo al contrario di prima abbiamo:
+Supponiamo ora che la distribuzione uniforme sia invariante e dimostriamo che $P$ è bistocastica. Essendo $P$ una matrice di transizione abbiamo già che la somma degli elementi di una riga sarà 1. Dimostriamo che anche la somma degli elementi di una colonna è pari a 1. Procedendo al contrario di prima abbiamo:
 $$\frac{1}{N}=\frac{1}{N} \sumi P_{ij} \Rightarrow \sumi P_{ij}=1$$
 Abbiamo che per ogni colonna la somma dei suoi elementi è 1, quindi possiamo concludere
 \end{proof}
 
 \begin{defi}
-Siano $X$ e $Y$ due variabili casuali della stessa dimensione.
+Siano $X$ e $Y$ due variabili casuali della stessa dimensione con legge di probabilità rispettivamente $\{p_1...p_n \}$ e $\{q_1...q_n \}$.
 Definiamo \textbf{entropia relativa} il valore:
 \begin{equation}
-D(X,Y):=\sumj p_j log \bigg( \frac{p_j}{q_j} \bigg)
+D(X,Y):=\sumj p_j \log \bigg( \frac{p_j}{q_j} \bigg)
 \end{equation}
 \end{defi}
 \begin{teo}
@@ -351,50 +373,73 @@ Per l'entropia relativa vale:
 \item $D(X,Y)\geq 0, =$ se e solo se $X$ e $Y$ sono identicamente distribuite
 \item se $Y$ è uniformemente distribuita allora vale
 \begin{equation}
-D(X,Y)=log(N)-H(X)
+D(X,Y)= \log(n)-H(X)
 \end{equation}
 \end{enumerate}
 \end{teo}
+\begin{proof}\leavevmode 
+\begin{enumerate}
+\item riscriviamo il primo punto come:
+\[
+\begin{split}
+D(X,Y) & =\sumj p_j \log \bigg( \frac{p_j}{q_j} \bigg)\\
+& =\sumj p_j \log (p_j) -\sumj p_j \log (q_j)
+\end{split}
+\]
+
+E da qui si può concludere applicando la disuguaglianza di Gibbs: $- \sumin p_i \log(p_i) \leq - \sumin p_i \log(q_i)$ per $\{p_1...p_n \}$ e $\{q_1...q_n \}$ distribuzioni di probabilità (deriva immediatamente dal caso continuo \ref{teo:GibbsContinuo})
+\item essendo $Y$ uniformemente distribuita avremo che $q_j=1\frac{1}{n}$ e quindi dalla definizione di entropia relativa abbiamo:
+\[
+\begin{split}
+D(X,Y) & =\sumj p_j \log \bigg( \frac{p_j}{q_j} \bigg) \\
+& =\sumj p_j \log ( p_j n) \\
+& =\sumj p_j \log (p_j) + \sumj p_j \log (n) \\
+& =-H(X)+ \log(n) \sumj p_j= \log(n)-H(X)
+\end{split}
+\]
+
+\end{enumerate}
+\end{proof}
 \begin{defi}
 Un processo stocastico è detto \textbf{stazionario} se presi $m,k\in \mathbb{N}$ vale:
 $$\mathbb{P}(X_{n_1}=i_1...X_{n_k}=i_k)= \mathbb{P}(X_{n_1+m}=i_1...X_{n_k+m}=i_k) \ \forall i_s \in S$$
 \end{defi}
-Consideriamo una catena di Markov stazionaria $(X_n,n \in \mathbb{Z}_+)$ con una matrice di transizione bistocastica $P$ e sia $X_{\infty}$ uniformemente distribuita, abbiamo quindi che $D(X_n,X_{\infty})=log(N)-H(X_n)$. Si dimostra che $D(X_n,X_{\infty})$ è una funzione decrescente e che se la distribuzione uniforma è l'unica distribuzione stazionaria, allora $lim_{n \to \infty}D(X_n,X_{\infty})=0$. Segue quindi che $H(X_n)$ è crescente. \cite{Thomas}
+Consideriamo una catena di Markov stazionaria $(X_n,n \in \mathbb{Z}_+)$ con una matrice di transizione bistocastica $P$ e sia $X_{\infty}$ una variabile casuale di dimensione $n$ uniformemente distribuita, abbiamo quindi che $D(X_n,X_{\infty})=\log(N)-H(X_n)$. Si dimostra che $D(X_n,X_{\infty})$ è una funzione decrescente e che se la distribuzione uniforme è l'unica distribuzione invariante, allora $\lim_{n \to \infty}D(X_n,X_{\infty})=0$. Segue quindi che $H(X_n)$ è crescente. \cite{Thomas}
 
 
 
 \section{La Regola della Catena}
 \label{sec:chainRule}
-Vediamo ora come cambia l'informazione in un processo stocastico. L'approccio più naturale può sembrare quelo di considerare l'entropia come funzione del tempo, in questo modo però ci si dimentica della relazione tra due passaggi successivi dal tempo $t_n$ al tempo $t_{n+1}$. Procederemo quindi in modo differente generalizzando i risultati visti nel caso di due sole variabili.\\
- Estendiamo la definizione di entropia congiunta \ref{defi:congiun} in questo modo:
+Vediamo ora come cambia l'informazione in un processo stocastico. L'approccio più naturale può sembrare quello di considerare l'entropia come funzione del tempo,come si è cominciato a fare sopra, in questo modo però ci si dimentica della relazione che esiste tra due passaggi successivi, dal tempo $t_n$ al tempo $t_{n+1}$. Procederemo quindi in modo differente cominciando dal generalizzare i risultati visti nel caso di due sole variabili.\\
+Estendiamo la definizione di entropia congiunta ( \ref{defi:congiun} ) in questo modo:
 \begin{equation}
-H(X_0...X_n):=- \suma p(i_0...i_n)log(p(i_o...i_n)).
+H(X_0...X_n):=- \suma p(i_0...i_n) \log(p(i_o...i_n)).
 \end{equation}
-Mentre la definizione di entropia condizionata \ref{defi:condiz} multivariata diventa:
+Mentre la definizione di entropia condizionata ( \ref{defi:condiz} ) nel caso multivariato sarà:
 \begin{equation}
-H(Y|X_1...X_n)=-\sum_{j,i_1...i_n=1}^N \mathbb{P}(Y=j,X_1=i_1...X_n=i_n) log(\mathbb{P}(Y=j|X_1=i_1...X_n=i_n))
+H(Y|X_1...X_n)=-\sum_{j,i_1...i_n=1}^N \mathbb{P}(Y=j,X_1=i_1...X_n=i_n) \log(\mathbb{P}(Y=j|X_1=i_1...X_n=i_n))
 \end{equation}
 Non ci rimane che generalizzare il teorema \ref{teo:6.5}.
 \begin{teo} \label{teo:chainRule}
 \textbf{Regola della catena}
 \begin{equation}
-H(X_0...X_n)=H(X_0)+\sum_{i=1}^n  H(X_i|X_0,...X_{i-1})=H(X_0)+H(X1|X_0)+...+H(X_n|X_0...X_{n-1})
+H(X_0...X_n)=H(X_0)+\sum_{i=1}^n  H(X_i|X_0,...X_{i-1})=H(X_0)+H(X_1|X_0)+...+H(X_n|X_0...X_{n-1})
 \end{equation}
-Inoltre l'entropia cresce al crescere di n.
+Inoltre l'entropia congiunta cresce al crescere di n.
 \end{teo}
 \begin{proof}
 Procediamo per induzione:\\
 Il caso base con $n=1$ è esattamente il teorema \ref{teo:6.5}, procediamo con il passo induttivo. Quindi assumiamo che valga per $n$, dimostriamo che vale per $n+1$.
-$$H(X_0...X_n, X_{n+1})=- \sumaa p(i_0...i_n,i_{n+1})log(p(i_o...i_n,i_{n+1}))$$
-$$= - \sumaa p(i_0...i_n,i_{n+1})log(\mathbb{p}(_{n+1}=i_{n+1}|X_0=i_0,...X_n=i_n))-\sumaa p(i_0...i_n,i_{n+1})log(p(i_0...i_n))$$
+$$H(X_0...X_n, X_{n+1})=- \sumaa p(i_0...i_n,i_{n+1}) \log(p(i_o...i_n,i_{n+1}))$$
+$$= - \sumaa p(i_0...i_n,i_{n+1}) \log(\mathbb{P}(X_{n+1}=i_{n+1}|X_0=i_0,...X_n=i_n))-\sumaa p(i_0...i_n,i_{n+1}) \log(p(i_0...i_n))$$
 dato che 
-$$\sumaa p(i_0...i_{n+1})log(p(i_0...i_n))=\suma p(i_0...i_{n})log(p(i_0..i_n))$$
+$$\sumaa p(i_0...i_{n+1}) \log(p(i_0...i_n))=\suma p(i_0...i_{n}) \log(p(i_0..i_n))$$
 abbiamo che
 \begin{equation}\label{eq:10.8}
-H(X_0...X_n+1)=H(X_0...X_n)+H(X_{n+1}|X_0...X_n)
+H(X_0...X_{n+1})=H(X_0...X_n)+H(X_{n+1}|X_0...X_n)
 \end{equation}
 Applicando l'ipotesi induttiva otteniamo il risultato.
-Inoltre da \ref{eq:10.8} e dal fatto che l'entropia è sempre maggiore di zero otteniamo che l'entropia congiunta cresce nel tempo.
+Inoltre da \ref{eq:10.8} e dal fatto che l'entropia condizionata è sempre maggiore di zero otteniamo che l'entropia congiunta cresce nel tempo.
 \end{proof}
 
 
@@ -438,7 +483,7 @@ H(X_{n+1}|X_0,X_1...X_n) \leq H(X_{n}|X_0...X_{n-1})
 Quindi definendo $a_n :=  H(X_{n}|X_0...X_{n-1})$ otteniamo una successione $\{ a_n \}_{n\in \mathbb{N}}$ monotona non crescente limitata dal basso visto che $a_k=H(X_{k}|X_0...X_{k-1})\geq 0$ e dunque $\limi a_n$ esiste ed è finito dato che $H(Y)<\infty$.
 Proviamo adesso che la serie $\frac{1}{n} \sumin a_i = a$ dove $a:=\limi a_n$:
 $$\limi \bigg| \frac{1}{n} \sumin a_i-a \bigg| \leq \limi \frac{1}{n} \sumin |a_i-a| = \limi \frac{1}{n} \bigg( \sum_{i=1}^{N_0} |a_i-a| + \sum_{i=N_0+1}^{n} |a_i-a| \bigg) = \limi \sum_{i=N_0+1}^{n} \frac{|a_i-a|}{n}$$
-E da qui possiamo concludere scegliendo $N_0$ tale che $\frac{1}{n}|a_i-a|$ sia piccolo a piacere cosa sempre possibile dato che $\limi a_n=a$.\\
+E da qui possiamo concludere scegliendo $N_0$ tale che $\frac{1}{n}|a_i-a|$ sia piccolo a piacere, cosa sempre possibile dato che $\limi a_n=a$.\\
 Ricordando come abbiamo definito $a_n$ otteniamo quindi:
 \begin{equation}
 \limi H(X_{n-1}|X_0...X_{n-2})=\limi \frac{1}{n} \sum_{i=0}^{n-1}H(X_i|X_0...X_{i-1})
@@ -449,7 +494,7 @@ $$h(X)=\limi \frac{1}{n} H(X_0...X_{n-1}) = \limi H(X_{n-1}|X_0...X_{n-2}).$$
 \begin{teo}
 Se $(X_i\in \mathbb{N})$ è una catena di Markov stazionaria con distribuzione iniziale $\pi^{(0)}$ e matrice di transizione $P$ allora vale
 \begin{equation}
-h(X)=\sumij \pi^{(0)} P_{ij} \log (P_{ij})
+h(X)=\sumij \pi^{(0)} P_{ij} \log {(P_{ij})}
 \end{equation}
 \end{teo}
 \begin{proof}
@@ -459,9 +504,9 @@ dal teorema precedente \ref{teo:10.10} abbiamo:
 h(X) &=\limi H(X_{n-1}|X_0...X_{n-2})\\
 &=\limi H(X_{n-1}|X_{n-2})\\
 &=H(X_1|X_2)\\
-&=\sumij \mathbb{P}(X_0=i,X_1=j)\log (P_{ij})\\
-&=\sumij \mathbb{P}(X_0=i)P_{ij}\log (P_{ij})\\
-&=\sumij \pi^{(0)}P_{ij}\log (P_{ij})
+&=\sumij \mathbb{P}(X_0=i,X_1=j)\log {(P_{ij})}\\
+&=\sumij \mathbb{P}(X_0=i)P_{ij}\log {(P_{ij})}\\
+&=\sumij \pi^{(0)}P_{ij}\log {(P_{ij})}
 \end{split}
 \]
 

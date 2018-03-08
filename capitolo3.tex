@@ -13,18 +13,18 @@ Un sistema di trasmissione ottimale avrà i due alfabeti di trasmissione e ricez
 \begin{defi}
 viene detta \textbf{mutua informazione}  tra $E$ ed $F$ il valore:
 \begin{equation}
-I(a_j,b_k)=-log(q_k)+ log(p(k|j))
+I(a_j,b_k)=- \log(q_k)+ \log(p(k|j))
 \end{equation}
 se $p_j=0$ allora diremo $I(a_j,b_k)=0$.\\
 Dove E è l'evento $(S=a_j)$ che ha probabilità $p_j$, mentre $F$ è l'evento $(R=b_k)$ che avverrà con probabilità $q_k$.
 \end{defi}
 È importante notare che questa definizione di mutua informazione è diversa da quella data in \ref{defi:mutua} la quale si riferisce a due variabili casuali e non a due eventi come in questo caso.\\
-Dato che $-log(q_k)$ è l'informazione dell'evento $R=b_k$, mentre $-log(p(k|j))$ è l'informazione aggiuntiva che ci darebbe la ricezione di $b_k$ sapendo già per certo che è stato spedito $a_j$, possiamo interpretare $I(a_j,b_k)$ come la quantità di informazione su $R=b_k$ che ci è data dall'evento $S=a_j$. In altre parole è la quantità di informazione che è spedita attraverso il canale.
+Dato che $- \log(q_k)$ è l'informazione dell'evento $R=b_k$, mentre $- \log(p(k|j))$ è l'informazione aggiuntiva che ci darebbe la ricezione di $b_k$ sapendo già per certo che è stato spedito $a_j$, possiamo interpretare $I(a_j,b_k)$ come la quantità di informazione su $R=b_k$ che ci è data dall'evento $S=a_j$. In altre parole è la quantità di informazione che è spedita attraverso il canale.
 \begin{teo}
 Per ogni $1\leq j \leq n , 1 \leq k, \leq m$ si ha:
 \begin{enumerate}
-\item $I(a_j,b_k)=-log(\frac{p_{jk}}{p_j q_k})$
-\item $I(a_j,b_k)=-log(p_j)+log(q(j|k))$
+\item $I(a_j,b_k)=- \log(\frac{p_{jk}}{p_j q_k})$
+\item $I(a_j,b_k)=- \log(p_j)+ \log(q(j|k))$
 \item $I(a_j,b_k)=I(b_k,a_j)$
 \item se gli eventi $S=a_j$ e $R=b_k$ sono indipendenti allora $I(a_j,b_k)=0$
 \item $I(S,R)=\sumj \sumk p_{jk}I(a_j,b_k)$.
@@ -308,7 +308,7 @@ $$\mathbb{P}(E)< \delta$$
 \begin{proof}
 Ricordando che $E=A\cup B$, il risultato discende direttamente dai due lemmi precedenti
 \end{proof}
-In realtà, seguendo una dimostrazione analoga, il teorema è dimostrabile per ogni canale, inoltre è possibile rafforzare il risultato mostrando che è possibile controllare non solo la probabilità media di errore, ma anche quella massima ($\max_{1\leq i \leq M} \mathbb{P}(E|x_i)$).\\
+Seguendo una dimostrazione analoga il teorema è dimostrabile per ogni canale, inoltre è possibile rafforzare il risultato mostrando che è possibile controllare non solo la probabilità media di errore, ma anche quella massima ($\max_{1\leq i \leq M} \mathbb{P}(E|x_i)$).\\
 È stato dimostrato che l'inverso non è possibile cioè non si può avere una probabilità d'errore arbitrariamente piccola se si trasmette ad una capacità superiore a quella del canale.\\
 La grandissima forza del teorema Di Shannon viene però resa effimera dalla mancanza di una dimostrazione costruttiva di tale codice.
 
