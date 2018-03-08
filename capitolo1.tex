@@ -165,10 +165,10 @@ $$p_j(k)=\mathbb{P}(Y=k|X=j)\ e \ p_j=\mathbb{P}(X=j)$$
 
 otteniamo che 
 $$p_jp_j(k)=\mathbb{P}(X=j)\mathbb{P}(Y=k|X=j)=\mathbb{P}(X=j,Y=k)=p_{jk}$$
-e possiamo concludere.
+sostituendo questo risultato in \ref{eq:6.8.1} possiamo concludere.
 \end{proof}
 
-\begin{lem}
+\begin{lem} \label{lemmma:6.4}
 se $X$ e $Y$ sono indipendenti allora vale:
 \begin{equation} \label{lemma:6.4}
 H_X(Y)=H(Y)
@@ -208,7 +208,7 @@ H(X,Y)=H(X)+H(Y)
 \end{equation}
 \end{corol}
 \begin{proof}
-basta applicare \ref{lemma:6.4} al teorema precedente
+basta applicare il lemma \ref{lemmma:6.4} al teorema precedente
 \end{proof}
 \begin{teo} \label{teo:disugShannon}
 (\textit{Disuguaglianza fondamentale di Shannon})\\

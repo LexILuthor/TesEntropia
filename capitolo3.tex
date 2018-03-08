@@ -6,9 +6,9 @@ In questo capitolo sarà proposta una modellizzazione della trasmissione di info
 \label{sec:Trasmissione}
 
 Il modello più semplice è costituito da una sorgente, un canale di comunicazione, ed un ricevente.\\
-La sorgente sarà modellata da una variabile aleatoria $S$ con valori \va detti alfabeto sorgente e \lep. Il fatto che la sorgente $S$ sia una variabile casuale va interpretata come l'incertezza su quale sarà il messaggio inviato. in questo contesto un messaggio sarà una serie di simboli da \va  uno di seguito all'altro.\\
-Il ricevente sarà un'altra variabile casuale $R$ con valori \vb  detti alfabeto ricevente e \leggeq, solitamente si avrà $m \geq n$.\\
-Infine l'effetto di distorsione del canale sarà modellato dalla famiglia di probabilità condizionate \lepc  dove $p(j|i):= \mathbb{P}(R=b_j|S=a_i)$ (corrisponde a $p_i(j)$ definito in \ref{sec:PropriEntropia}).\\
+La sorgente sarà modellata da una variabile aleatoria $S$ a valori \va detti alfabeto sorgente e con \lep. Il fatto che la sorgente $S$ sia una variabile casuale va interpretato come l'incertezza su quale messaggio verrà inviato. In questo contesto un messaggio sarà formato da una serie di simboli presi da \va e posti uno di seguito all'altro.\\
+Il ricevente sarà un'altra variabile casuale $R$ a valori \vb  detti alfabeto ricevente e con \leggeq, solitamente si avrà $m \geq n$.\\
+Infine l'effetto di distorsione del canale sarà modellato dalla famiglia di probabilità condizionate \lepc  dove $p(j|i):= \mathbb{P}(R=b_j|S=a_i)$ (si noti che $p(j|i)$ corrisponde a $p_i(j)$ definito in \ref{sec:PropriEntropia}).\\
 Un sistema di trasmissione ottimale avrà i due alfabeti di trasmissione e ricezione identici e nella distorsione avremo $p(i|i)$ il più vicino possibile ad 1, in questo modo quindi i valori ricevuti saranno quasi sicuramente gli stessi che sono stati inviati.\\
 \begin{defi}
 viene detta \textbf{mutua informazione}  tra $E$ ed $F$ il valore:
@@ -91,7 +91,7 @@ Un codice in cui non esistono parole che sono prefisso di altre è detto \textbf
 Ogni codice istantaneo è decodificabile in modo univoco, inoltre per avere una codifica univoca non è necessario aspettare di ricevere tutto il messaggio.
 \end{lem}
 
-Viste le sorprendenti proprietà dei codici istantanei è naturale chiedersi quando sia possibile creare codici con queste caratteristiche.
+Viste le forti proprietà dei codici istantanei è naturale chiedersi quando sia possibile creare codici con queste caratteristiche.
 
 \begin{teo} \label{teo:disugKM} (\textit{Disugiaglianza di Kraft-McMillan})\\
 Dato un alfabeto sorgente composto da $n$ simboli che deve essere codificato allora esiste un codice istantaneo con alfabeto di $r$ simboli e parole di lunghezza $l_i \ (1 \leq i \leq n)$ se e solo se 
@@ -103,7 +103,7 @@ Dato un alfabeto sorgente composto da $n$ simboli che deve essere codificato all
 La disuguaglianza di \textit{Disugiaglianza di Kraft-McMillan} ci garantisce l'esistenza di codici che soddisfano le nostre richieste e, attraverso \ref{eq:disugKM} , ci aiuta a trovare tali codici. Il passo successivo sarà chiederci come si può scegliere il migliore tra tutti i codici istantanei. Cominciamo con una definizione
 
 \begin{defi}
-Dato un alfabeto sorgente $S$ \va  con \lep  a cui viene associato un codice istantaneo che traduce \va   in $\{ l_1....\l_n \}$ posiamo considerare una variabile casuale $L$ con immagine $\{ l_1....l_n \}$ e \lep  la stessa di $S$. Preso il valore di aspettazione di $L$:
+Dato un alfabeto sorgente $S$ \va  con \lep  a cui viene associato un codice istantaneo posiamo considerare una variabile casuale $L$ con immagine $\{ l_1...l_n \}$ (dove $l_i$ corrisponderà al numero di simboli necessari per scrivere in codice il simbolo $a_i$) e \lep  la stessa di $S$. Preso il valore di aspettazione di $L$:
 $$\mathbb{E}(L)=\sumin p_j l_j$$ 
 diremo che \textbf{il codice è ottimale} se minimizza $\mathbb{E}(L)$.
 \end{defi}
