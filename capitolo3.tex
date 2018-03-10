@@ -20,7 +20,7 @@ Dove E è l'evento $(S=a_j)$ che ha probabilità $p_j$, mentre $F$ è l'evento $
 \end{defi}
 È importante notare che questa definizione di mutua informazione è diversa da quella data in \ref{defi:mutua} la quale si riferisce a due variabili casuali e non a due eventi come in questo caso.\\
 Dato che $- \log(q_k)$ è l'informazione dell'evento $R=b_k$, mentre $- \log(p(k|j))$ è l'informazione aggiuntiva che ci darebbe la ricezione di $b_k$ sapendo già per certo che è stato spedito $a_j$, possiamo interpretare $I(a_j,b_k)$ come la quantità di informazione su $R=b_k$ che ci è data dall'evento $S=a_j$. In altre parole è la quantità di informazione che è spedita attraverso il canale.
-\begin{teo}
+\begin{teo} \label{teo:7.1}
 Per ogni $1\leq j \leq n , 1 \leq k, \leq m$ si ha:
 \begin{enumerate}
 \item $I(a_j,b_k)=- \log(\frac{p_{jk}}{p_j q_k})$
@@ -60,11 +60,58 @@ Il più semplice esempio di canale di comunicazione che possiamo trovare è un c
 \\
 
 
-\includegraphics[scale=0.25]{Binary_symmetric_channel.png} \label{fig:bsc}
+\includegraphics[scale=0.20]{Binary_symmetric_channel.png} \label{fig:bsc}
 %\begin{tikzpicture}
 %\draw[thick,->] (0,0) -- (6,-3) node[anchor=south east] {$\epsilon$}; 
 %\draw[thick,->] (0,-3) -- (6,0) node[anchor=south east] {$\epsilon$}; 
 %\end{tikzpicture}
+\\
+
+Supponiamo che la sorgente trasmetta $1$ con probabilità $\epsilon$ e $0$ con probabilità $(1- \epsilon)$, $S$ quindi sarà una variabile casuale con distribuzione di Bernoulli a parametro $\epsilon$. Ovviamente anche la ricevente $R$ sarà una variabile casuale di Bernoulli, chiamiamo $q=\mathbb{P}(Y=1)$ il suo parametro e andiamo a calcolarne il valore:
+\[
+\begin{split}
+q & =\mathbb{P}(Y=1)\\
+&=\mathbb{P}(Y=1|X=0)\mathbb{P}(X=0)+\mathbb{P}(Y=1|X=1)\mathbb{P}(X=1)\\
+&=p (1-\epsilon) + (1-p)\epsilon\\
+&= p + \epsilon -2p\epsilon
+\end{split}
+\]
+Per comodità denotiamo gli eventi
+$$a_0:=(S=0),\ \ a_1:=(S=1),\ \ b_0:=(R=0),\  \ b_1:=(R=1)$$
+Calcoliamo $I(a_1,b_1),I(a_0,b_0),I(a_0,b_1),I(a_1,b_0)$.\\
+Dal teorema \ref{teo:7.1} abbiamo:
+\[
+\begin{split}
+I(a_1,b_1)& = I(b_1,a_1) \\
+&=-\log(q)+\log(1-p)\\
+&=\log \bigg( \frac{1-p}{q} \bigg)
+\end{split}
+\]
+analogamente otteniamo
+\[
+\begin{split}
+& I(a_0,b_1)=\log \bigg( \frac{p}{q} \bigg)\\
+& I(a_0,b_0)=\log \bigg( \frac{1-p}{1-q} \bigg)\\
+& I(a_1,b_0)=\log \bigg( \frac{p}{1-q} \bigg)
+\end{split}
+\]
+Per quanto riguarda la capacità si ha:
+$$C=\max(H(R)-H_S(R))$$
+dove:
+\[
+\begin{split}
+&H(R)=-q \log(q)-(1-q)\log(1-q) \\
+& \begin{split}
+H_S(R) & = - p_{00} \log(p(0|0)) - p_{01} \log(p(1|0)) -p_{10} \log(p(0|1)) -p_{11} \log(p(1|1)) \\
+& = -(1-\epsilon)(1-p) \log (1-p)- (1- \epsilon)p \log (p)- \epsilon (1-p)\log(1-p)- \epsilon p \log (p)\\
+&= - (1-p) \log (1-p)- p log(p)
+\end{split}
+\end{split}
+\]
+Dato che il massimo va scelto tra tutte le possibili distribuzioni di $S$ abbiamo quindi che $\epsilon$ è il parametro che possiamo far variare, notiamo che $H_S(R)$ non dipende da $\epsilon$ e quindi sarà una \textit{costante}. Per quanto riguarda $H(R)$ essa dipenderà da $\epsilon$ attraverso $q$, e quindi ricordando che $H(X)\leq log(n)$ scegliendo $\epsilon= \frac{1}{2}$ otteniamo $1=H(R)=\log(2)$. Riassumendo
+$$C=\max(H(R)-H_S(R))=1-H_S(R)$$
+Possiamo notare che $C$ sarà una funzione di $p$ ed avrà minimo quando $p=\frac{1}{2}$ e massimo agli estremi ($p=0$ o $p=1$).
+Può sembrare che la quantità d'informazione inviata attraverso un canale non possa essere scelta arbitrariamente vicina alla capacità $C$ del canale, ma che sia dettata dalla distribuzione di $S$. Vedremo nel prossimo capitolo come, grazie all'introduzione di nuovi oggetti sarà possibile modificare a nostro favore la distribuzione dei dati inviati
 \end{oss}
 \section{Codici}
 \label{sec:Codici}
@@ -174,10 +221,10 @@ Il teorema appena dimostrato è detto primo teorema di Shannon e fu dimostrato p
 Mettiamoci nella situazione
 $$ SORGENTE \to codificatore \to CANALE \to decodificatore \to RICEVENTE$$
 e concentriamoci sul segmento $codificatore \to CANALE \to decodificatore$.\\
-Supponiamo che $C:=\{ x_1 ..x_n \}$ sia l'insieme di tutte le possibili parole del codice che possono essere trasmesse dal e che $y$ sia la parola ricevuta. Per decidere quale parola $x_i$ è stata trasmessa possiamo utilizzare il \textit{principio di massima verosimiglianza}:\\
+Supponiamo che $C:=\{ x_1 ..x_n \}$ sia l'insieme di tutte le possibili parole del codice che possono essere trasmesse dal canale e che $y$ sia la parola ricevuta. Per decidere quale parola $x_i$ è stata trasmessa possiamo utilizzare il \textit{principio di massima verosimiglianza}:\\
 Date le probabilità condizionate $p(y|x_i):=(R=y|S=x_i)$ decideremo che la parola inviata è $x_k$ se
 \begin{equation} \label{eq6}
-p(y|x_k )\geq p(y=x_i) \ \forall i
+p(y|x_k )\geq p(y|x_i) \ \forall i\neq k
 \end{equation}
 Nel caso in cui più $x_s$ soddisfino \ref{eq6} $x_k$ verrà scelta in modo casuale tra le varie $x_s$.\\
 Ovviamente la nostra scelta di $x_k$ non ci garantisce che sia stata effettivamente inviata $x_k$.\\
@@ -195,7 +242,7 @@ Sia $m$ la lunghezza di $y$, la probabilità che sia stata inviata una parola $x
 $$\mathbb{P}(Y=y|X=x)= p^{\epsilon}(1-p)^{m-\epsilon}=(1-p)^m \bigg( \frac{p}{1-p} \bigg)^{\epsilon}$$
 Dato che $0 \leq p < \frac{1}{2} \implies \frac{p}{1-p}<1 $ e quindi $\mathbb{P}(Y=y|X=x)$ ha massimo quando $\epsilon$ è minimo.
 \end{proof}
-Come è già stato accennato in precedenza la scelta della parola inviata, $x$, non è mai certa e si possono commettere errori, in particolare detto $E$ l'evento \textit{"viene commesso un errore"} chiamiamo $\mathbb{P}(E|S=x_j)$ la probabilità che venga commesso un errore sapendo che è stato inviato $x_j$.
+Come già accennato in precedenza, la scelta della parola inviata $x$ non è mai certa e si possono commettere errori, in particolare detto $E$ l'evento \textit{"viene commesso un errore"} chiamiamo $\mathbb{P}(E|S=x_j)$ la probabilità che venga commesso un errore sapendo che è stato inviato $x_j$.
 \begin{defi}
 La \textbf{probabilità media di errore} è naturalmente definita come:
 $$P(E)=\sum_{j=1}^{N}\mathbb{P}(E|x_j)\mathbb{P}(S=x_j)$$
@@ -217,7 +264,7 @@ In particolare questa regola nel caso in cui $S(d,p)>d(p+v)$ dichiarerà che è 
 Si dice \textbf{velocità di trasmissione}, $V$ la quantità media di informazione contenuta in un simbolo dell'alfabeto sorgente che riesce ad essere trasmessa da un canale
 $$V:=H(R)-H_S(R)$$
 \end{defi}
-Prendiamo il nostro solito canale binario abbiamo quindi che se sono stati emessi $n$ simboli, allora i \textit{bit} di informazione trasmessi saranno $[2^{nV}]$ dove con le parentesi quadre intendiamo approssimare per eccesso all'intero più vicino.\\
+Prendiamo ad esempio il nostro solito canale binario abbiamo quindi che, se sono stati emessi $n$ simboli, allora i \textit{bit} di informazione trasmessi saranno $[2^{nV}]$ dove con le parentesi quadre intendiamo approssimare per eccesso all'intero più vicino.\\
 Notiamo che indicata con $H_b(p)$ l'entropia di una variabile casuale di Bernouli di parametro p abbiamo che $H_b(p)=-p \log(p)- (1-p) \log(1-p) =H(R|S)$ dove $S$ è una variabile casuale di Bernoulli con parametro $\epsilon$ e con un errore del canale pari a $p$.\\
 Prima di vedere il teorema di Shannon prepariamo il terreno dimostrando un lemma tecnico utile poi per la dimostrazione del teorema.
 \begin{lem}
@@ -248,7 +295,7 @@ Rifacendoci a \ref{defi:decisione} definiamo $A$ come l'evento in cui non ci son
 \begin{equation}\label{eq:7.7}
 \mathbb{P}(E)=\mathbb{P}(A)+ \mathbb{P}(B)
 \end{equation}
-essendo $\mathbb{P}(A \cap B)=0$.
+essendo $\mathbb{P}(A \cap B)=0$.\\
 Premettiamo al teorema due lemmi che ne renderanno immediata la dimostrazione.
 
 \begin{lem}
@@ -259,11 +306,12 @@ $$\mathbb{P}(A)\leq \delta_1$$
 Ricordando cos'è l'evento $A$ troviamo che 	
  \[
 \begin{split}
-\mathbb{P}(A)&=\mathbb{P}(S(d)>d(p+v))\\
-& = \mathbb{P}(S(d)-dp>dv)\\
-& \leq \mathbb{P}(|S(d)-dp|>dv)
+\mathbb{P}(A)&=\mathbb{P}(S(d,p)>d(p+v))\\
+& = \mathbb{P}(S(d,p)-dp>dv)\\
+& \leq \mathbb{P}(|S(d,p)-dp|>dv)
 \end{split}
 \]
+Ricodrando che $S(d,p)$ è una variabile casuale con distribuzione binomiale a parametri $d,p$
 Ora applicando la disuguaglianza di Chebyshev otteniamo:
 $$\mathbb{P}(A)\leq \frac{p(1-p)}{dv}$$
 che conclude la nostra dimostrazione
@@ -274,15 +322,16 @@ Siano $\rho$ e $\delta_2$ due numeri reali non negativi e supponiamo che le paro
 $$\mathbb{P}(B)\leq \delta_2$$
 \end{lem}
 \begin{proof}
-Supponiamo che nella palla $\mathcal{B}(y,r)$ (dove $r=d(p+v)$) ci siano due o più parole. Sia $x_i$ quella con distanza di Hamming da y minore. Abbiamo che
+Supponiamo che nella palla $\mathcal{B}(y,r)$ (dove $r=d(p+v)$) ci siano due o più parole. Sia $x_i$ quella con \textit{distanza di Hamming} da y minore. Abbiamo che
 \[
 \begin{split}
-\mathbb{P}(B)&=\mathbb{P}\bigg( (x_i\in \sig) \cup \bigg( \bigcup_{j=1,j\neq i}^M (x_j \in \sig ) \bigg) \bigg)\\
+\mathbb{P}(B)&=\mathbb{P}\bigg( (x_i\in \sig) \cap \bigg( \bigcup_{j=1,j\neq i}^M (x_j \in \sig ) \bigg) \bigg)\\
 &\leq \mathbb{P}\bigg( \bigcup_{j=1,j\neq i}^M (x_j \in \sig ) \bigg)\\
 & \leq \sum_{j=1,j\neq i}^M \mathbb{P}(x_j\in \sig)\\
-&\leq (M-1) \mathbf{P}(x_j \in \sig ) \textit{per alcuni } 1\leq j \leq M
+&= (M-1) \mathbb{P}(x_j \in \sig ) \textit{per alcuni } \ 1\leq j \leq M
 \end{split}
 \]
+Dove per arrivare all'ultima riga abbiamo tenuto conto del fatto che per ipotesi $x_j$ sono identicamente distribuite.
 Troviamo ora $\mathbb{P}(x_j\in \sig)$. Abbiamo che $x_j$ appartiene a $\sig$ solo se ha almeno $[r]$ errori e ricordando che la probabilità di avere esattamente $k$ errori è: $\frac{1}{2^d} {d \choose k}$ abbiamo che:
 $$\mathbb{P}(x_j\in \sig)=\frac{1}{2^d} \sum_{k=0}^{[r]} {d \choose k}\leq \frac{2^{dH_b(p+v)}}{2^d}=2^{-d(1-H_b(p+v))}$$
 quindi unendo questi due ultimi risultati otteniamo:
@@ -302,16 +351,13 @@ e quindi prendendo $d$ sufficientemente grande possiamo fare in modo che $2^{d((
 
 
 \begin{teo} (\textit{Teorema Fondamentale di Shannon})
-Dati $\delta , \rho > 0$ possiamo trovare un codice tale per cui se la velocità di trasmissione in un canale binario simmetrico è $R=C-\rho$ allora
+Dati $\delta , \rho > 0$ possiamo trovare un codice tale per cui se la velocità di trasmissione in un canale binario simmetrico è $V=C-\rho$ allora
 $$\mathbb{P}(E)< \delta$$
 \end{teo}
 \begin{proof}
 Ricordando che $E=A\cup B$, il risultato discende direttamente dai due lemmi precedenti
 \end{proof}
-Seguendo una dimostrazione analoga il teorema è dimostrabile per ogni canale, inoltre è possibile rafforzare il risultato mostrando che è possibile controllare non solo la probabilità media di errore, ma anche quella massima ($\max_{1\leq i \leq M} \mathbb{P}(E|x_i)$).\\
-È stato dimostrato che l'inverso non è possibile cioè non si può avere una probabilità d'errore arbitrariamente piccola se si trasmette ad una capacità superiore a quella del canale.\\
-La grandissima forza del teorema Di Shannon viene però resa effimera dalla mancanza di una dimostrazione costruttiva di tale codice.
-
+Seguendo una dimostrazione analoga il teorema è dimostrabile per ogni canale.
 
 
 
