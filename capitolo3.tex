@@ -249,8 +249,8 @@ $$P(E)=\sum_{j=1}^{N}\mathbb{P}(E|x_j)\mathbb{P}(S=x_j)$$
 \end{defi}
 Osserviamo che $\mathbb{P}(E|x_j)$ e di conseguenza anche $P(E)$ dipenderanno dal tipo di regola che adotteremo per ipotizzare chi la parola inviata.\\
 Per semplicità d'ora in avanti utilizzeremo una distribuzione uniforme sull'insieme $C$ delle parole del codice cioè $\mathbb{P}(S=x_j)=\frac{1}{n}$.\\
-Un'importante regola di decisione utilizzata nei canali binari simmetrici si basa sul fatto che avendo ricevuto una parola codice di lunghezza $d$, si ottiene che, sotto determinate ipotesi, la variabile casuale i cui valori sono il numero di errori commessi è una variabile binomiale. Più rigorosamente presa $y$ la probabilità di aver commesso un errore al $j-esimo$ posto è una variabile casuale $X_j$ di Bernoulli con parametro $p$ e quindi il numero di errori totali commessi in $y$ sarà la somma di $d$ variabili di Bernoulli cioè una variabile casuale $S(d,p)$ con distribuzione binomiale e parametri $d,p$ la cui media è
-$$\mathbb{E}[S(d,p)]=dp$$
+Un'importante regola di decisione utilizzata nei canali binari simmetrici si basa sul fatto che, supponendo di aver ricevuto la parola $y$, la probabilità di aver commesso un errore al $j-esimo$ posto è una variabile casuale $X_j$ di Bernoulli con parametro $p$ e quindi il numero di errori totali commessi in $y$ sarà la somma di $d$ variabili di Bernoulli cioè una variabile casuale $S(d,p)$ con distribuzione binomiale e parametri $d,p$ la cui media è
+$$\mathbb{E}[S(d,p)]=dp$$.\\
 Per enunciare la nostra regola di decisione pensiamo le parole del codice inviate e ricevute come vettori di dimensione $d$, si consideri poi una palla $d-dimensionale$ $\mathcal{B}_d(y,d(p+v)$ con $v$ numero arbitrario piccolo a piacere. 
 \begin{defi} \label{defi:decisione}
 Ricevuta $y$ diremo che la parola che è stata inviata è $x$ solo se $x$ è l'unica parola all'interno della palla, diremo che è stato commesso un errore se nella palla non sono presenti parole oppure ce ne sono due o più.
@@ -261,7 +261,7 @@ In particolare questa regola nel caso in cui $S(d,p)>d(p+v)$ dichiarerà che è 
 \section{Teorema di Shannon}
 È chiaro che per noi l'aspetto più importante di un canale comunicativo è la quantità di informazione media che viene effettivamente trasmessa dal canale. Per rendere in modo matematico questo concetto ricordiamo che il nostro canale di comunicazione altro non è che due variabili casuali $S,R$ legate da una legge di probabilità condizionata e come si è visto nella sezione \ref{sec:PropriEntropia} l'informazione scambiata tra queste due variabili è data dalle definizione \ref{defin:mutua}. Riscriviamo quanto detto.
 \begin{defi}
-Si dice \textbf{velocità di trasmissione}, $V$ la quantità media di informazione contenuta in un simbolo dell'alfabeto sorgente che riesce ad essere trasmessa da un canale
+Si dice \textbf{velocità di trasmissione}, $V$ la quantità media di informazione contenuta in un simbolo dell'alfabeto sorgente che riesce ad essere trasmessa da un canale in cui vengono trasmessi simboli ala velocità di uno al secondo
 $$V:=H(R)-H_S(R)$$
 \end{defi}
 Prendiamo ad esempio il nostro solito canale binario abbiamo quindi che, se sono stati emessi $n$ simboli, allora i \textit{bit} di informazione trasmessi saranno $[2^{nV}]$ dove con le parentesi quadre intendiamo approssimare per eccesso all'intero più vicino.\\
@@ -274,7 +274,6 @@ Sia $0 \leq p < \frac{1}{2}$ e $m\in \mathbb{N}$ allora vale
 \end{equation}
 \end{lem}
 \begin{proof}
-
  \[
 \begin{split}
 1&=(p+(1-p))^m \\
