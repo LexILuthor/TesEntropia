@@ -38,19 +38,19 @@ Prima di introdurli però calcoliamo l'entropia di $X \backsim N(\mu, \sigma^2)$
 \begin{split}
 H(X)& = - \frac{1}{\sigma (2 \pi)^{\frac{1}{2}}} \int_{-\infty}^{\infty} \exp \bigg(- \frac{1}{2} \bigg( \frac{x-\mu}{\sigma} \bigg)^2 \bigg) \log \bigg( \frac{1}{\sigma (2\pi)^{\frac{1}{2}}} \exp \bigg( - \frac{1}{2} \bigg( \frac{x-\mu}{ \sigma} \bigg)^2 \bigg)  \bigg) dx  \\ 
 &=\frac{1}{\sigma(2 \pi )^{1/2}} \log (\sigma(2 \pi )^{1/2}) \int_{-\infty}^{\infty} \exp ( -y^2 ) \sigma 2^{1/2} dy - \frac{1}{\sigma (2 \pi)^{1/2}} \frac{1}{\ln (2)}   \int_{-\infty}^{\infty} -y^2 \exp (-y^2) \sigma 2^{1/2} dy \\
-& = \log (\sigma (2 \pi)^{\frac{1}{2}})- \frac{1}{\ln(2) \pi^{\frac{1}{2}}}\int_{-\infty}^{\infty} e^{-y^2}-y^2 dy
+& = \log (\sigma (2 \pi)^{\frac{1}{2}})- \frac{1}{\ln(2) \pi^{\frac{1}{2}}}\int_{-\infty}^{\infty} e^{-y^2}(-y^2) dy
 \end{split}
 \]
-dove abbiamo usato la sostituzione $y=\frac{x-\mu}{2^{\frac{1}{2}}\sigma}$.\\
+dove nella seconda riga abbiamo usato la sostituzione $y=\frac{x-\mu}{2^{1/2}\sigma}$.\\
 Il calcolo diretto dell'integrale al secondo membro risulta:
-$$\int_{-\infty}^{\infty} e^{-y^2}-y^2 dy= \frac{\pi^{\frac{1}{2}}}{2}$$
+$$\int_{-\infty}^{\infty} e^{-y^2}(-y^2) dy= - \frac{\pi^{\frac{1}{2}}}{2}$$
 e quindi sostituendo nell'equazione sopra:
 \begin{equation}
 \begin{split}
-H(X)&=\log (\sigma (2\pi)^{\frac{1}{2}})-\frac{1}{\ln(2) \pi^{\frac{1}{2}}}\frac{\pi^{\frac{1}{2}}}{2}\\
-&=\log (\sigma (2\pi)^{\frac{1}{2}})-\frac{1}{2 \ln(2)} \\
-&=\log (\sigma (2\pi)^{\frac{1}{2}})+ \log \bigg(\frac{1}{e^{\frac{1}{2}}} \bigg) \\
-&=\log \bigg( \sigma \bigg(\frac{2\pi}{e} \bigg)^{\frac{1}{2}} \bigg)
+H(X)&=\log (\sigma (2\pi)^{\frac{1}{2}})+\frac{1}{\ln(2) \pi^{\frac{1}{2}}}\frac{\pi^{\frac{1}{2}}}{2}\\
+&=\log (\sigma (2\pi)^{\frac{1}{2}})+\frac{1}{2 \ln(2)} \\
+&=\log (\sigma (2\pi)^{\frac{1}{2}})+ \log (e^{\frac{1}{2}}) \\
+&=\log ( \sigma (2\pi e)^{\frac{1}{2}})
 \end{split}
 \end{equation}
 D'ora in avanti indicheremo $\log(\sigma(2\pi e)^{\frac{1}{2}})$ con $H_N(\sigma)$. Questo evidenzia il fatto che varianza ed entropia sono due concetti molto legati.
@@ -90,7 +90,7 @@ Come $g$ prendiamo $\g$ cioè la funzione di densità di una Normale $N\backsim 
 \[
 \begin{split}
 - \int_{-\infty}^\infty \log (g(x))f(x)dx &= - \int_{-\infty}^\infty \log \bigg( \g\bigg)f(x)dx\\
-&= \log(\sigma(2\pi)^{1/2})- \frac{\log(e)}{2\sigma^2}\int_{-infty}^{infty} (y-\mu)^2f(x)dx \\
+&= \log(\sigma(2\pi)^{1/2})- \frac{\log(e)}{2\sigma^2}\int_{-\infty}^{\infty} (y-\mu)^2f(y)dy \\
 &= \frac{1}{2} \log(2\pi \sigma^2)+ \frac{ \log(e)}{2\sigma^2} Var(X)\\
 &=\frac{1}{2} \log(2\pi \sigma^2)+ \frac{ \log(e)}{2}\\
 &=\frac{1}{2} \log(2\pi e \sigma^2)=H_N(\sigma)
