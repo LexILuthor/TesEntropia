@@ -21,7 +21,7 @@ Per le proprietà degli elementi appena definiti si veda \cite{Mazzucchi}
 Sia $X$ una variabile casuale con immagine $(a,b)$ e funzione di densità $f$. $H(X)$ detta \textbf{entropia di X} dove:
 $$H(X)=-\int_a^b \log(f(x))f(x)dx= \mathbb{E}\bigg[ \log \bigg( \frac{1}{f(X)} \bigg) \bigg]$$
 \end{defi}
-Anche qui per convenzione $\log$ sarà il logaritmo in base 2.\\
+Anche qui per convenzione $\log$ sarà il logaritmo in base 2, inoltre formalmente considereremo $\log(0)=0$. \\
 Purtroppo la proprietà di essere misura di incertezza, valida nel caso discreto \ref{teo:misuraIncertezza}, non è più valida con questa definizione.\\
 Questo deriva dal fatto che, mentre nel caso discreto l'argomento del logaritmo è sempre compreso tra 0 e 1, nel caso continuo la funzione di densità, argomento del logaritmo, può assumere valori su tutto $\mathbb{R}$.\\
 Per un esempio si calcoli l'entropia associata alla variabile casuale uniforme, ricordando che la su  funzione di densità è $f(x)=\frac{1}{b-a}$ si ottiene:
@@ -73,7 +73,8 @@ Dato che $\log_b(a)=\frac{\ln (a)}{\ln (b)}$ possiamo limitarci al caso in cui a
 \end{split}
 \]
 Dove l'ultima uguaglianza si ottiene ricordando che $f,g$ sono funzioni di densità e quindi $\int_{-\infty}^{\infty} f(x)dx=1, \ \int_{-\infty}^{\infty} g(x)dx=1$.\\
-La disuguaglianza nel caso precedente diventa un uguaglianza solo se $\frac{g(x)}{f(x)}=1$ cioè solo se $g(x)=f(x)$.
+La disuguaglianza nel caso precedente diventa un uguaglianza solo se $\frac{g(x)}{f(x)}=1$ cioè solo se $g(x)=f(x)$.\\
+Notiamo che, nel caso in cui $f(x)$ si annulla possiamo utilizzare un procedimento analogo a quello usato nella dimostrazione del punto 2 del teorema \ref{teo:6.2} di nel caso in cui $p_j=0$.\\
 \end{proof}
 
 
