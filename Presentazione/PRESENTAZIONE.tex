@@ -1,0 +1,214 @@
+\documentclass{beamer}
+%\documentclass[ignorenonframetext,slidestop,compress]{beamer}
+
+
+\usetheme[progressbar=frametitle]{metropolis}
+\setbeamertemplate{frame numbering}[fraction]
+\useoutertheme{metropolis}
+\useinnertheme{metropolis}
+\usefonttheme{metropolis}
+\usecolortheme{spruce}
+\setbeamercolor{background canvas}{bg=white}
+
+%setta il tema vedi http://mike.polycat.net/gallery/beamer-themes 
+%\usetheme{default}
+%\usetheme{Boadilla} %%%%%
+%\usetheme{Malmoe}  %%%
+%\usetheme{Antibes} %%ifeature interessante per i sottocapitoli
+%\usetheme{Bergen}
+%\usetheme{Berkeley}
+%\usetheme{Berlin} %%%%
+%\usetheme{boxes}  %%bianco
+%\usetheme{Copenhagen} %%%%
+%\usetheme{Darmstadt}
+%\usetheme{Dresden} %%%%%% nice
+%\usetheme{Frankfurt}
+%\usetheme{Goettingen} %%%interessante
+%\usetheme{Hannover}
+%\usetheme{Ilmenau}%%%%
+%\usetheme{JuanLesPins}
+%\usetheme{Luebeck}
+%\usetheme{Madrid} %%
+%\usetheme{Malmoe}
+%\usetheme{Marburg}
+%\usetheme{Montpellier} %
+%\usetheme{PaloAlto}
+%\usetheme{Pittsburgh}
+%\usetheme{Rochester}
+%\usetheme{Singapore} %%%%
+%\usetheme{Szeged}
+%\usetheme{bars}
+%\usetheme{Warsaw}
+
+%setta la combinazione di colori 
+%\usecolortheme{albatross}
+%\usecolortheme{lily}
+%\usecolortheme{spruce}
+
+%\definecolor{mygreen}{rgb}{.125,.5,.25}
+%\usecolortheme[named=mygreen]{structure}
+
+%\setbeamercovered{transparent}
+
+
+
+
+
+\usepackage{fancyhdr}
+\usepackage{hyperref}
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage[T1]{fontenc}
+\usepackage[italian]{babel}
+\usepackage[utf8]{inputenc}
+%\usepackage[active]{srcltx}
+\usepackage{mathrsfs}
+\usepackage{cancel} % use \cancel{} \cancelto{}{} or \bcancel{} \bcancelto{}{} in math formula
+\usepackage{subfigure}
+
+
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage[T1]{fontenc}
+\newtheorem{teo}{Teorema}[section]
+\newtheorem{corol}{Corollario}[section]
+\newtheorem{prop}{Proposizione}[section]
+\newtheorem{lem}{Lemma}[section]
+\theoremstyle{definition}
+\newtheorem{defi}{Definizione}[section]
+\newtheorem{oss}{Osservazione}
+\numberwithin{equation}{section}
+\usepackage{mathtools}
+\usepackage{systeme}
+%%%%%%%%%%%%%%%%
+
+
+
+
+%%%%%%%%%%%%%%%%%
+
+\newcommand{\spacep}{$(\Omega,\mathcal{F} ,\mathbb{P})$}
+\newcommand{\p}{$\mathbb{P}$}
+\newcommand{\lep}{legge di probabilità $\{p_1...p_n \}$ }
+\newcommand{\leggeq}{legge di probabilità $\{q_1...q_m \}$ }
+\newcommand{\va}{$\{a_1...a_n \}$ }
+\newcommand{\vb}{$\{b_1...b_m \}$ }
+\newcommand{\lepc}{$\{p(j|i); 1 \leq i \leq n , \ 1 \leq j \leq m \}$ }
+\newcommand{\acode}{$\{ c_1...c_r \}$}
+\newcommand{\var}{due variabili casuali $X,Y$}
+\newcommand{\sumj}{\sum_{j=1}^n}
+\newcommand{\sumi}{\sum_{i=1}^N}
+\newcommand{\sumin}{\sum_{i=1}^n}
+\newcommand{\sumk}{\sum_{k=1}^m}
+\newcommand{\suma}{\sum_{i_0...i_n=1}^N}
+\newcommand{\sumaa}{\sum_{i_0...i_n,i_{n+1}=1}^N}
+\newcommand{\limi}{\lim_{n\to \infty}}
+\newcommand{\sumij}{-\sum_{i,j=1}^n}
+\newcommand{\sume}{\sum_{k=0}^{[mp]}  {m \choose k} }
+\newcommand{\g}{ \frac{1}{\sigma (2\pi)^{1/2}} \exp \bigg( - \frac{1}{2} \bigg( \frac{x-\mu}{ \sigma} \bigg)^2 \bigg)  }
+\newcommand{\sig}{\mathcal{B}(y,r)}
+
+
+
+\begin{document}
+\metroset{block=fill} %%blocchi pieni
+\title{Entropia e Teoria dell'Informazione}
+\author{Claudio Meggio}
+\date{Anno Accademico\\2016/2017}
+\institute{Università degli Studi di \\Trento}
+\begin{frame}
+\titlepage 
+\end{frame}
+\section{Introduzione}
+\begin{frame}
+\frametitle{Indice}
+\begin{enumerate}
+\item Definizione Informazione ed Entropia
+\item Proprietà
+\item Entropia Nelle catene di Markov
+\item Codici
+\end{enumerate}
+\end{frame}
+
+
+
+\begin{frame}[t]{Entropia e Informazione} \vspace{5pt}
+\begin{block}{Definizione Informazione}
+\vspace{0.5em}
+In uno spazio di probabilità \spacep definiamo la funzione \textbf{informazione} $I: \mathcal{F}\to \mathbb{R}^+$ come:
+\begin{equation*}
+I(E)=-\log_a(\mathbb{P} (E)).
+\end{equation*}
+\vspace{0.5em}
+\end{block}
+\large \textbf{Esempio}
+\begin{enumerate}
+\item[i.] Quando vado in palestra mi alleno
+\item[ii.] Il vincitore delle prossime elezioni sarà Claudio Baglioni
+\item[iii.] QUER W LKS E W
+\end{enumerate}
+\end{frame}
+
+
+
+
+
+\begin{frame}[t]{Entropia e Informazione} \vspace{5pt}
+
+\begin{block}{Definizione Entropia}
+\vspace{0.5em}
+Data $X$ variabile casuale definiamo la sua \textbf{Entropia} come:
+\begin{equation*}
+H(X):=\mathbb{E}(I(X))=-\sum_{j=1}^np_j\log(p_j)
+\end{equation*}
+\vspace{0.5em}
+\end{block}
+\large \textbf{Esempio}
+
+\begin{columns}[onlytextwidth]
+\column{0.5\textwidth}
+\only<1->{
+Probabilità che esca testa
+\begin{enumerate}
+\item  $p_1=0.95$
+\item  $p_2=0.6$
+\item  $p_3=0.5$
+\end{enumerate} }
+\column{0.5\textwidth} 
+\vspace{10pt}
+\only<2>{
+\begin{enumerate}
+\item$H_1(p_1)=0.286$
+\item$H_2(p_2)=0.971$
+\item$H_3(p_3)=1$
+\end{enumerate}
+}
+\end{columns}
+\vspace{0.5em}
+\end{frame}
+
+
+\begin{frame}[t]{Ancora Definizioni} \vspace{5pt}
+Definizioni entropia congiunta condizionata etc...
+\end{frame}
+
+
+\begin{frame}[t]{Proprietà} \vspace{5pt}
+$H(x) \leq \log(n)$...
+Disug Shannon....
+\end{frame}
+
+
+
+
+
+
+
+
+
+
+\end{document}
