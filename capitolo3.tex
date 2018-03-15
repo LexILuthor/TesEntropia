@@ -1,9 +1,15 @@
 \chapter{Comunicazione}
+\vspace{15pt}
 
 In questo capitolo sarà proposta una modellizzazione della trasmissione di informazione attraverso canali di comunicazione. 
 
+\vspace{15pt}
+
+
 \section{Trasmissione di informazione}
 \label{sec:Trasmissione}
+\vspace{10pt}
+
 
 Il modello più semplice è costituito da una sorgente, un canale di comunicazione, ed un ricevente.\\
 La sorgente sarà modellata da una variabile aleatoria $S$ a valori \va detti alfabeto sorgente e con \lep. Il fatto che la sorgente $S$ sia una variabile casuale va interpretato come l'incertezza su quale messaggio verrà inviato. In questo contesto un messaggio sarà formato da una serie di simboli presi da \va e posti uno di seguito all'altro.\\
@@ -18,7 +24,7 @@ I(a_j,b_k)=- \log(q_k)+ \log(p(k|j))
 se $p_j=0$ allora diremo $I(a_j,b_k)=0$.\\
 Dove E è l'evento $(S=a_j)$ che ha probabilità $p_j$, mentre $F$ è l'evento $(R=b_k)$ che avverrà con probabilità $q_k$.
 \end{defi}
-È importante notare che questa definizione di mutua informazione è diversa da quella data in \ref{defi:mutua} la quale si riferisce a due variabili casuali e non a due eventi come in questo caso.\\
+È importante notare che questa definizione di mutua informazione è diversa da quella data in \ref{defin:mutua} la quale si riferisce a due variabili casuali e non a due eventi come in questo caso.\\
 Dato che $- \log(q_k)$ è l'informazione dell'evento $R=b_k$, mentre $- \log(p(k|j))$ è l'informazione aggiuntiva che ci darebbe la ricezione di $b_k$ sapendo già per certo che è stato spedito $a_j$, possiamo interpretare $I(a_j,b_k)$ come la quantità di informazione su $R=b_k$ che ci è data dall'evento $S=a_j$. In altre parole è la quantità di informazione che è spedita attraverso il canale.
 \begin{teo} \label{teo:7.1}
 Per ogni $1\leq j \leq n , 1 \leq k, \leq m$ si ha:
@@ -54,7 +60,7 @@ Operativamente spesso è preferibile vedere la capacità del canale C come:
 \begin{equation}
 C=max(H(R)-H_S(R))
 \end{equation}
-ottenuta utilizzando la definizione di mutua informazione tra variabili casuali \ref{defi:mutua}.\\
+ottenuta utilizzando la definizione di mutua informazione tra variabili casuali \ref{defin:mutua}.\\
 \begin{oss} \label{oss:bsc}
 Il più semplice esempio di canale di comunicazione che possiamo trovare è un canale binario simmetrico, esso avrà grande rilevanza in seguito. È formato da una sorgente  con alfabeto $\{ 0 , 1 \}$ e come specificato nella figura il \textit{rumore} del canale è definito attraverso un parametro $p$
 \\
@@ -113,8 +119,13 @@ $$C=\max(H(R)-H_S(R))=1-H_S(R)$$
 Possiamo notare che $C$ sarà una funzione di $p$ ed avrà minimo quando $p=\frac{1}{2}$ e massimo agli estremi ($p=0$ o $p=1$).
 Può sembrare che la quantità d'informazione inviata attraverso un canale non possa essere scelta arbitrariamente vicina alla capacità $C$ del canale, ma che sia dettata dalla distribuzione di $S$. Vedremo nel prossimo capitolo come, grazie all'introduzione di nuovi oggetti sarà possibile modificare a nostro favore la distribuzione dei dati inviati
 \end{oss}
+\vspace{15pt}
+
+
 \section{Codici}
 \label{sec:Codici}
+\vspace{10pt}
+
 In questo paragrafo daremo un idea di ciò che si intende con \textit{codice} nella matematica per poi applicarci la nostra conoscenza sulla trasmissione di informazione.\\
 \begin{defi}
 L'\textbf{alfabeto di un codice, C} è un insieme \acode i cui elementi $c_i$ sono chiamati \textbf{simboli}.\\
@@ -216,8 +227,12 @@ H(L)& =  \sumj p_j l_j \\
 \end{proof}
 Il teorema appena dimostrato è detto primo teorema di Shannon e fu dimostrato proprio dal matematico Americano nel 1948.\\
 
+\vspace{15pt}
+
 
 \section{Regole di decisione}
+\vspace{10pt}
+
 Mettiamoci nella situazione
 $$ SORGENTE \to codificatore \to CANALE \to decodificatore \to RICEVENTE$$
 e concentriamoci sul segmento $codificatore \to CANALE \to decodificatore$.\\
@@ -257,8 +272,12 @@ Ricevuta $y$ diremo che la parola che è stata inviata è $x$ solo se $x$ è l'u
 \end{defi}
 In particolare questa regola nel caso in cui $S(d,p)>d(p+v)$ dichiarerà che è stato commesso un errore
 
+\vspace{15pt}
+
 
 \section{Teorema di Shannon}
+\vspace{10pt}
+
 È chiaro che per noi l'aspetto più importante di un canale comunicativo è la quantità di informazione media che viene effettivamente trasmessa dal canale. Per rendere in modo matematico questo concetto ricordiamo che il nostro canale di comunicazione altro non è che due variabili casuali $S,R$ legate da una legge di probabilità condizionata e come si è visto nella sezione \ref{sec:PropriEntropia} l'informazione scambiata tra queste due variabili è data dalle definizione \ref{defin:mutua}. Riscriviamo quanto detto.
 \begin{defi}
 Si dice \textbf{velocità di trasmissione}, $V$ la quantità media di informazione contenuta in un simbolo dell'alfabeto sorgente che riesce ad essere trasmessa da un canale in cui vengono trasmessi simboli ala velocità di uno al secondo

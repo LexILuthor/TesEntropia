@@ -120,45 +120,126 @@
 \author{Claudio Meggio}
 \date{Anno Accademico\\2016/2017}
 \institute{Università degli Studi di \\Trento}
+
+
+
 \begin{frame}
 \titlepage 
 \end{frame}
-\section{Introduzione}
-\begin{frame}
-\frametitle{Indice}
+
+
+\begin{frame}[t]{Indice}
+\vspace{40pt}
 \begin{enumerate}
-\item Definizione Informazione ed Entropia
-\item Proprietà
-\item Entropia Nelle catene di Markov
-\item Codici
+\item[•] Definizione Informazione ed Entropia
+\item[•] Proprietà
+\item[•] Codici
+\item[•] Entropia Nelle catene di Markov
+\item[•] Entropia per variabili casuali assolutamente continue
 \end{enumerate}
 \end{frame}
 
 
+\section{Introduzione}
 
-\begin{frame}[t]{Entropia e Informazione} \vspace{5pt}
-\begin{block}{Definizione Informazione}
-\vspace{0.5em}
-In uno spazio di probabilità \spacep definiamo la funzione \textbf{informazione} $I: \mathcal{F}\to \mathbb{R}^+$ come:
-\begin{equation*}
-I(E)=-\log_a(\mathbb{P} (E)).
-\end{equation*}
-\vspace{0.5em}
-\end{block}
+
+%\begin{frame}[t]{Entropia e Informazione} \vspace{5pt}
+%\begin{block}{Definizione Informazione}
+%\vspace{0.5em}
+%In uno spazio di probabilità \spacep definiamo la funzione \textbf{informazione} $I: %\mathcal{F}\to \mathbb{R}^+$ come:
+%\begin{equation*}
+%I(E)=-\log_a(\mathbb{P} (E)).
+%\end{equation*}
+%\vspace{0.5em}
+%\end{block}
+%\only<2>{
+%\begin{block}{Definizione Entropia}
+%\vspace{0.5em}
+%Data $X$ variabile casuale definiamo la sua \textbf{Entropia} come:
+%\begin{equation*}
+%H(X):=\mathbb{E}(I(X))=-\sum_{j=1}^np_j\log(p_j)
+%\end{equation*}
+%\vspace{0.5em}
+%\end{block}
+%}
+%\end{frame}
+
+
+\begin{frame}[t]{Informazione} \vspace{5pt}
 \large \textbf{Esempio}
 \begin{enumerate}
 \item[i.] Quando vado in palestra mi alleno
 \item[ii.] Il vincitore delle prossime elezioni sarà Claudio Baglioni
 \item[iii.] QUER W LKS E W
 \end{enumerate}
+\vspace{15pt}
+\only<2>{
+\begin{block}{Definizione Informazione}
+\vspace{0.5em}
+In uno spazio di probabilità \spacep \  definiamo la funzione \textbf{informazione} $I: \mathcal{F}\to \mathbb{R}^+$ come:
+\begin{equation*}
+I(E)=-\log_a(\mathbb{P} (E)).
+\end{equation*}
+\vspace{0.5em}
+\end{block}
+}
 \end{frame}
 
 
+%\begin{frame}[t]{Entropia} \vspace{5pt}
+%\begin{block}{Definizione Entropia}
+%\vspace{0.5em}
+%Data $X$ variabile casuale definiamo la sua \textbf{Entropia} come:
+%\begin{equation*}
+%H(X):=\mathbb{E}(I(X))=-\sum_{j=1}^np_j\log(p_j)
+%\end{equation*}
+%\vspace{0.5em}
+%\end{block}
+%\large \textbf{Esempio}
+%\begin{columns}[onlytextwidth]
+%\column{0.5\textwidth}
+%\only<1->{
+%Probabilità che esca testa
+%\begin{enumerate}
+%\item  $p_1=0.95$
+%\item  $p_2=0.6$
+%\item  $p_3=0.5$
+%\end{enumerate} }
+%\column{0.5\textwidth} 
+%\vspace{10pt}
+%\only<2>{
+%\begin{enumerate}
+%\item$H_1(p_1)=0.286$
+%\item$H_2(p_2)=0.971$
+%\item$H_3(p_3)=1$
+%\end{enumerate}
+%}
+%\end{columns}
+%\vspace{0.5em}
+%\end{frame}
 
 
+\begin{frame}[t]{Funzione di Incertezza}
+\large \textbf{Definizione:}\\
+$U$ viene detta \textbf{misura di incertezza} se soddisfa le seguenti:
+\begin{enumerate}
+\item[-] $U(X)$ è un massimo quando ha distribuzione uniforme
+\vspace{9pt}
+\item[-] $U(p_1...p_n,0)=U(p_1...p_n)$
+\vspace{9pt}
+\item[-] $U(p_1....p_n)$ è continua per tutti i suoi argomenti.
+\vspace{9pt}
+\item[-] Presa $Y$ variabile casuale allora $U(X,Y)=U_X(Y)+U(X)$\\
+ dove $U_X(Y)= \sumj p_j U(Y|X=j)$
+\end{enumerate}
+%\begin{teo} \label{teo:misuraIncertezza}
+%$U(X)$ è una misura di incertezza se e solo se 
+%$$U(X)= KH(X) , \ \ K>0$$
+%\end{teo}
+\end{frame}
 
-\begin{frame}[t]{Entropia e Informazione} \vspace{5pt}
 
+\begin{frame}[t]{Entropia} \vspace{5pt}
 \begin{block}{Definizione Entropia}
 \vspace{0.5em}
 Data $X$ variabile casuale definiamo la sua \textbf{Entropia} come:
@@ -167,48 +248,160 @@ H(X):=\mathbb{E}(I(X))=-\sum_{j=1}^np_j\log(p_j)
 \end{equation*}
 \vspace{0.5em}
 \end{block}
-\large \textbf{Esempio}
-
-\begin{columns}[onlytextwidth]
-\column{0.5\textwidth}
-\only<1->{
-Probabilità che esca testa
-\begin{enumerate}
-\item  $p_1=0.95$
-\item  $p_2=0.6$
-\item  $p_3=0.5$
-\end{enumerate} }
-\column{0.5\textwidth} 
-\vspace{10pt}
-\only<2>{
-\begin{enumerate}
-\item$H_1(p_1)=0.286$
-\item$H_2(p_2)=0.971$
-\item$H_3(p_3)=1$
-\end{enumerate}
-}
-\end{columns}
-\vspace{0.5em}
-\end{frame}
-
-
-\begin{frame}[t]{Ancora Definizioni} \vspace{5pt}
-Definizioni entropia congiunta condizionata etc...
+\vspace{20pt}
+\large \textbf{Teorema:}\\
+$U(X)$ è una misura di incertezza se e solo se 
+$$U(X)= KH(X) , \ \ K>0 \ \ \ \ \ \ \ \ $$
+\vspace{15pt}
 \end{frame}
 
 
 \begin{frame}[t]{Proprietà} \vspace{5pt}
-$H(x) \leq \log(n)$...
-Disug Shannon....
+\begin{block}{Teorema}
+\begin{equation*}
+H(x) \leq \log(n)
+\end{equation*}
+Con l'uguaglianza sse $X$ ha distribuzione uniforme
+\end{block}
+\large\textbf{Dimostrazione:}\\
+\[
+\begin{split}
+H(x)-\log{(n)}
+&=-\frac{1}{ln(2)} \bigg( \sumj p_j ln (p_j) + ln(n) \bigg)\\
+&=-\frac{1}{ln(2)} \bigg( \sumj p_j (ln (p_j) + ln(n)) \bigg)\\
+&\leq \frac{1}{ln(2)} \bigg( \sumj p_j \bigg( \frac{1}{p_jn} -1 \bigg) \bigg)\leq 0
+\end{split}
+\]
+\vspace{30pt}
 \end{frame}
 
 
+\begin{frame}[t]{Entropia Condizionata} \vspace{5pt}
+\begin{block}{Definizione Entropia Condizionata}
+\vspace{0.5em}
+\begin{equation*}
+H_X(Y):= \mathbb{E}[H.(Y)]= \sum_{j=1}^n p_j H_j(Y)
+\end{equation*}
+dove $H_j(Y):=-\sum_{k=1}^m p_j(k)\log(p_j(k))$
+\vspace{0.5em}
+\end{block}
+\vspace{10pt}
+\only<2>{
+\begin{block}{Disuguaglianza di Shannon}
+\vspace{0.3em}
+\begin{equation*}
+H_X(Y)\leq H(Y)
+\end{equation*}
+\end{block}
+\large\textbf{Dimostrazione:}\\
+Disugauglianza di Jensen con 
+$$\lambda_j=p_j \ \ f(x)=x\log(x) \ \ x_j=p_j(k)$$
+}
+\vspace{20pt}
+\end{frame}
 
 
+\begin{frame}[t]{Canale Binario simmetrico}
+\begin{equation*}
+\large{SORGENTE  \to CANALE  \to RICEVENTE}
+\end{equation*}
+
+\begin{columns}[onlytextwidth]
+\column{0.4\textwidth}
+
+\begin{figure}[H]
+{\begin{tikzpicture}
+%\draw [help lines] (0,0) grid (13,4);
+%\draw (1,0) node[circle] {B};
+%\node[draw, circle] at ({360/\n * 5}:3cm) 
+\node at (0,4) {0};
+\node at (0,0) {1};
+\node at (4,4) {0};
+\node at (4,0) {1};
+\draw [->] (0.2,4) -- (3.8,4);
+\draw [->] (0.2,0) -- (3.8,0);
+\draw [->] (0.2,0.2) -- (3.8,3.8);
+\draw [->] (0.2,3.8) -- (3.8,0.2);
+\node at (1,2.7) {$p$};
+\node at (1,1.3) {$p$};
+\node at (2,-0.3) {$1-p$};
+\node at (2,4.3) {$1-p$};
+
+\end{tikzpicture}}
+\end{figure}
+\vspace{20pt}
+
+\column{0.5\textwidth} 
+%\vspace{20pt}
+\begin{block}{Definizione Capacità}
+Viene definita capacità di un canale la quantità
+\[
+\begin{split}
+C:&=\max_{\{ p_1...p_n \}} I(S,R) \\
+&=\max_{\{ p_1...p_n \}}(H(R)-H_S(R))
+\end{split}
+\]
+\end{block}
+ Capacità canale simmetrico binario  $C=1-H_S(R)$
 
 
+\end{columns}
 
 
+\end{frame}
+
+
+\begin{frame}[t]{Velocità} \vspace{5pt}
+Velocità di trasmissione è definita come il numero di bits d'informazione che vengono trasmessi attraverso il canale. Nel nostro caso (un simbolo al secondo) la velocità è data da $I(R,S)$
+commento sulla velocità in rapporto alla lunghezza delle parole di un codice
+\end{frame}
+
+
+\begin{frame}[t]{Errore} \vspace{5pt}
+\begin{block}{Probabilità media d'errore}
+$$P(E)=\sum_{i=1}^N P_{x_j}(E)p_j$$
+\end{block}
+\begin{block}{Distanza di Hamming}
+\vspace{0.5em}
+Numero di simboli che differiscono nelle due 
+\vspace{0.5em}
+Regola di decisione da errore se ci sono più parole nella stessa sfera, oppure non ve ne sono
+\end{block}
+\end{frame}
+
+
+\begin{frame}[t]{Lemmi preparativi} \vspace{5pt}
+\begin{block}{Lemma 1}
+Per ogni fissato $\delta_1>0$, scelto $d$ sufficientemente grande vale:
+$$\mathbb{P}(A)\leq \delta_1$$   
+\end{block}
+
+\begin{block}{Lemma 2}
+Siano $\rho$ e $\delta_2$ due numeri reali non negativi e supponiamo che le parole del codice siano $M=2^{d(C-\rho)}$ dove $C=1-H_b(p)$ è la capacità del canale allora, per $d$ sufficientemente grande vale:
+$$\mathbb{P}(B)\leq \delta_2$$
+\end{block}
+\end{frame}
+
+
+\begin{frame}[t]{Teorema di Shannon} \vspace{5pt}
+\begin{block}{Teorema di Shannon}
+\vspace{0.5em}
+Dati $\delta , \rho > 0$ possiamo trovare un codice tale per cui se la velocità di trasmissione in un canale binario simmetrico è $V=C-\rho$ allora
+$$\mathbb{P}(E)< \delta$$
+\vspace{0.5em}
+\end{block}
+commenti
+\end{frame}
+
+
+\begin{frame}[t]{Conclusioni} \vspace{5pt}
+
+\end{frame}
+
+
+\begin{frame}[t]{FINE} \vspace{5pt}
+GRAZIE DELL'ATTENZIONE
+\end{frame}
 
 
 \end{document}

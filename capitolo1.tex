@@ -1,11 +1,14 @@
 \chapter{Informazione ed Entropia per variabili casuali discrete}
 \label{cha:intro}
+\vspace{15pt}
 
 
 
 
 \section{Informazione}
 \label{sec:informazione}
+\vspace{10pt}
+
 Fondamentali in questa tesi saranno i concetti di Informazione ed entropia. Bisogna anzitutto specificare che in Probabilità il significato di Informazione ha un connotato diverso da quello della lingua parlata. Consideriamo ad esempio le seguenti frasi: 
 \begin{enumerate}
 \item[i.] Quando vado in palestra mi alleno
@@ -37,9 +40,11 @@ Essendo questa funzione spesso associata a codici è comodo scegliere $2$ come b
 I(X=0)=I(X=1)=-\log_2 { \bigg(\frac{1}{2} \bigg )} =1
 \end{equation}
 Per questo d'ora in avanti, salvo diversa indicazione, con $\log$ si intenderà $\log_2$.
+\vspace{15pt}
 
 \section{Entropia}
 \label{sec:Entropia}
+\vspace{10pt}
 
 Il secondo concetto fondamentale trattato in questa tesi è quello di \textit{entropia}.\\
 Data una variabile casuale discreta $X$ a valori $\{ x_1...x_n \}$ e con legge di probabilità $\{p_1...p_n \}$ ($p_i:=\mathbb{P}(X=x_i)$) non possiamo conoscere a priori il valore che assumerà $X$ e di conseguenza non possiamo sapere quanta informazione verrà inviata. Definiamo per questo l'\textit{entropia}.
@@ -100,9 +105,13 @@ H(x)-\log{(n)}
 dove nel per passare dalla quarta alla quinta riga abbiamo usato il fatto che $ln(x)\leq x-1$ con l'uguaglianza solo se $x=1$. Quindi abbiamo che le disuguaglianze si trasformano in uguaglianze solo se $\frac{1}{p_jn}=1$ cioè se $p_j=\frac{1}{n}$ cioè se si ha distribuzione uniforme.
 \end{enumerate}
 \end{proof}
+\vspace{15pt}
+
 
 \section{Proprietà dell'entropia}
 \label{sec:PropriEntropia}
+\vspace{10pt}
+
 In questa sezione indagheremo le prime proprietà dell'entropia e dimostreremo i primi risultati che getteranno le basi per le costruzioni successive.
 Può essere interessante capire come si comporta l'entropia nel caso in cui le variabili in considerazione siano dipendenti, per fare ciò definiamo l'\textit{entropia condizionata}. 
 \begin{defi} \label{defi:condiz}
@@ -219,9 +228,13 @@ Questo risultato può essere pensato come: aggiungendo informazione (il valore d
 Nel caso di \textit{processi stocastici} (si veda \ref{sec:markEntropia} per la definizione) è comodo osservare che considerando $Y=(X_{n+1})$ e $X=X_0$ nel teorema precedente si ottiene:
 $$H(X_{n+1}|X_0,X_1...X_n) \leq H(X_{n+1}|X_1...X_n).$$
 \end{oss}
+\vspace{15pt}
+
 
 \section{Unicità dell'Entropia}
 \label{sec:UniEntropia}
+\vspace{10pt}
+
 Si può dimostrare che la scelta della funzione di entropia come \textit{misura di incertezza} è unica a meno di una costante moltiplicativa.\\
 Ptrima di definire la \textit{misura di incertezza} premettiamo una precisazione sulla notazione.\\
 Indicheremo la probabilità condizionata ($\mathbb{P}(Y=k|X=j)$) con la notazione $p_{j}(k)$ oppure, in modo totalmente equivalente, $p(k|j)$.
@@ -273,9 +286,12 @@ $$I(X,Y)=-\sumj \sumk p_{jk} \log(q_k)+\sumj \sumk p_{jk}\log{(p_j(k))}$$
 \end{enumerate}
 \end{proof}
 
+\vspace{15pt}
+
 
 \section{Principio dell'Entropia Massima}
 \label{sec:maxEntropia}
+\vspace{10pt}
 
 Spesso ci si trova in condizioni in cui è data una variabile casuale $X$ a valori $\{ x_1...x_n \}$ di cui non si conosce la \lep  in questi casi si può applicare il principio di entropia massima:\\
 \begin{defi}
@@ -322,9 +338,13 @@ p_j=\frac{e^{\mu ' x_j}}{Z( \mu ')} \ \ (1\leq j \leq n)
 \end{equation}
 Dove $\mu'$ dipenderà dalla distribuzione $x_i$ e verrà calcolato caso per caso
 
+\vspace{15pt}
+
 
 \section{Entropia nelle catene di Markov}
 \label{sec:markEntropia}
+\vspace{10pt}
+
 \begin{defi}
 Si consideri una famiglia di variabili casuali tutte definite sullo stesso spazio di probabilità \spacep , $(X(t), t \geq 0 )$, tale famiglia è detta \textbf{processo stocastico}.
 \end{defi}
@@ -409,9 +429,13 @@ $$\mathbb{P}(X_{n_1}=i_1...X_{n_k}=i_k)= \mathbb{P}(X_{n_1+m}=i_1...X_{n_k+m}=i_
 Consideriamo una catena di Markov stazionaria $(X_n,n \in \mathbb{Z}_+)$ con una matrice di transizione bistocastica $P$ e sia $X_{\infty}$ una variabile casuale di dimensione $n$ uniformemente distribuita, abbiamo quindi che $D(X_n,X_{\infty})=\log(N)-H(X_n)$. Si dimostra che $D(X_n,X_{\infty})$ è una funzione decrescente e che se la distribuzione uniforme è l'unica distribuzione invariante, allora $\lim_{n \to \infty}D(X_n,X_{\infty})=0$. Segue quindi che $H(X_n)$ è crescente. \cite{Thomas}
 
 
+\vspace{15pt}
+
 
 \section{La Regola della Catena}
 \label{sec:chainRule}
+\vspace{10pt}
+
 Vediamo ora come cambia l'informazione in un processo stocastico. L'approccio più naturale può sembrare quello di considerare l'entropia come funzione del tempo,come si è cominciato a fare sopra, in questo modo però ci si dimentica della relazione che esiste tra due passaggi successivi, dal tempo $t_n$ al tempo $t_{n+1}$. Procederemo quindi in modo differente cominciando dal generalizzare i risultati visti nel caso di due sole variabili.\\
 Estendiamo la definizione di entropia congiunta ( \ref{defi:congiun} ) in questo modo:
 \begin{equation}
@@ -444,9 +468,13 @@ Applicando l'ipotesi induttiva otteniamo il risultato.
 Inoltre da \ref{eq:10.8} e dal fatto che l'entropia condizionata è sempre maggiore di zero otteniamo che l'entropia congiunta cresce nel tempo.
 \end{proof}
 
+\vspace{15pt}
+
 
 \section{Velocità dell'Entropia}
 \label{sec:EntropyRate}
+\vspace{10pt}
+
 \begin{defi}
 Quando il limite esiste, $h(X)$ si dice \textbf{velocità dell'entropia} dove
 $$h(X):=\limi\frac{1}{n}H(X_0...X_{n-1})$$
