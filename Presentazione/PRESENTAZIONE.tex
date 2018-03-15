@@ -131,11 +131,10 @@
 \begin{frame}[t]{Indice}
 \vspace{40pt}
 \begin{enumerate}
-\item[•] Definizione Informazione ed Entropia
-\item[•] Proprietà
+\item[•] Proprietà Informazione ed Entropia
 \item[•] Codici
 \item[•] Entropia Nelle catene di Markov
-\item[•] Entropia per variabili casuali assolutamente continue
+\item[•] Variabili casuali assolutamente continue
 \end{enumerate}
 \end{frame}
 
@@ -300,6 +299,7 @@ $$\lambda_j=p_j \ \ f(x)=x\log(x) \ \ x_j=p_j(k)$$
 \vspace{20pt}
 \end{frame}
 
+\section{Codici}
 
 \begin{frame}[t]{Canale Binario simmetrico}
 \begin{equation*}
@@ -352,8 +352,9 @@ C:&=\max_{\{ p_1...p_n \}} I(S,R) \\
 
 
 \begin{frame}[t]{Velocità} \vspace{5pt}
-Velocità di trasmissione è definita come il numero di bits d'informazione che vengono trasmessi attraverso il canale. Nel nostro caso (un simbolo al secondo) la velocità è data da $I(R,S)$
-commento sulla velocità in rapporto alla lunghezza delle parole di un codice
+Velocità di trasmissione è definita come il numero di bits d'informazione che vengono trasmessi attraverso il canale. Nel nostro caso (un simbolo al secondo) la velocità è data da $I(R,S)$.\\
+(La velocità dipende quindi dalla distribuzione della variabile casuale)\\
+Nel nostro caso si decide di codificare non singoli simboli ma intere parole di lunghezza dV con parole di lunghezza d  (supporremo  V < 1).  il numero totale delle parole da codificare  è $M=2^{dV}$ e le parole codice corrispondenti vengono scelte casualmente con una distribuzione uniforme (ognuna di queste ha probabilità $1/2^d$ di essere scelta). Il codice consiste quindi in una $M$-pla di possibili parole con $d$ digits. Ognuno di tali codici ha probabilità $1/ 2^{Md}$. ( questa sarebbe l'idea del random coding)
 \end{frame}
 
 
@@ -361,6 +362,7 @@ commento sulla velocità in rapporto alla lunghezza delle parole di un codice
 \begin{block}{Probabilità media d'errore}
 $$P(E)=\sum_{i=1}^N P_{x_j}(E)p_j$$
 \end{block}
+\vspace{20pt}
 \begin{block}{Distanza di Hamming}
 \vspace{0.5em}
 Numero di simboli che differiscono nelle due 
