@@ -117,9 +117,9 @@
 \begin{document}
 \metroset{block=fill} %%blocchi pieni
 \title{Entropia e Teoria dell'Informazione}
-\author{Claudio Meggio}
+\author{Laureando: Claudio Meggio\\ Realtore: Sonia Mazzucchi}
 \date{Anno Accademico\\2016/2017}
-\institute{Università degli Studi di \\Trento}
+\institute{\large{Università degli Studi di \\Trento}}
 
 
 
@@ -140,6 +140,7 @@
 
 
 \section{Introduzione}
+
 
 
 %\begin{frame}[t]{Entropia e Informazione} \vspace{5pt}
@@ -218,7 +219,8 @@ I(E)=-\log_a(\mathbb{P} (E)).
 %\end{frame}
 
 
-\begin{frame}[t]{Funzione di Incertezza}
+\begin{frame}[t]{Misura di Incertezza}
+\vspace{14pt}
 \large \textbf{Definizione:}\\
 $U$ viene detta \textbf{misura di incertezza} se soddisfa le seguenti:
 \begin{enumerate}
@@ -258,11 +260,12 @@ $$U(X)= KH(X) , \ \ K>0 \ \ \ \ \ \ \ \ $$
 \begin{frame}[t]{Proprietà} \vspace{5pt}
 \begin{block}{Teorema}
 \begin{equation*}
-H(x) \leq \log(n)
+H(X) \leq \log(n)
 \end{equation*}
 Con l'uguaglianza sse $X$ ha distribuzione uniforme
 \end{block}
-\large\textbf{Dimostrazione:}\\
+\vspace{10pt}
+\large\textbf{Dimostrazione:}
 \[
 \begin{split}
 H(x)-\log{(n)}
@@ -301,11 +304,44 @@ $$\lambda_j=p_j \ \ f(x)=x\log(x) \ \ x_j=p_j(k)$$
 
 \section{Codici}
 
-\begin{frame}[t]{Canale Binario simmetrico}
+
+\begin{frame}[t]{Canale di Comunicazione}
 \begin{equation*}
 \large{SORGENTE  \to CANALE  \to RICEVENTE}
 \end{equation*}
 
+\vspace{30pt}
+\begin{block}{Definizione Capacità}
+Viene definita capacità di un canale la quantità
+\[
+\begin{split}
+C:&=\max_{\{ p_1...p_n \}} I(S,R) \\
+&=\max_{\{ p_1...p_n \}}(H(R)-H_S(R))
+\end{split}
+\]
+\end{block}
+
+\end{frame}
+
+
+
+\begin{frame}[t]{Errore} \vspace{20pt}
+\begin{block}{Probabilità media d'errore}
+$$P(E)=\sum_{i=1}^N P_{x_j}(E)p_j$$
+Dove $E$ è l'evento 'viene inviato $x_i$, ma suppongo sia stato inviato $x_j$' con $i\neq j$
+\end{block}
+\vspace{30pt}
+\begin{block}{Distanza di Hamming}
+\vspace{0.5em}
+Numero di simboli che differiscono nelle due parole
+\vspace{0.5em}
+\end{block}
+\vspace{20pt}
+\end{frame}
+
+
+\begin{frame}[t]{Canale binario simmetrico}
+Sorgente $S$ distribuita come una variabile casuale di Bernoulli di parametro $\epsilon$
 \begin{columns}[onlytextwidth]
 \column{0.4\textwidth}
 
@@ -330,45 +366,72 @@ $$\lambda_j=p_j \ \ f(x)=x\log(x) \ \ x_j=p_j(k)$$
 \end{tikzpicture}}
 \end{figure}
 \vspace{20pt}
-
 \column{0.5\textwidth} 
 %\vspace{20pt}
-\begin{block}{Definizione Capacità}
-Viene definita capacità di un canale la quantità
-\[
-\begin{split}
-C:&=\max_{\{ p_1...p_n \}} I(S,R) \\
-&=\max_{\{ p_1...p_n \}}(H(R)-H_S(R))
-\end{split}
-\]
+\begin{block}{ }
+\large\textbf{Capacità canale binario simmetrico:}\\  $$C=1-H_b(p)$$
 \end{block}
- Capacità canale simmetrico binario  $C=1-H_S(R)$
-
-
 \end{columns}
-
-
 \end{frame}
 
-
-\begin{frame}[t]{Velocità} \vspace{5pt}
-Velocità di trasmissione è definita come il numero di bits d'informazione che vengono trasmessi attraverso il canale. Nel nostro caso (un simbolo al secondo) la velocità è data da $I(R,S)$.\\
-(La velocità dipende quindi dalla distribuzione della variabile casuale)\\
-Nel nostro caso si decide di codificare non singoli simboli ma intere parole di lunghezza dV con parole di lunghezza d  (supporremo  V < 1).  il numero totale delle parole da codificare  è $M=2^{dV}$ e le parole codice corrispondenti vengono scelte casualmente con una distribuzione uniforme (ognuna di queste ha probabilità $1/2^d$ di essere scelta). Il codice consiste quindi in una $M$-pla di possibili parole con $d$ digits. Ognuno di tali codici ha probabilità $1/ 2^{Md}$. ( questa sarebbe l'idea del random coding)
-\end{frame}
-
-
-\begin{frame}[t]{Errore} \vspace{5pt}
-\begin{block}{Probabilità media d'errore}
-$$P(E)=\sum_{i=1}^N P_{x_j}(E)p_j$$
+\begin{frame}[t]{Velocità} \vspace{0.1pt}
+\begin{block}{Velocità di Trasmissione}
+Viene detta \textbf{velocità di trasmissione} il numero di bits d'informazione che passano attraverso un canale
 \end{block}
+\begin{columns}[onlytextwidth]
+\column{0.5\textwidth}
+\only<1>{
+\[
+  \begin{array}{cc}
+   1 & 0 \\
+   1 & 1 \\
+   0 & 0 \\
+   1 & 0 \\
+  \end{array} 
+  \longrightarrow
+  \begin{array}{ccccc}
+   1 & 1 & 1 & 1 & 1\\
+   0 & 0 & 0 & 0 & 0\\
+   1 & 0 & 1 & 0 & 1\\
+   0 & 1 & 0 & 1 & 0\\
+  \end{array} 
+  \]
+  }
+  \only<2->{
+\[
+  \begin{array}{cc}
+   1 & 0 \\
+   1 & 1 \\
+   0 & 0 \\
+   1 & 0 \\
+  \end{array} 
+  \longrightarrow
+  \begin{array}{ccccc}
+   1 & 1 & \color{red}{1} & 1 & 1\\
+   0 & 0 & 0 & 0 & 0\\
+   1 & 0 & 1 & 0 & 1\\
+   0 & 1 & 0 & 1 & 0\\
+  \end{array} 
+  \]
+  }
+  \column{0.5\textwidth}
+  \only<2->{
+  \[
+\ supponendo \ di \ ricevere \ \ \ 
+\]
+  \[
+  \begin{array}{ccccc}  
+   1 & 1 & \color{red}{0} & 1 & 1\\   
+  \end{array}  
+\]}
+\end{columns}
+\only<3>{
 \vspace{20pt}
-\begin{block}{Distanza di Hamming}
-\vspace{0.5em}
-Numero di simboli che differiscono nelle due 
-\vspace{0.5em}
-Regola di decisione da errore se ci sono più parole nella stessa sfera, oppure non ve ne sono
-\end{block}
+\\
+Nel teorema di Shannon verranno codificate parole di lunghezza $dV$ con parole di lunghezza d.\\
+Il numero totale delle parole da codificare  sarà $M=2^{dV}$ e le parole codice corrispondenti verranno scelte con distribuzione uniforme.
+\vspace{10pt}	
+}
 \end{frame}
 
 
@@ -377,7 +440,7 @@ Regola di decisione da errore se ci sono più parole nella stessa sfera, oppure 
 Per ogni fissato $\delta_1>0$, scelto $d$ sufficientemente grande vale:
 $$\mathbb{P}(A)\leq \delta_1$$   
 \end{block}
-
+\vspace{20pt}
 \begin{block}{Lemma 2}
 Siano $\rho$ e $\delta_2$ due numeri reali non negativi e supponiamo che le parole del codice siano $M=2^{d(C-\rho)}$ dove $C=1-H_b(p)$ è la capacità del canale allora, per $d$ sufficientemente grande vale:
 $$\mathbb{P}(B)\leq \delta_2$$
@@ -385,24 +448,30 @@ $$\mathbb{P}(B)\leq \delta_2$$
 \end{frame}
 
 
-\begin{frame}[t]{Teorema di Shannon} \vspace{5pt}
+\begin{frame}[t]{Teorema di Shannon} \vspace{30pt}
 \begin{block}{Teorema di Shannon}
 \vspace{0.5em}
 Dati $\delta , \rho > 0$ possiamo trovare un codice tale per cui se la velocità di trasmissione in un canale binario simmetrico è $V=C-\rho$ allora
 $$\mathbb{P}(E)< \delta$$
 \vspace{0.5em}
 \end{block}
-commenti
+\large\textbf{Dimostrazione:}\\
+Ricordando che $E=A\cup B$, e quindi $\mathbb{P}(E) \leq \mathbb{P}(A)+ \mathbb{P}(B)$
 \end{frame}
 
 
 \begin{frame}[t]{Conclusioni} \vspace{5pt}
-
+\vspace{40pt}
+\begin{enumerate}
+\item[-]è possibile estendere il teorema a qualsiasi tipo di canale
+\item[-]non costruttività del teorema
+\item[-]teorema inverso
+\end{enumerate}
 \end{frame}
 
 
-\begin{frame}[t]{FINE} \vspace{5pt}
-GRAZIE DELL'ATTENZIONE
+\begin{frame}[t]{FINE} \vspace{45pt}
+\center{\large\textbf{{GRAZIE DELL'ATTENZIONE}}}
 \end{frame}
 
 
